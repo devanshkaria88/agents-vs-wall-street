@@ -1,7 +1,8 @@
-"""Live extraction stage: LLM readers with self-consistency voting.
+"""Live extraction stage: The Truth's own Reader agents with self-consistency voting.
 
-For each company, runs `claude -p` N times (default 3) with corpus-read tools.
-Each run must return the driver JSON for a fixed key list. Then:
+For each company, runs the standalone agent (agent/loop.py — Anthropic API tool
+loop with search_corpus/read_doc/submit_drivers and a full tool trace) N times
+(default 3). Then:
 
 1. FIREWALL  — every citation quoting a corpus doc is re-verified byte-exact;
                a quote that cannot be re-found kills that run's driver.
@@ -19,12 +20,14 @@ Run: .venv/bin/python -m forecaster.extract [--runs 3] [--companies hays,...]
 import argparse
 import concurrent.futures
 import json
-import re
-import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from agent.loop import run_reader as agent_run_reader  # noqa: E402
 DRIVERS = ROOT / "research" / "drivers"
 LIVE = DRIVERS / "live"
 
@@ -35,8 +38,11 @@ CORPUS_DIR = {
     "deere": "challenge/offline-data/deere",
 }
 
-# Assumption drivers the extractor should try to REPLACE with found facts.
-RESOLVE_HINTS = {
+# Superseded: per-key tasks now live in agent/skills/<company>.md (generated
+# from the pinned drivers). Kept for reference during the event: the original
+# claude -p subprocess approach was replaced by our own API agent loop for
+# full tool traceability.
+_RETIRED_RESOLVE_HINTS = {
     "hays": {
         "half_year_finance_charge": "Find the H1 FY26 net finance charge (GBPm) in the 2026-02-27 half-year report income statement or finance-costs note.",
         "q3_share_of_h2": "If any doc discloses Hays quarterly absolute net fees or Q3:Q4 split, extract it; otherwise return null.",
@@ -57,37 +63,11 @@ RESOLVE_HINTS = {
 }
 
 
-def prompt_for(company: str, pinned: dict) -> str:
-    keys = {}
-    for k, drv in pinned["drivers"].items():
-        hint = RESOLVE_HINTS.get(company, {}).get(k)
-        keys[k] = {
-            "unit": drv["unit"],
-            "task": hint or f"Verify against the corpus. Pinned hint doc: {drv.get('citation', {}).get('doc_path', 'search yourself')}",
-        }
-    return f"""You are the extraction stage of an earnings-forecast pipeline. Work ONLY from files under {CORPUS_DIR[company]}/ in this repository (plus that folder's INDEX.md). Do not use outside knowledge; do not compute derived values — extract what documents state.
-
-For each driver key below, find the evidence and return its value. Citations must have doc_path (repo-relative), verbatim_line (copied BYTE-EXACT from the file, including odd OCR spacing — it will be checked by substring match and rejected if it does not appear), and published (from the doc's frontmatter published_at). If a value genuinely is not in the corpus, use null and say why in note.
-
-Driver keys:
-{json.dumps(keys, indent=1)}
-
-Also return additional_evidence: up to 5 items with material NEW information relevant to the forecast metrics that the keys above miss (newer guidance, restatements, one-offs), same citation schema.
-
-Output ONLY a JSON object (no markdown fences): {{"drivers": {{"<key>": {{"value": <number-or-null>, "unit": "...", "note": "...", "citation": {{"doc_path": "...", "verbatim_line": "...", "published": "YYYY-MM-DD"}}}}}}, "additional_evidence": [...]}}"""
-
-
 def run_reader(company: str, pinned: dict, run_idx: int) -> dict | None:
-    cmd = ["claude", "-p", prompt_for(company, pinned), "--output-format", "json",
-           "--allowedTools", "Bash(rg:*),Bash(ls:*),Read,Grep,Glob", "--max-turns", "40"]
     try:
-        proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=900)
-        payload = json.loads(proc.stdout)
-        text = payload.get("result", "")
-        match = re.search(r"\{.*\}", text, re.DOTALL)
-        return json.loads(match.group(0)) if match else None
+        return agent_run_reader(company, run_idx)
     except Exception as e:
-        print(f"[{company} run {run_idx}] reader failed: {e}")
+        print(f"[{company} run {run_idx}] reader failed: {type(e).__name__}: {e}")
         return None
 
 
