@@ -68,5 +68,13 @@
     "company": "hays",
     "logfile": "logs/ui-run-fullrun-20260816T142320Z.log",
     "startedAt": "2026-08-16T14:23:20.770Z"
+  },
+  {
+    "pid": 99493,
+    "action": "backtest",
+    "company": "hays",
+    "quarter": "FY25",
+    "logfile": "logs/ui-run-backtest-20260816T144348Z.log",
+    "startedAt": "2026-08-16T14:43:48.247Z"
   }
 ]

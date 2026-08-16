@@ -1,0 +1,6 @@
+PASS [holdout firewall] all 3 quotes byte-exact; doc dates on the correct sides of cutoff 2025-08-21
+PASS [cutoff mechanics] challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md is invisible to read_doc and search_corpus under the cutoff
+[backtest hays FY25] launching time-traveled reader (cutoff 2025-08-21)
+[backtest hays FY25] Pre-exceptional operating profit (GBPm) — anchor [45.0, 45.0] -> forecast 45.0
+[backtest hays FY25] actual 45.6 | miss 0.60 (1.32%) | naive miss 59.50 | ratio_vs_naive 0.010 (beat the naive carry-forward)
+[backtest hays FY25] result -> logs/backtest-hays-FY25-20260816T144348Z.json

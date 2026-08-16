@@ -4,6 +4,7 @@ import Pipeline, { type StageStatus } from "@/components/Pipeline";
 import RunControls from "@/components/RunControls";
 import SidePanel, { type State } from "@/components/SidePanel";
 import EventFeed, { type FeedEvent } from "@/components/EventFeed";
+import BacktestPanel, { type BacktestResult, type Holdout } from "@/components/BacktestPanel";
 
 export default function Home() {
   const [company, setCompany] = useState("hays");
@@ -100,12 +101,21 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Floating left column: live event feed */}
-      <div className="absolute bottom-4 left-4 top-24 z-10 w-[330px]">
-        <EventFeed
-          events={(state as State & { events?: FeedEvent[] })?.events ?? []}
-          asOf={(state as State & { generatedAt?: string })?.generatedAt}
-        />
+      {/* Floating left column: live event feed + backtest harness */}
+      <div className="absolute bottom-4 left-4 top-24 z-10 flex w-[330px] flex-col gap-3">
+        <div className="min-h-0 flex-1">
+          <EventFeed
+            events={(state as State & { events?: FeedEvent[] })?.events ?? []}
+            asOf={(state as State & { generatedAt?: string })?.generatedAt}
+          />
+        </div>
+        <div className="max-h-[38%] shrink-0 overflow-y-auto">
+          <BacktestPanel
+            company={company}
+            holdouts={(state as State & { holdouts?: Holdout[] })?.holdouts ?? []}
+            backtests={(state as State & { backtests?: BacktestResult[] })?.backtests ?? []}
+          />
+        </div>
       </div>
 
       {/* Floating right column: run controls + inspector */}

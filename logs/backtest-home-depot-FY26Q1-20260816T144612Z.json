@@ -1,0 +1,28 @@
+{
+ "company": "home-depot",
+ "quarter": "FY26Q1",
+ "label": "Net sales",
+ "unit": "USDm",
+ "cutoff": "2026-05-19",
+ "forecast": 41250.96,
+ "actual": 41765.0,
+ "abs_miss": 514.0400000000009,
+ "pct_miss": 0.012307913324554073,
+ "naive": 39856.0,
+ "naive_miss": 1909.0,
+ "ratio_vs_naive": 0.2692718700890523,
+ "anchor_mode": "growth_pct",
+ "anchor": {
+  "low": 2.5,
+  "high": 4.5,
+  "mid": 3.5,
+  "citation": {
+   "doc_path": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-8k__615609.md",
+   "verbatim_line": "- Total sales growth of approximately 2.5% to 4.5%",
+   "published": "2026-02-24"
+  }
+ },
+ "verified": true,
+ "timestamp": "2026-08-16T14:46:34.236386+00:00",
+ "trace": "logs/agent-trace-backtest-home-depot-FY26Q1-20260816T144612Z.jsonl"
+}

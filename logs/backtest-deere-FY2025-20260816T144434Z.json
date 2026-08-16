@@ -1,0 +1,27 @@
+{
+ "company": "deere",
+ "quarter": "FY2025",
+ "label": "Net income attributable to Deere & Company (fiscal year)",
+ "unit": "USDm",
+ "cutoff": "2025-11-26",
+ "forecast": 5000.0,
+ "actual": 5027.0,
+ "abs_miss": 27.0,
+ "pct_miss": 0.0053709966182613885,
+ "naive": 7100.0,
+ "naive_miss": 2073.0,
+ "ratio_vs_naive": 0.013024602026049204,
+ "anchor": {
+  "low": 4750.0,
+  "high": 5250.0,
+  "mid": 5000.0,
+  "citation": {
+   "doc_path": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+   "verbatim_line": "Net income attributable to Deere &amp; Company for fiscal 2025 is forecasted to be in a range of $4.75 billion to $5.25 billion.",
+   "published": "2025-08-15"
+  }
+ },
+ "verified": true,
+ "timestamp": "2026-08-16T14:44:54.278070+00:00",
+ "trace": "logs/agent-trace-backtest-deere-FY2025-20260816T144434Z.jsonl"
+}

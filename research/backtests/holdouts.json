@@ -1,0 +1,181 @@
+{
+ "hays": [
+  {
+   "quarter": "H1FY26",
+   "label": "Pre-exceptional operating profit",
+   "unit": "GBPm",
+   "cutoff": "2026-02-27",
+   "actual": 20.1,
+   "actual_doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+   "actual_quote": "H1 26 pre-exceptional (3)  Group operating profit of \u00a320.1 million represented a like-for-like decrease of 25% (down 21% reported). The Group conversion rate (4)  decreased by 70 bps YoY to 4.4%.",
+   "guidance_doc": "challenge/offline-data/hays/filings/2026-01-14__has-ln-20260114-q2-8k__401006.md",
+   "guidance_quote": "we expect  pre-exceptional  operating profit in our first half to be c.\u00a3 20m, including YoY improvement  in the UK&amp;I and ANZ , and in line with consensus expectations (2) .",
+   "prior_actual": 25.5,
+   "prior_doc": "challenge/offline-data/hays/filings/2025-02-20__has-ln-20250220-q2-8k__119730.md",
+   "prior_quote": "H1 25 pre-exceptional (2) Group operating profit of \u00a325.5 million represented a like-for-like decrease of 56% (down 58% reported). The Group conversion rate (2) decreased by 520 bps year-on-year to 5.1%."
+  },
+  {
+   "quarter": "FY25",
+   "label": "Pre-exceptional operating profit",
+   "unit": "GBPm",
+   "cutoff": "2025-08-21",
+   "actual": 45.6,
+   "actual_doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+   "actual_quote": "FY25 pre-exceptional (2) Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Perm markets globally. The Group conversion rate (3) decreased by 470 bps YoY to 4.7%.",
+   "guidance_doc": "challenge/offline-data/hays/filings/2025-06-19__has-ln-20250619-q4-8k__119747.md",
+   "guidance_quote": "Our current cost base on a periodic and constant currency basis has improved to c.\u00a375m from c.\u00a376m in Q3. However, given the largely fixed short-term nature of our cost base there has been a high drop-through of lower net fees to profitability and, as a result, we currently expect FY25 pre-exceptional operating profit of c.\u00a345m*",
+   "prior_actual": 105.1,
+   "prior_doc": "challenge/offline-data/hays/filings/2024-08-22__has-ln-20240822-h2-8k__119721.md",
+   "prior_quote": "FY24 pre-exceptional (2) Group operating profit of \u00a3105.1 million represented a like-for-like decrease of 46% (down 43% WDA (5) ). Group conversion rate (2) decreased by 580 bps year-on-year to 9.4% (9.7% WDA (5) )."
+  },
+  {
+   "quarter": "FY24",
+   "label": "Pre-exceptional operating profit",
+   "unit": "GBPm",
+   "cutoff": "2024-08-22",
+   "actual": 105.1,
+   "actual_doc": "challenge/offline-data/hays/filings/2024-08-22__has-ln-20240822-h2-8k__119721.md",
+   "actual_quote": "FY24 pre-exceptional (2) Group operating profit of \u00a3105.1 million represented a like-for-like decrease of 46% (down 43% WDA (5) ). Group conversion rate (2) decreased by 580 bps year-on-year to 9.4% (9.7% WDA (5) ).",
+   "guidance_doc": "challenge/offline-data/hays/filings/2024-07-11__has-ln-20240711-q4-8k__119729.md",
+   "guidance_quote": "- Despite a more difficult quarter, our cost actions mean we expect FY24 pre-exceptional operating profit of c.\u00a3105 million, around the bottom of the market consensus range*",
+   "prior_actual": 197,
+   "prior_doc": "challenge/offline-data/hays/filings/2023-08-24__has-ln-20230824-h2-8k__119735.md",
+   "prior_quote": "FY23 Group operating profit of \u00a3197.0 million represented a like-for-like decrease of 9% (down 6% working day-adjusted (4) ). In line with the guidance given at our H1 FY23 results, in the second half both operating profit (\u00a3100.0 million) and conversion rate (15.6%) increased versus H1 as we controlled costs and drove consultant productivity. Overall in FY23, Group conversion rate decreased by 250 bps year-on-year to 15.2%."
+  }
+ ],
+ "home-depot": [
+  {
+   "quarter": "FY26Q1",
+   "label": "Net sales",
+   "unit": "USDm",
+   "cutoff": "2026-05-19",
+   "actual": 41765,
+   "actual_doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+   "actual_quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
+   "guidance_doc": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-8k__615609.md",
+   "guidance_quote": "- Total sales growth of approximately 2.5% to 4.5%",
+   "prior_actual": 39856,
+   "prior_doc": "challenge/offline-data/home-depot/filings/2025-05-20__hd-us-20250520-q1-8k__101847.md",
+   "prior_quote": "| Net sales         | $ 39,856         | $ 36,418         | 9.4%    |",
+   "anchor_mode": "growth_pct"
+  },
+  {
+   "quarter": "FY25Q4",
+   "label": "Net sales",
+   "unit": "USDm",
+   "cutoff": "2026-02-24",
+   "actual": 38198,
+   "actual_doc": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-8k__615609.md",
+   "actual_quote": "| Net sales         | $ 38,198         | $ 39,704         | (3.8)%  | $ 164,683         | $ 159,514         | 3.2%    |",
+   "guidance_doc": "challenge/offline-data/home-depot/filings/2025-11-18__hd-us-20251118-q3-8k__359994.md",
+   "guidance_quote": "- Total sales growth of approximately 3.0%",
+   "prior_actual": 39704,
+   "prior_doc": "challenge/offline-data/home-depot/filings/2025-02-25__hd-us-20250225-q4-8k__101827.md",
+   "prior_quote": "| Net sales         | $ 39,704         | $ 34,786         | 14.1%   | $ 159,514         | $ 152,669         | 4.5 %   |",
+   "anchor_mode": "growth_pct"
+  },
+  {
+   "quarter": "FY25Q3",
+   "label": "Net sales",
+   "unit": "USDm",
+   "cutoff": "2025-11-18",
+   "actual": 41352,
+   "actual_doc": "challenge/offline-data/home-depot/filings/2025-11-18__hd-us-20251118-q3-8k__359994.md",
+   "actual_quote": "| Net sales         | $ 41,352         | $ 40,217         | 2.8%    | $ 126,485         | $ 119,810         | 5.6 %   |",
+   "guidance_doc": "challenge/offline-data/home-depot/filings/2025-08-19__hd-us-20250819-q2-8k__143666.md",
+   "guidance_quote": "\u2022Total sales growth of approximately 2.8%",
+   "prior_actual": 40217,
+   "prior_doc": "challenge/offline-data/home-depot/filings/2024-11-12__hd-us-20241112-q3-8k__101844.md",
+   "prior_quote": "| Net sales         | $ 40,217         | $ 37,710         | 6.6 %   | $ 119,810         | $ 117,883         | 1.6 %   |",
+   "anchor_mode": "growth_pct"
+  }
+ ],
+ "analog-devices": [
+  {
+   "quarter": "FY26Q2",
+   "label": "Revenue",
+   "unit": "USDm",
+   "cutoff": "2026-05-20",
+   "actual": 3623,
+   "actual_doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+   "actual_quote": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
+   "guidance_doc": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "guidance_quote": "For the second quarter of fiscal 2026, we are forecasting revenue of $3.5 billion, +/- $100 million.",
+   "prior_actual": 3160,
+   "prior_doc": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "prior_quote": "| Revenue         | $         | 3,160         | $ 2,423         | 30 %         |"
+  },
+  {
+   "quarter": "FY26Q1",
+   "label": "Revenue",
+   "unit": "USDm",
+   "cutoff": "2026-02-18",
+   "actual": 3160,
+   "actual_doc": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "actual_quote": "| Revenue         | $         | 3,160         | $ 2,423         | 30 %         |",
+   "guidance_doc": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+   "guidance_quote": "For the first quarter of fiscal 2026, we are forecasting revenue of $3.1 billion, +/- $100 million.",
+   "prior_actual": 3076,
+   "prior_doc": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+   "prior_quote": "| Revenue         | $ 3,076         | $ 2,443         | 26%         | $ 11,020         | $ 9,427         | 17%         |"
+  },
+  {
+   "quarter": "FY25Q3",
+   "label": "Revenue",
+   "unit": "USDm",
+   "cutoff": "2025-08-20",
+   "actual": 2880,
+   "actual_doc": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
+   "actual_quote": "| Revenue         | $         | 2,880         | $ 2,312         | 25 %         |",
+   "guidance_doc": "challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md",
+   "guidance_quote": "For the third quarter of fiscal 2025, we are forecasting revenue of $2.75 billion, +/- $100 million.",
+   "prior_actual": 2640,
+   "prior_doc": "challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md",
+   "prior_quote": "| Revenue         | $         | 2,640         | $ 2,159         | 22 %         |"
+  }
+ ],
+ "deere": [
+  {
+   "quarter": "FY2025",
+   "label": "Net income attributable to Deere & Company (fiscal year)",
+   "unit": "USDm",
+   "cutoff": "2025-11-26",
+   "actual": 5027,
+   "actual_doc": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+   "actual_quote": "For fiscal year 2025, net income attributable to Deere &amp; Company was $5.027 billion, or $18.50 per share, compared with $7.100 billion, or $25.62 per share, in fiscal 2024.",
+   "guidance_doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+   "guidance_quote": "Net income attributable to Deere &amp; Company for fiscal 2025 is forecasted to be in a range of $4.75 billion to $5.25 billion.",
+   "prior_actual": 7100,
+   "prior_doc": "challenge/offline-data/deere/filings/2024-11-21__de-us-20241121-q4-8k__105840.md",
+   "prior_quote": "For fiscalyear 2024, net income attributable to Deere &amp; Company was $7.100 billion, or $25.62 per share, compared with $10.166 billion, or $34.63 per share, in fiscal 2023."
+  },
+  {
+   "quarter": "FY2024",
+   "label": "Net income attributable to Deere & Company (fiscal year)",
+   "unit": "USDm",
+   "cutoff": "2024-11-21",
+   "actual": 7100,
+   "actual_doc": "challenge/offline-data/deere/filings/2024-11-21__de-us-20241121-q4-8k__105840.md",
+   "actual_quote": "For fiscalyear 2024, net income attributable to Deere &amp; Company was $7.100 billion, or $25.62 per share, compared with $10.166 billion, or $34.63 per share, in fiscal 2023.",
+   "guidance_doc": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
+   "guidance_quote": "Net income attributable to Deere &amp; Company for fiscal 2024 is forecasted to be approximately $7.0 billion.",
+   "prior_actual": 10166,
+   "prior_doc": "challenge/offline-data/deere/filings/2023-11-22__de-us-20231122-q4-8k__105823.md",
+   "prior_quote": "For fiscal-year 2023, net income attributable to Deere &amp; Company was $10.166 billion, or $34.63 per share, compared with $7.131 billion, or $23.28 per share, in fiscal 2022."
+  },
+  {
+   "quarter": "FY2023",
+   "label": "Net income attributable to Deere & Company (fiscal year)",
+   "unit": "USDm",
+   "cutoff": "2023-11-22",
+   "actual": 10166,
+   "actual_doc": "challenge/offline-data/deere/filings/2023-11-22__de-us-20231122-q4-8k__105823.md",
+   "actual_quote": "For fiscal-year 2023, net income attributable to Deere &amp; Company was $10.166 billion, or $34.63 per share, compared with $7.131 billion, or $23.28 per share, in fiscal 2022.",
+   "guidance_doc": "challenge/offline-data/deere/filings/2023-08-18__de-us-20230818-q3-8k__105829.md",
+   "guidance_quote": "Net income attributable to Deere &amp; Company for fiscal 2023 is forecast to be in a range of $9.75 billion to $10.00 billion.",
+   "prior_actual": 7131,
+   "prior_doc": "challenge/offline-data/deere/filings/2022-11-23__de-us-20221123-q4-8k__105825.md",
+   "prior_quote": "For fiscal-year 2022, net income attributable to Deere &amp; Company was $7.131 billion, or $23.28 per share, compared with $5.963 billion, or $18.99 per share, in fiscal 2021."
+  }
+ ]
+}

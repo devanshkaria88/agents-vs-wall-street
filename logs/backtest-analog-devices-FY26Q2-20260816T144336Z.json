@@ -1,0 +1,27 @@
+{
+ "company": "analog-devices",
+ "quarter": "FY26Q2",
+ "label": "Revenue",
+ "unit": "USDm",
+ "cutoff": "2026-05-20",
+ "forecast": 3500.0,
+ "actual": 3623.0,
+ "abs_miss": 123.0,
+ "pct_miss": 0.03394976538780017,
+ "naive": 3160.0,
+ "naive_miss": 463.0,
+ "ratio_vs_naive": 0.265658747300216,
+ "anchor": {
+  "low": 3400.0,
+  "high": 3600.0,
+  "mid": 3500.0,
+  "citation": {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "verbatim_line": "For the second quarter of fiscal 2026, we are forecasting revenue of $3.5 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 36.4%, +/-150 bps, and adjusted operating margin of approximately 47.5%, +/-100 bps. We are planning for reported EPS to be $2.19, +/-$0.15, and adjusted EPS to be $2.88, +/-$0.15.",
+   "published": "2026-02-18"
+  }
+ },
+ "verified": true,
+ "timestamp": "2026-08-16T14:43:47.937802+00:00",
+ "trace": "logs/agent-trace-backtest-analog-devices-FY26Q2-20260816T144336Z.jsonl"
+}

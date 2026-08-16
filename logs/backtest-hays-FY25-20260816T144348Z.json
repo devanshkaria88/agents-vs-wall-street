@@ -1,0 +1,27 @@
+{
+ "company": "hays",
+ "quarter": "FY25",
+ "label": "Pre-exceptional operating profit",
+ "unit": "GBPm",
+ "cutoff": "2025-08-21",
+ "forecast": 45.0,
+ "actual": 45.6,
+ "abs_miss": 0.6000000000000014,
+ "pct_miss": 0.013157894736842136,
+ "naive": 105.1,
+ "naive_miss": 59.49999999999999,
+ "ratio_vs_naive": 0.010084033613445403,
+ "anchor": {
+  "low": 45.0,
+  "high": 45.0,
+  "mid": 45.0,
+  "citation": {
+   "doc_path": "challenge/offline-data/hays/filings/2025-06-19__has-ln-20250619-q4-8k__119747.md",
+   "verbatim_line": "## c.\u00a345m pre-exceptional operating profit expected in FY25 primarily due to more challenging Perm markets",
+   "published": "2025-06-19"
+  }
+ },
+ "verified": true,
+ "timestamp": "2026-08-16T14:43:59.219634+00:00",
+ "trace": "logs/agent-trace-backtest-hays-FY25-20260816T144348Z.jsonl"
+}

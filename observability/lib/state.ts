@@ -163,6 +163,64 @@ export function assemble(company: string) {
       ? "running"
       : "idle";
 
+  // Backtest harness: holdout quarters (spec file) + the NEWEST result file
+  // per quarter. Filenames are backtest-<company>-<quarter>-<stamp>.json and
+  // quarter ids are alnum-only, so a per-quarter prefix scan is unambiguous
+  // and latest() (lexicographic on the stamp) picks the newest run.
+  const holdoutsAll = readJson("research/backtests/holdouts.json") as Record<
+    string,
+    { quarter: string; label: string; unit: string; cutoff: string }[]
+  > | null;
+  const holdouts = Array.isArray(holdoutsAll?.[company]) ? holdoutsAll![company] : [];
+  const backtests = holdouts.flatMap((h) => {
+    const rel = latest("logs", `backtest-${company}-${h.quarter}-`);
+    const r = rel
+      ? (readJson(rel) as {
+          quarter?: string;
+          label?: string;
+          unit?: string;
+          cutoff?: string;
+          forecast?: number;
+          actual?: number;
+          abs_miss?: number;
+          pct_miss?: number;
+          ratio_vs_naive?: number;
+          timestamp?: string;
+        } | null)
+      : null;
+    if (!r) return [];
+    return [
+      {
+        quarter: h.quarter,
+        label: r.label ?? h.label,
+        unit: r.unit ?? h.unit,
+        cutoff: r.cutoff ?? h.cutoff,
+        forecast: Number(r.forecast),
+        actual: Number(r.actual),
+        abs_miss: Number(r.abs_miss),
+        pct_miss: Number(r.pct_miss),
+        ratio_vs_naive: Number(r.ratio_vs_naive),
+        timestamp: r.timestamp ?? null,
+      },
+    ];
+  });
+
+  // Newest backtest reader trace for this company — newest by trailing UTC
+  // stamp, not by full filename (the quarter id sits before the stamp, so a
+  // plain lexicographic sort could prefer an older run of a later quarter).
+  const btTraceRel = (() => {
+    try {
+      const hits = fs
+        .readdirSync(path.join(REPO, "logs"))
+        .filter((f) => f.startsWith(`agent-trace-backtest-${company}-`))
+        .sort((a, b) => ((stampOf(a) ?? a) < (stampOf(b) ?? b) ? -1 : 1));
+      return hits.length ? path.join("logs", hits[hits.length - 1]) : null;
+    } catch {
+      return null;
+    }
+  })();
+  const btCalls = btTraceRel ? readTrace(btTraceRel) : [];
+
   const runLogRel = latest("logs", "run-");
   const runLogM = runLogRel ? mtime(runLogRel) : null;
   let runLog: string[] = [];
@@ -187,13 +245,14 @@ export function assemble(company: string) {
   }));
 
   // Unified event feed: every tool call and skill load, across every agent
-  // (reader runs R0-R2 + skill-writer SW + validator agent VA), merged
-  // chronologically.
+  // (reader runs R0-R2 + skill-writer SW + validator agent VA + backtest
+  // reader BT), merged chronologically.
   type RawCall = { ts?: string; tool?: string; input?: Record<string, unknown>; output_head?: unknown };
   const events = [
     ...readers.flatMap((r) => (r.calls as RawCall[]).map((c) => ({ src: `R${r.run}`, c }))),
     ...(skillgenCalls.slice(-80) as RawCall[]).map((c) => ({ src: "SW", c })),
     ...(vCalls.slice(-80) as RawCall[]).map((c) => ({ src: "VA", c })),
+    ...(btCalls.slice(-80) as RawCall[]).map((c) => ({ src: "BT", c })),
   ]
     .filter(({ c }) => typeof c?.ts === "string" && typeof c?.tool === "string")
     .map(({ src, c }) => ({
@@ -327,6 +386,8 @@ export function assemble(company: string) {
     validatorVerdict,
     validatorTrace: vTraceRel,
     fullrun,
+    holdouts,
+    backtests,
     runLog,
     lastRun: runLogRel
       ? { log: runLogRel, at: runLogM ? new Date(runLogM).toISOString() : null, clear: runClear }
