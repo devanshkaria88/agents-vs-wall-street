@@ -1,0 +1,45 @@
+{
+  "company": "analog-devices",
+  "output_file": "ADI-FY2026Q3.xlsx",
+  "note": "Pinned drivers, hand-reviewed from research/dossiers/analog-devices.json (citations firewall-verified 2026-08-16).",
+  "drivers": {
+    "q3_guide_rev_mid": {"value": 3900.0, "low": 3800.0, "high": 4000.0, "unit": "USDm", "kind": "anchor",
+      "citation": {"doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md", "verbatim_line": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for reported EPS to be $2.60, +/-$0.15, and adjusted EPS to be $3.30, +/-$0.15.", "published": "2026-05-20"}},
+    "q3_guide_adj_eps_mid": {"value": 3.30, "low": 3.15, "high": 3.45, "unit": "USD/share", "kind": "anchor",
+      "citation": {"doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md", "verbatim_line": "We are planning for reported EPS to be $2.60, +/-$0.15, and adjusted EPS to be $3.30, +/-$0.15.", "published": "2026-05-20"}},
+    "q3_guide_adj_opm": {"value": 49.0, "unit": "pp", "kind": "anchor",
+      "citation": {"doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md", "verbatim_line": "adjusted operating margin of approximately 49.0%, +/-100 bps", "published": "2026-05-20"}},
+    "q2_26_adj_gm": {"value": 73.0, "unit": "pp", "kind": "base",
+      "citation": {"doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md", "verbatim_line": "| Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 360 bps |", "published": "2026-05-20"}},
+    "adj_gm_series": {"value": [69.2, 69.8, 71.2, 73.0], "unit": "pp", "kind": "base",
+      "citation": {"doc_path": "research/dossiers/analog-devices.json", "verbatim_line": "Q3 FY2025 69.2 / Q4 FY2025 69.8 / Q1 FY2026 71.2 / Q2 FY2026 73.0", "published": "2026-05-20"}},
+    "trailing_opex_ratio": {"value": 24.3, "low": 24.0, "high": 24.6, "unit": "pp", "kind": "assumption",
+      "justification": "Adjusted opex as % of revenue implied by recent quarters (adj GM minus adj op margin). Extractor task: pin from Q2 FY26 8-K reconciliation tables. Judgment driver — plan-ensemble varies this."},
+    "beat_shrink": {"value": 0.8, "low": 0.6, "high": 1.0, "unit": "ratio", "kind": "assumption",
+      "citation": {"doc_path": "research/dossiers/analog-devices.json", "verbatim_line": "on 2026-06-02 management disclosed that auto demand expected in Q3 accelerated into the final month of Q2", "published": "2026-06-02"},
+      "justification": "Tempers the historical beat for the disclosed Q2 pull-in. Judgment driver — plan-ensemble varies this."}
+  },
+  "history_pairs": {
+    "provenance": "research/dossiers/analog-devices.json beat_history — each pair cites its guide 8-K and actual 8-K; firewall-verified",
+    "revenue": [
+      {"period": "Q3FY24", "guide_mid": 2270.0, "actual": 2312.209},
+      {"period": "Q4FY24", "guide_mid": 2400.0, "actual": 2443.205},
+      {"period": "Q1FY25", "guide_mid": 2350.0, "actual": 2423.174},
+      {"period": "Q2FY25", "guide_mid": 2500.0, "actual": 2640.068},
+      {"period": "Q3FY25", "guide_mid": 2750.0, "actual": 2880.348},
+      {"period": "Q4FY25", "guide_mid": 3000.0, "actual": 3076.117},
+      {"period": "Q1FY26", "guide_mid": 3100.0, "actual": 3160.263},
+      {"period": "Q2FY26", "guide_mid": 3500.0, "actual": 3623.465}
+    ],
+    "adj_eps": [
+      {"period": "Q3FY24", "guide_mid": 1.50, "actual": 1.58},
+      {"period": "Q4FY24", "guide_mid": 1.63, "actual": 1.67},
+      {"period": "Q1FY25", "guide_mid": 1.53, "actual": 1.63},
+      {"period": "Q2FY25", "guide_mid": 1.68, "actual": 1.85},
+      {"period": "Q3FY25", "guide_mid": 1.92, "actual": 2.05},
+      {"period": "Q4FY25", "guide_mid": 2.22, "actual": 2.26},
+      {"period": "Q1FY26", "guide_mid": 2.29, "actual": 2.46},
+      {"period": "Q2FY26", "guide_mid": 2.88, "actual": 3.09}
+    ]
+  }
+}
