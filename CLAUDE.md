@@ -1,8 +1,9 @@
 # Agents vs Wall Street — hackathon entry (2026-08-16)
 
-Solo-team entry: an agent that forecasts 12 earnings metrics (HD FY26Q2,
-ADI FY26Q3, Hays FY2026, DE FY26Q3 — 3 metrics each) into four xlsx
-workbooks, scored against a hidden Wall Street benchmark.
+Team entry (Devansh Karia, Jack Marshall, Mani Sarkar): an agent that
+forecasts 12 earnings metrics (HD FY26Q2, ADI FY26Q3, Hays FY2026,
+DE FY26Q3 — 3 metrics each) into four xlsx workbooks, scored against a
+hidden Wall Street benchmark.
 
 ## Deadlines (today, London time — do not plan past them)
 
