@@ -3,72 +3,151 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent architecture — team name</title>
+  <title>The Truth — agent architecture</title>
   <style>
-    :root { color-scheme: light; --ink:#101828; --muted:#667085; --line:#d0d5dd; --blue:#155eef; --paper:#fff; --wash:#f8fafc; }
+    :root { color-scheme: light; --ink:#101828; --muted:#667085; --line:#d0d5dd; --blue:#155eef; --paper:#fff; --wash:#f8fafc; --cell:#fff7d6; --celledge:#e8d98a; --purple:#6941c6; --teal:#0e9384; }
     * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: var(--wash); font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    main { width: min(920px, calc(100% - 32px)); margin: 40px auto; padding: clamp(24px, 6vw, 64px); background: var(--paper); border: 1px solid var(--line); border-radius: 20px; }
-    h1 { margin: 0 0 8px; font-size: clamp(40px, 8vw, 72px); line-height: .98; letter-spacing: -.05em; }
-    h2 { margin: 48px 0 12px; font-size: 24px; letter-spacing: -.02em; }
-    p, li { max-width: 72ch; }
+    body { margin: 0; color: var(--ink); background: var(--wash); font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { width: min(940px, calc(100% - 32px)); margin: 40px auto; padding: clamp(24px, 5vw, 56px); background: var(--paper); border: 1px solid var(--line); border-radius: 20px; }
+    h1 { margin: 0 0 8px; font-size: clamp(38px, 7vw, 62px); line-height: 1; letter-spacing: -.04em; }
+    h2 { margin: 44px 0 10px; font-size: 23px; letter-spacing: -.02em; }
+    h3 { margin: 20px 0 6px; font-size: 17px; }
+    p, li { max-width: 76ch; }
     .eyebrow { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .lede { color: var(--muted); font-size: 20px; }
-    .card { margin-top: 24px; padding: 20px; background: var(--wash); border: 1px solid var(--line); border-radius: 12px; }
-    code { padding: 2px 6px; border-radius: 5px; background: #eef4ff; }
+    .lede { color: var(--muted); font-size: 19px; }
+    .card { margin-top: 20px; padding: 16px 20px; background: var(--wash); border: 1px solid var(--line); border-radius: 12px; }
+    code { padding: 1px 6px; border-radius: 5px; background: #eef4ff; font-size: .92em; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-size: 13.5px; }
+    pre code { background: none; padding: 0; color: inherit; }
+    table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+    th { text-align: left; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    th, td { padding: 7px 10px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .tblwrap { overflow-x: auto; margin: 14px 0; }
+    .rule { font-weight: 700; }
+    /* pipeline */
+    .pipe { display: flex; flex-direction: column; margin: 18px 0; }
+    .stage { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 16px; background: var(--wash); }
+    .stage b { font-size: 15.5px; }
+    .stage.ai { border-color: var(--purple); }
+    .stage.code { border-color: var(--teal); }
+    .stage.out { background: var(--cell); border-color: var(--celledge); }
+    .stage p { margin: 3px 0 0; font-size: 14px; color: var(--muted); max-width: none; }
+    .arrow { text-align: center; color: var(--muted); font-size: 14px; padding: 2px 0; }
+    .legend { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .legend span.p { color: var(--purple); font-weight: 700; }
+    .legend span.t { color: var(--teal); font-weight: 700; }
+    .cells { display: flex; gap: 5px; margin: 18px 0 4px; flex-wrap: wrap; }
+    .cells div { width: 40px; height: 26px; background: var(--cell); border: 1px solid var(--celledge); border-radius: 3px; font: 10px/26px ui-monospace, monospace; text-align: center; color: #8a6d00; }
   </style>
 </head>
 <body>
   <main>
-    <p class="eyebrow">Agents vs Wall Street</p>
-    <h1>Team name</h1>
-    <p class="lede">In one sentence, explain what your agent does and what makes the approach worth understanding.</p>
+    <p class="eyebrow">Agents vs Wall Street · 16 Aug 2026</p>
+    <h1>The Truth</h1>
+    <p class="lede">An agent that reads 1,139 company documents, quotes its evidence byte-for-byte, lets deterministic code do every calculation, and refuses to be a hero anywhere it lacks receipts.</p>
 
     <div class="card">
-      <p>Agent name: <strong>add agent name</strong></p>
-      <p>Team: <strong>add everyone's name</strong></p>
-      <p>Build style and harness: <strong>add headless agent, coding harness or hybrid setup</strong></p>
-      <p>Models: <strong>add the primary models</strong></p>
+      <p style="margin:4px 0">Agent name: <b>The Truth</b> · Team: <b>Devansh Karia (solo)</b></p>
+      <p style="margin:4px 0">Build style: <b>hybrid</b> — built interactively in Claude Code (claude-fable-5); the runtime is a standalone Python agent on the Anthropic API (claude-opus-5) + deterministic Python.</p>
+      <p style="margin:4px 0">Final command: <code>npm run forecast</code> · Repository: github.com/devanshkaria88/agents-vs-wall-street</p>
     </div>
 
-    <section>
-      <h2>How it works</h2>
-      <p>Explain the path from a company ticker to the three forecasts. Name the main stages, models, tools and data sources. A simple diagram is welcome.</p>
-    </section>
+    <h2>What it does, in one paragraph</h2>
+    <p>Four companies report earnings in the next four days. The Truth forecasts the twelve scored metrics by exploiting one observation: <em>the companies have already told us most of the answers.</em> Hays stated on 10 July that FY26 operating profit lands "at the top of the £37.0–46.0m consensus range". ADI guided Q3 revenue to $3.9B — and has beaten its own midpoint eight quarters straight by a measurable ~+$75M median. Home Depot's quarter contains a full quarter of the GMS acquisition (~$2.0B) that the year-ago quarter lacks. The agent's job is to find those statements, quote them exactly, and hand them to code that applies the companies' own arithmetic to their own words.</p>
 
-    <section>
-      <h2>Research and financial reasoning</h2>
-      <p>Explain how the agent finds information, interprets the requested metrics and units, deals with conflicting evidence and turns the research into a forecast.</p>
-    </section>
+    <div class="cells">
+      <div>HD</div><div>HD</div><div>HD</div><div>ADI</div><div>ADI</div><div>ADI</div><div>HAS</div><div>HAS</div><div>HAS</div><div>DE</div><div>DE</div><div>DE</div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted)">The deliverable: twelve yellow spreadsheet cells. Everything below exists to put defensible numbers in them.</p>
 
-    <section>
-      <h2>Important design choices</h2>
-      <p>Describe the decisions that most affected autonomy, quality, runtime or cost. Include the alternatives you rejected and why.</p>
-    </section>
+    <h2>Three rules the whole design hangs on</h2>
+    <ol>
+      <li><span class="rule">The AI never does arithmetic; the code never guesses.</span> The LLM extracts facts with citations; pure Python applies growth rates, divides profits by share counts, blends paths. Same inputs → same twelve numbers, every run.</li>
+      <li><span class="rule">Every quote is re-verified byte-exact.</span> A citation firewall re-finds each quoted line as an exact substring of the cited file. The agent cannot invent evidence — a quote that doesn't re-find kills the driver. (Bootstrap research scored 144/144 through this same firewall; it caught two formatting drifts.)</li>
+      <li><span class="rule">Never a blank cell.</span> A missing metric scores an automatic 5.0 — the worst possible. Guidance-anchored baselines went green at 11:24; every later stage only overwrites the workbooks after validation passes.</li>
+    </ol>
 
-    <section>
-      <h2>Checks and tests</h2>
-      <p>Show how the system catches missing information, bad units, implausible values, malformed workbooks and failed model calls. Explain what you tested and what happened.</p>
-    </section>
+    <h2>The pipeline (this is the real dataflow of <code>npm run forecast</code>)</h2>
+    <div class="pipe">
+      <div class="stage"><b>Corpus</b><p>1,139 frozen markdown documents (filings, transcripts, slides) — plus a logged, reviewed public-web consensus sweep done at 12:30</p></div>
+      <div class="arrow">↓ raw filings &amp; transcripts</div>
+      <div class="stage ai"><b>Reader — our own agent (agent/loop.py)</b><p>Anthropic API tool loop on claude-opus-5. Tools: search_corpus (ripgrep), read_doc, submit_drivers. Runs 3× per company; every tool call logged to logs/agent-trace-*.jsonl</p></div>
+      <div class="arrow">↓ drivers.json — value, range, byte-exact citation</div>
+      <div class="stage code"><b>Citation firewall + majority vote (forecaster/extract.py)</b><p>Quotes re-found byte-exact or dropped; per-driver 2-of-3 vote; live evidence upgrades assumptions, never silently overrides reviewed anchors</p></div>
+      <div class="arrow">↓ verified drivers only</div>
+      <div class="stage code"><b>Calibration (forecaster/engine.py)</b><p>Bias parameters fitted at runtime from 8 quarters of guide-vs-actual pairs — ADI's +$74.5M median revenue beat is computed, not asserted</p></div>
+      <div class="arrow">↓ fitted parameters</div>
+      <div class="stage code"><b>Calculators ×12</b><p>Primary path + independent cross-check per metric; judgment drivers swept low/mid/high; final value = median of plan variants; full working saved per metric</p></div>
+      <div class="arrow">↓ 12 values + evidence→calculation traces</div>
+      <div class="stage code"><b>Validator (forecaster/validate.py)</b><p>Unit sanity, position vs trailing 8-period history (with explicit justifications), cross-foots (EPS×shares≈NI). Accepted AND rejected values logged</p></div>
+      <div class="arrow">↓ accepted values + rejection log</div>
+      <div class="stage out"><b>Workbook writer → submission/*.xlsx</b><p>Copies official templates, fills only Summary!C7:C9, runs the official checker. Then a human uploads manually (the rules require it)</p></div>
+    </div>
+    <p class="legend"><span class="p">purple = AI reasoning</span> (one stage, early, evidence-gathering only) · <span class="t">teal = deterministic code</span> · yellow = the deliverable</p>
 
-    <section>
-      <h2>Reproducing the run</h2>
-      <p>State what someone needs to install or configure, the command they run and any remaining human input. Explain how the system accepts the company and metric specification.</p>
-    </section>
+    <h2>How each number is derived</h2>
+    <div class="tblwrap"><table>
+      <tr><th>Metric</th><th>Primary path</th><th>Cross-check</th></tr>
+      <tr><td>Hays op profit</td><td>Company statement: top of £37.0–46.0m range → 46.0</td><td>CFO path: H1 20.1 + H2₂₅ 20.1×1.30 = 46.2 ✓</td></tr>
+      <tr><td>Hays net fees</td><td>H1 actual 453.3 + H2 reconstructed from Q3 (−7%) and Q4 (−4%) actual growth → ~903</td><td>CFO: "close to £900 million" ✓ (scored on reported group basis — organiser ruling)</td></tr>
+      <tr><td>Hays EPS</td><td>Finance charge solved from H1 identity, applied to H2 op profit → ~1.2p</td><td>Naive flat-vs-FY25 path flagged and rejected (ignores FY26's higher finance cost)</td></tr>
+      <tr><td>ADI revenue</td><td>Guide mid 3,900 + shrunk median beat → ~3,960</td><td>Guide high end 4,000 (3 of last 5 landed above it)</td></tr>
+      <tr><td>ADI adj EPS</td><td>Guide 3.30 + median EPS beat → ~3.39</td><td>Drop-through of revenue beat ✓</td></tr>
+      <tr><td>ADI adj gross margin</td><td>Damped trend of 69.8→71.2→73.0 series</td><td>Implied: guided adj op margin 49.0 + trailing opex ratio ≈ 73.3 — two independent paths agree</td></tr>
+      <tr><td>HD net sales</td><td>45,277 × (1+organic) + GMS quarter (~1,950–2,050) → ~47,360</td><td>FY guide midpoint applied to year-ago ✓</td></tr>
+      <tr><td>HD comps</td><td>Q1 +0.6 + cadence step ("improvement through the year") → +1.0</td><td>FY guide midpoint (flat–2.0%) ✓</td></tr>
+      <tr><td>HD adj EPS</td><td>Year-ago 4.68 × interpolated YoY cadence</td><td>Q2's historical share of FY adj EPS — blended, spread checked</td></tr>
+      <tr><td>DE revenue</td><td>Q2 13,369 × Q3/Q2 seasonal ratio (~0.94)</td><td>Year-ago 12,018 × decelerating growth — blended → ~12,540</td></tr>
+      <tr><td>DE EPS</td><td>(FY NI guide mid 4,750 − H1 2,429) × Q3 share of H2 ÷ 270.7M shares → ~4.84</td><td>Year-ago 4.75; Street consensus 4.85 found independently after derivation</td></tr>
+      <tr><td>DE PPA profit</td><td>Segment-guided sales decline × margin band → ~556</td><td>Year-ago 580; widest honest uncertainty of the twelve — we sit near par deliberately</td></tr>
+    </table></div>
 
-    <section>
-      <h2>Known weaknesses</h2>
-      <p>Be specific about where the agent still needs human help, where it may fail and what you would improve next.</p>
-    </section>
+    <h2>Why this beats "ask an AI for a number"</h2>
+    <p>Run-to-run variance is engineered out, not averaged out. Downstream of the drivers everything is bit-for-bit deterministic; the two places variance genuinely lives — which facts get extracted, and judgment parameters — are handled with 3× self-consistency voting and a deterministic sweep of each judgment band with median aggregation. An ensemble of end-to-end stochastic runs converges toward what our engine computes in closed form — we just also get to show the working.</p>
+    <p>The scoring formula (<code>min(5.0, our miss / max(WS miss, floor))</code>, blank = 5.0) punishes blowups five times harder than boldness pays. So the system anchors to guidance, adjusts only by measured bias, deviates only with cited evidence, and takes par where it has no edge (Deere). The edges it does take — Hays' pre-announcement, ADI's quantified sandbagging, HD's acquisition wedge — are all structural facts from documents, not opinions.</p>
 
-    <section>
-      <h2>How to reproduce the final run</h2>
-      <div class="card">
-        <p>Final commit: <code>add commit hash</code></p>
-        <p>Final command: <code>add command</code></p>
-        <p>Expected output: four completed workbooks in <code>submission/</code>.</p>
-      </div>
-    </section>
+    <h2>What the judges can verify</h2>
+    <ul>
+      <li><b>Traces:</b> <code>forecasts/traces.json</code> — every metric's inputs (with citations), formulas, variants, cross-check deltas.</li>
+      <li><b>Tool log:</b> <code>logs/agent-trace-*.jsonl</code> — every search_corpus/read_doc call the Reader made, timestamped.</li>
+      <li><b>Validation:</b> <code>logs/validation-*.json</code> — 15 verdicts per run, including justified out-of-history positions.</li>
+      <li><b>Calibration:</b> <code>forecasts/calibration.json</code> — the beat-bias table computed from cited history pairs.</li>
+      <li><b>Research record:</b> <code>research/dossiers/*.json</code> (firewall-verified corpus research), <code>research/web/consensus-2026-08-16.md</code> (logged web sweep with sources and retrieval times).</li>
+      <li><b>Provenance:</b> the git history is the build diary — bootstrap, rule verification, self-written skills, strategy gate with sign-off, then the build. Cross-agent turn commits are timestamped automatically.</li>
+    </ul>
+
+    <h2>Reproduce it</h2>
+    <pre><code>git clone https://github.com/devanshkaria88/agents-vs-wall-street && cd agents-vs-wall-street
+npm install
+python3 -m venv .venv && .venv/bin/pip install openpyxl anthropic
+echo "ANTHROPIC_API_KEY=sk-..." > .env      # only needed for --live extraction
+npm run forecast                             # engine → validate → write → check
+npm run check:submission</code></pre>
+    <p>The default run consumes the pinned, reviewed drivers (fully offline, deterministic). <code>--live</code> re-runs the Reader agents first and diffs their output against the pinned set — matching drivers proceed, divergences are logged and the reviewed value wins.</p>
+
+    <h2>Honesty: what we tried, changed, and where this is weak</h2>
+    <h3>Changed course</h3>
+    <ul>
+      <li><b>Extraction harness, twice.</b> Started with <code>claude -p</code> subprocess calls; replaced mid-build with our own API agent loop because we wanted the tool-call trace to be ours — every ripgrep query logged, not hidden inside another harness. The retired approach is still visible in git history and in <code>forecaster/extract.py</code>.</li>
+      <li><b>Single-run extraction → 3× voting.</b> After challenging our own determinism claim: facts are voted 2-of-3, judgment bands are swept, medians aggregate.</li>
+      <li><b>Hays net-fees basis.</b> We initially hedged between reported (~£903m) and continuing-ops (~£888m) after the six-country divestiture; resolved to reported group basis with the organisers and moved the anchor.</li>
+    </ul>
+    <h3>Considered and rejected</h3>
+    <ul>
+      <li><b>LoRA / fine-tuning:</b> no training data of the right shape (12 targets, ~30 historical quarters — instant overfit), and it would swap the strong reader model for a weaker one. Wrong tool for a 6-hour, 4-company task.</li>
+      <li><b>Vector DB / RAG index:</b> ripgrep over 1,139 markdown files is transparent and sufficient.</li>
+      <li><b>Monte Carlo / DCF:</b> anchor + measured bias + seasonality is explainable in one sentence per metric; sophistication without evidence would be theater.</li>
+    </ul>
+    <h3>Known weaknesses</h3>
+    <ul>
+      <li><b>No channel data.</b> Banks buy credit-card panels and dealer checks; we read what companies said. If a quarter drifted from guidance in ways only intra-quarter data shows, Wall Street beats us on that metric and the cap limits the damage to par-ish.</li>
+      <li><b>Hays EPS is a derivation, not a disclosure.</b> The finance-charge/tax structure is solved from one half-year identity; the honest band is ~1.1–1.3p. The floor on EPS metrics is tiny, so this is our most fragile number.</li>
+      <li><b>Deere's tariff-refund allocation is opaque.</b> Q2's PPA margin was inflated by a ~$272M recovery we cannot cleanly strip; the PPA forecast carries the widest band and deliberately hugs the year-ago.</li>
+      <li><b>Consensus may have converged on our Hays edge.</b> The £43.5m compiled consensus predates the "top of range" statement; analysts have had five weeks to revise toward 46. Our score there degrades gracefully toward par, not badly.</li>
+      <li><b>Extraction nondeterminism is bounded, not eliminated.</b> Voting and the firewall squeeze it; a live run can still surface a driver the pinned set lacks. Policy: divergences are logged and reviewed values win.</li>
+    </ul>
+
+    <p style="color:var(--muted); font-size:13.5px; margin-top:36px">The Truth · Agents vs Wall Street · built 16 Aug 2026, 11:09–17:15, in-event. This page is self-contained; no scripts, no external assets, no secrets.</p>
   </main>
 </body>
 </html>
