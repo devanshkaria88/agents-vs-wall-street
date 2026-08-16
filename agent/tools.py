@@ -45,6 +45,13 @@ def log_server_tool(tool: str, tool_input: dict) -> None:
     _log(tool, tool_input, "(server-side tool call)")
 
 
+def log_event(kind: str, event_input: dict, output: str = "") -> None:
+    """Log a pipeline event that is not a client tool call (skill loads into
+    the system prompt, locally-defined terminal tools) into the same JSONL
+    trace, so the dashboard's event feed sees everything an agent did."""
+    _log(kind, event_input, output)
+
+
 @beta_tool
 def search_corpus(query: str, company: str, max_results: int = 25) -> str:
     """Search the offline document corpus with ripgrep (case-insensitive regex).

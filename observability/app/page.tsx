@@ -3,12 +3,14 @@ import { useCallback, useEffect, useState } from "react";
 import Pipeline, { type StageStatus } from "@/components/Pipeline";
 import RunControls from "@/components/RunControls";
 import SidePanel, { type State } from "@/components/SidePanel";
+import EventFeed, { type FeedEvent } from "@/components/EventFeed";
 
 export default function Home() {
   const [company, setCompany] = useState("hays");
   const [state, setState] = useState<State | null>(null);
   const [selected, setSelected] = useState<string | null>("reader0");
   const [live, setLive] = useState(true);
+  const [follow, setFollow] = useState(true);
 
   const refresh = useCallback(async () => {
     try {
@@ -33,9 +35,22 @@ export default function Home() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden text-slate-900">
+      {/* Drifting color field — gives the frosted tiles something to blur */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        <div className="bg-blob bg-blob-a" />
+        <div className="bg-blob bg-blob-b" />
+      </div>
+
       {/* Full-bleed graph canvas */}
       <div className="absolute inset-0 z-0">
-        {state && <Pipeline statuses={state.stages as Record<string, StageStatus>} selected={selected} onSelect={setSelected} />}
+        {state && (
+          <Pipeline
+            statuses={state.stages as Record<string, StageStatus>}
+            selected={selected}
+            follow={follow}
+            onSelect={setSelected}
+          />
+        )}
       </div>
 
       {/* Floating header */}
@@ -64,6 +79,15 @@ export default function Home() {
             violet = AI · teal = deterministic code · yellow = output
           </span>
           <button
+            onClick={() => setFollow(!follow)}
+            title="Glide the viewport to whichever stage is running"
+            className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
+              follow ? "!border-sky-400/40 text-sky-700" : "text-slate-500"
+            }`}
+          >
+            {follow ? "◉ follow cam" : "○ follow cam"}
+          </button>
+          <button
             onClick={() => setLive(!live)}
             className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
               live ? "!border-emerald-400/40 text-emerald-700" : "text-slate-500"
@@ -73,6 +97,14 @@ export default function Home() {
           </button>
         </div>
       </header>
+
+      {/* Floating left column: live event feed */}
+      <div className="absolute bottom-4 left-4 top-24 z-10 w-[330px]">
+        <EventFeed
+          events={(state as State & { events?: FeedEvent[] })?.events ?? []}
+          asOf={(state as State & { generatedAt?: string })?.generatedAt}
+        />
+      </div>
 
       {/* Floating right column: run controls + inspector */}
       <div className="absolute bottom-4 right-4 top-24 z-10 flex w-[400px] flex-col gap-3">

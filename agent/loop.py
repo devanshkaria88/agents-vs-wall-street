@@ -64,16 +64,18 @@ def _load_env() -> None:
                 os.environ.setdefault(k.strip(), v.strip())
 
 
+def skill_files(company: str, cfg: dict) -> list[Path]:
+    """Resolve which skill files feed the system prompt for this company."""
+    names = (cfg.get("skills") or {}).get(company) or ["method.md", f"{company}.md"]
+    paths = [SKILLS / f for f in names if (SKILLS / f).is_file()]
+    if not paths:  # nothing configured resolved — hard fallback
+        paths = [SKILLS / "method.md", SKILLS / f"{company}.md"]
+    return paths
+
+
 def system_prompt(company: str, config: dict | None = None) -> str:
     cfg = config or load_config()
-    files = (cfg.get("skills") or {}).get(company) or ["method.md", f"{company}.md"]
-    parts = []
-    for f in files:
-        p = SKILLS / f
-        if p.is_file():
-            parts.append(p.read_text())
-    if not parts:  # nothing configured resolved — hard fallback
-        parts = [(SKILLS / "method.md").read_text(), (SKILLS / f"{company}.md").read_text()]
+    parts = [p.read_text() for p in skill_files(company, cfg)]
     extra = (cfg.get("system_prompt_extra") or "").strip()
     if extra:
         parts.append(extra)
@@ -126,6 +128,16 @@ def run_reader(company: str, run_idx: int = 0) -> dict | None:
     logdir.mkdir(exist_ok=True)
     trace_path = logdir / f"agent-trace-{company}-run{run_idx}-{stamp}.jsonl"
     tools.set_trace(trace_path)
+
+    # Skill loads are events too: one trace line per file assembled into the
+    # system prompt, so the dashboard feed shows what the agent was briefed with.
+    for p in skill_files(company, cfg):
+        tools.log_event("load_skill", {"file": str(p.relative_to(ROOT))},
+                        f"{len(p.read_text())} chars into system prompt")
+    extra = (cfg.get("system_prompt_extra") or "").strip()
+    if extra:
+        tools.log_event("load_skill", {"file": "config.json: system_prompt_extra"},
+                        f"{len(extra)} chars into system prompt")
 
     messages: list = [{"role": "user", "content":
                        f"Extract all driver keys for {company}. Work driver by driver; "

@@ -1,4 +1,6 @@
 "use client";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import ConfigPanel from "@/components/ConfigPanel";
 
 type ToolCall = { ts: string; tool: string; input: Record<string, unknown>; output_chars: number; output_head: string };
@@ -42,21 +44,23 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+// Compact tool feed: one line per call (tool + time); click a tile to expand
+// the full input and the head of the output.
 function ToolFeed({ calls }: { calls: ToolCall[] }) {
   if (!calls.length) return <p className="text-slate-500 text-sm">No tool calls yet.</p>;
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       {[...calls].reverse().map((c, i) => (
-        <div key={i} className="rounded-md glass-chip p-2.5">
-          <div className="flex items-center justify-between">
+        <details key={i} className="rounded-md glass-chip">
+          <summary className="flex cursor-pointer list-none items-center justify-between px-2.5 py-1.5 [&::-webkit-details-marker]:hidden">
             <span className="font-mono text-[12px] text-sky-700">{c.tool}</span>
             <span className="text-[10px] text-slate-500">{c.ts?.slice(11, 19)}Z</span>
+          </summary>
+          <div className="border-t border-white/40 px-2.5 py-2">
+            <div className="font-mono text-[11px] text-slate-700 break-all">{JSON.stringify(c.input)}</div>
+            <div className="text-[11px] text-slate-500 mt-1">→ {c.output_head?.slice(0, 300)}</div>
           </div>
-          <div className="font-mono text-[11px] text-slate-700 mt-1 break-all">
-            {JSON.stringify(c.input).slice(0, 180)}
-          </div>
-          <div className="text-[11px] text-slate-500 mt-1 line-clamp-2">→ {c.output_head?.slice(0, 160)}</div>
-        </div>
+        </details>
       ))}
     </div>
   );
@@ -98,7 +102,9 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
           {state.skills.map((s) => (
             <details key={s.name} className="mb-1.5 rounded-md glass-chip p-2">
               <summary className="font-mono text-[12px] text-violet-700 cursor-pointer">{s.name}</summary>
-              <pre className="text-[10.5px] text-slate-600 whitespace-pre-wrap mt-1 max-h-56 overflow-auto">{s.content}</pre>
+              <div className="md-body mt-1.5 max-h-80 overflow-auto rounded bg-white/40 px-2.5 py-2">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{s.content}</ReactMarkdown>
+              </div>
             </details>
           ))}
         </Section>

@@ -15,9 +15,6 @@ const COMPANIES: Record<string, { file: string; label: string }> = {
   deere: { file: "DE-FY2026Q3.xlsx", label: "Deere & Co · FY26 Q3" },
 };
 
-function exists(p: string) {
-  return fs.existsSync(path.join(REPO, p));
-}
 function mtime(p: string): number | null {
   try {
     return fs.statSync(path.join(REPO, p)).mtimeMs;
@@ -146,7 +143,8 @@ export function assemble(company: string) {
   } catch {}
   const runClear = runLog.some((l) => l.includes("RUN CLEAR"));
 
-  const skills = ["method.md", `${company}.md`].map((f) => ({
+  const agentCfg = readJson("agent/config.json") as { skills?: Record<string, string[]> } | null;
+  const skills = (agentCfg?.skills?.[company] ?? ["method.md", `${company}.md`]).map((f) => ({
     name: `agent/skills/${f}`,
     content: (() => {
       try {
@@ -156,6 +154,24 @@ export function assemble(company: string) {
       }
     })(),
   }));
+
+  // Unified event feed: every tool call and skill load, across every agent
+  // (reader runs R0-R2 + skill-writer SW), merged chronologically.
+  type RawCall = { ts?: string; tool?: string; input?: Record<string, unknown>; output_head?: unknown };
+  const events = [
+    ...readers.flatMap((r) => (r.calls as RawCall[]).map((c) => ({ src: `R${r.run}`, c }))),
+    ...(skillgenCalls.slice(-80) as RawCall[]).map((c) => ({ src: "SW", c })),
+  ]
+    .filter(({ c }) => typeof c?.ts === "string" && typeof c?.tool === "string")
+    .map(({ src, c }) => ({
+      ts: String(c.ts),
+      source: src,
+      tool: String(c.tool),
+      input: (c.input ?? {}) as Record<string, unknown>,
+      output_head: String(c.output_head ?? "").slice(0, 200),
+    }))
+    .sort((a, b) => (a.ts < b.ts ? -1 : a.ts > b.ts ? 1 : 0))
+    .slice(-150);
 
   const engineM = mtime("forecasts/traces.json");
   const validM = validationRel ? mtime(validationRel) : null;
@@ -188,6 +204,7 @@ export function assemble(company: string) {
     workbook: meta.file,
     generatedAt: new Date().toISOString(),
     stages,
+    events,
     readers: readers.map((r) => ({ ...r, calls: r.calls })),
     skillgen,
     liveReport,
@@ -199,7 +216,7 @@ export function assemble(company: string) {
     lastRun: runLogRel
       ? { log: runLogRel, at: runLogM ? new Date(runLogM).toISOString() : null, clear: runClear }
       : null,
-    skills: skills.map((s) => ({ name: s.name, content: s.content.slice(0, 4000) })),
+    skills: skills.map((s) => ({ name: s.name, content: s.content.slice(0, 24000) })),
     pinnedDrivers: readJson(`research/drivers/${company}.json`),
   };
 }

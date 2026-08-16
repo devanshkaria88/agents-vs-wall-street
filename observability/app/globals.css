@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0f;
-  --foreground: #e2e8f0;
+  --background: #eef1f8;
+  --foreground: #0f172a;
 }
 
 @theme inline {
@@ -12,28 +12,133 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* --- The Truth — frosted glass system ---
+   A colorful base field (gradients + drifting blobs) sits behind everything;
+   every floating tile is translucent with a heavy backdrop blur, so the color
+   reads through the glass. */
 body {
-  /* Near-black node-editor base with a single faint radial tint */
   background:
-    radial-gradient(1100px 700px at 50% -10%, rgba(99, 102, 241, 0.06), transparent 60%),
-    #0a0a0f;
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    radial-gradient(1000px 640px at 8% -12%, rgba(139, 92, 246, 0.3), transparent 58%),
+    radial-gradient(1100px 720px at 100% 112%, rgba(20, 184, 166, 0.28), transparent 58%),
+    radial-gradient(760px 520px at 55% 30%, rgba(56, 189, 248, 0.18), transparent 66%),
+    radial-gradient(600px 420px at 30% 95%, rgba(251, 191, 36, 0.16), transparent 65%),
+    #eef1f8;
   min-height: 100vh;
+  color: #0f172a;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* --- Floating panels (dark, minimal glass) --- */
+.glass {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 32px rgba(51, 65, 85, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
 .glass-deep {
-  background: rgba(13, 17, 23, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 40px rgba(51, 65, 85, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 .glass-chip {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
 }
+
+/* Drifting color blobs — the frosted tiles need something to blur. */
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  pointer-events: none;
+  will-change: transform;
+}
+.bg-blob-a {
+  width: 560px;
+  height: 560px;
+  left: -6%;
+  top: -14%;
+  background: radial-gradient(circle at 35% 35%, rgba(139, 92, 246, 0.55), rgba(56, 189, 248, 0.25) 70%, transparent);
+  animation: blob-drift-a 46s ease-in-out infinite alternate;
+}
+.bg-blob-b {
+  width: 640px;
+  height: 640px;
+  right: -8%;
+  bottom: -18%;
+  background: radial-gradient(circle at 60% 60%, rgba(20, 184, 166, 0.5), rgba(251, 191, 36, 0.22) 70%, transparent);
+  animation: blob-drift-b 58s ease-in-out infinite alternate;
+}
+@keyframes blob-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(9vw, 8vh) scale(1.12); }
+}
+@keyframes blob-drift-b {
+  from { transform: translate(0, 0) scale(1.08); }
+  to { transform: translate(-8vw, -7vh) scale(0.95); }
+}
+
+/* --- Rendered markdown (skill briefs in the inspector) --- */
+.md-body {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #334155;
+}
+.md-body h1, .md-body h2, .md-body h3, .md-body h4 {
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0.9em 0 0.35em;
+}
+.md-body h1 { font-size: 13.5px; }
+.md-body h2 { font-size: 12.5px; }
+.md-body h3, .md-body h4 { font-size: 11.5px; }
+.md-body p { margin: 0.4em 0; }
+.md-body ul, .md-body ol { margin: 0.4em 0 0.4em 1.2em; }
+.md-body ul { list-style: disc; }
+.md-body ol { list-style: decimal; }
+.md-body li { margin: 0.15em 0; }
+.md-body code {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  background: rgba(148, 163, 184, 0.18);
+  border-radius: 3px;
+  padding: 0 3px;
+  word-break: break-all;
+}
+.md-body pre {
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 6px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.md-body pre code { background: transparent; padding: 0; }
+.md-body table {
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  font-size: 10.5px;
+  display: block;
+  overflow-x: auto;
+}
+.md-body th, .md-body td {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 2px 6px;
+  text-align: left;
+}
+.md-body th { background: rgba(148, 163, 184, 0.15); font-weight: 600; }
+.md-body blockquote {
+  border-left: 2px solid rgba(148, 163, 184, 0.5);
+  padding-left: 8px;
+  color: #64748b;
+  margin: 0.4em 0;
+}
+.md-body a { color: #0369a1; text-decoration: underline; }
+.md-body hr { border: none; border-top: 1px solid rgba(148, 163, 184, 0.35); margin: 0.8em 0; }
 
 /* --- React Flow tweaks --- */
 .react-flow__pane {
@@ -48,39 +153,8 @@ body {
   .animate-pulse {
     animation: none;
   }
-}/* --- The Truth glass system (light) --- */
-body {
-  background:
-    radial-gradient(1000px 640px at 8% -12%, rgba(139, 92, 246, 0.28), transparent 58%),
-    radial-gradient(1100px 720px at 100% 112%, rgba(20, 184, 166, 0.26), transparent 58%),
-    radial-gradient(760px 520px at 55% 30%, rgba(56, 189, 248, 0.16), transparent 66%),
-    radial-gradient(600px 420px at 30% 95%, rgba(251, 191, 36, 0.14), transparent 65%),
-    #eef1f8;
-  min-height: 100vh;
-  color: #0f172a;
-}
-.glass {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(170%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 8px 32px rgba(51, 65, 85, 0.14);
-}
-.glass-deep {
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(26px) saturate(180%);
-  -webkit-backdrop-filter: blur(26px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 12px 40px rgba(51, 65, 85, 0.16);
-}
-.glass-chip {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.react-flow__pane { cursor: default; }
-.react-flow__handle { opacity: 0; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) {
-  .animate-pulse { animation: none; }
+  .bg-blob-a,
+  .bg-blob-b {
+    animation: none;
+  }
 }

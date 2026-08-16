@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "observability", "run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "observability-b",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "observability", "run", "dev", "--", "--port", "3100"],
+      "port": 3100
     }
   ]
 }

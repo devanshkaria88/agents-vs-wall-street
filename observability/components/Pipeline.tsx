@@ -1,5 +1,17 @@
 "use client";
-import { ReactFlow, Background, BackgroundVariant, Handle, Position, type Node, type Edge, type NodeProps } from "@xyflow/react";
+import { useEffect, useRef } from "react";
+import {
+  ReactFlow,
+  ReactFlowProvider,
+  useReactFlow,
+  Background,
+  BackgroundVariant,
+  Handle,
+  Position,
+  type Node,
+  type Edge,
+  type NodeProps,
+} from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 export type StageStatus = "idle" | "running" | "done" | "failed";
@@ -30,11 +42,11 @@ type StageData = { label: string; sub: string; kind: string; status: StageStatus
 function StageNode({ data }: NodeProps<Node<StageData>>) {
   return (
     <div
-      className={`relative w-[210px] overflow-hidden rounded-lg border border-white/70 bg-white/60 backdrop-blur-md cursor-pointer transition-all duration-150 shadow-[0_4px_18px_rgba(51,65,85,0.12)] hover:border-slate-300 ${STATUS_FX[data.status]} ${data.selected ? "ring-2 ring-sky-400/70" : ""}`}
+      className={`relative w-[210px] cursor-pointer overflow-hidden rounded-lg border border-white/60 bg-white/35 backdrop-blur-xl backdrop-saturate-150 transition-all duration-150 shadow-[0_4px_18px_rgba(51,65,85,0.12)] hover:border-slate-300 ${STATUS_FX[data.status]} ${data.selected ? "ring-2 ring-sky-400/70" : ""}`}
     >
       <span className={`absolute left-0 top-[6px] bottom-[6px] w-[2px] rounded-full ${KIND_ACCENT[data.kind] ?? KIND_ACCENT.data}`} />
       <Handle type="target" position={Position.Left} className="!opacity-0" />
-      <div className="flex items-center gap-2 border-b border-slate-200/70 bg-white/45 px-3 py-1.5">
+      <div className="flex items-center gap-2 border-b border-slate-200/60 bg-white/25 px-3 py-1.5">
         <span className={`h-2 w-2 shrink-0 rounded-full ${STATUS_DOT[data.status]}`} />
         <span className="text-[12.5px] font-medium leading-tight text-slate-800">{data.label}</span>
       </div>
@@ -45,6 +57,9 @@ function StageNode({ data }: NodeProps<Node<StageData>>) {
 }
 
 const nodeTypes = { stage: StageNode };
+
+const NODE_W = 210;
+const NODE_H = 64;
 
 const LAYOUT: { id: string; label: string; sub: string; kind: string; x: number; y: number }[] = [
   { id: "corpus", label: "Corpus", sub: "1,139 frozen documents", kind: "data", x: 0, y: 170 },
@@ -69,13 +84,48 @@ const FLOWS: [string, string][] = [
   ["calculators", "validator"], ["validator", "writer"], ["writer", "checker"],
 ];
 
-export default function Pipeline({
+// Fit padding mirrors the floating panels: header top, event feed left, inspector right.
+const FIT_PADDING = { top: "84px", right: "440px", bottom: "32px", left: "364px" } as const;
+
+// Follow-cam: while a run is live, glide the viewport to the bounding box of
+// every running stage, and glide back to the full graph when the run ends.
+function FollowCam({ statuses, follow }: { statuses: Record<string, StageStatus>; follow: boolean }) {
+  const { fitBounds, fitView } = useReactFlow();
+  const lastSig = useRef("init");
+  useEffect(() => {
+    const running = LAYOUT.filter((n) => statuses[n.id] === "running");
+    const sig = follow ? running.map((n) => n.id).join(",") : "off";
+    if (sig === lastSig.current) return;
+    const wasOff = lastSig.current === "off" || lastSig.current === "init";
+    lastSig.current = sig;
+    if (!follow) return;
+    if (!running.length) {
+      if (!wasOff) fitView({ padding: FIT_PADDING, duration: 900 });
+      return;
+    }
+    const minX = Math.min(...running.map((n) => n.x));
+    const maxX = Math.max(...running.map((n) => n.x)) + NODE_W;
+    const minY = Math.min(...running.map((n) => n.y));
+    const maxY = Math.max(...running.map((n) => n.y)) + NODE_H;
+    // Enforce a minimum window so a single running stage doesn't zoom in absurdly.
+    const w = Math.max(maxX - minX + 200, 860);
+    const h = Math.max(maxY - minY + 160, 520);
+    const cx = (minX + maxX) / 2;
+    const cy = (minY + maxY) / 2;
+    fitBounds({ x: cx - w / 2 + 48, y: cy - h / 2, width: w, height: h }, { duration: 900 });
+  }, [statuses, follow, fitBounds, fitView]);
+  return null;
+}
+
+function Flow({
   statuses,
   selected,
+  follow,
   onSelect,
 }: {
   statuses: Record<string, StageStatus>;
   selected: string | null;
+  follow: boolean;
   onSelect: (id: string) => void;
 }) {
   const nodes: Node<StageData>[] = LAYOUT.map((n) => ({
@@ -107,7 +157,7 @@ export default function Pipeline({
       nodeTypes={nodeTypes}
       onNodeClick={(_, node) => onSelect(node.id)}
       fitView
-      fitViewOptions={{ padding: { top: "84px", right: "440px", bottom: "32px", left: "32px" } }}
+      fitViewOptions={{ padding: FIT_PADDING }}
       proOptions={{ hideAttribution: true }}
       minZoom={0.4}
       colorMode="light"
@@ -115,7 +165,21 @@ export default function Pipeline({
       nodesDraggable={false}
       nodesConnectable={false}
     >
+      <FollowCam statuses={statuses} follow={follow} />
       <Background variant={BackgroundVariant.Dots} color="rgba(100,116,139,0.35)" gap={20} size={1.1} />
     </ReactFlow>
+  );
+}
+
+export default function Pipeline(props: {
+  statuses: Record<string, StageStatus>;
+  selected: string | null;
+  follow: boolean;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <ReactFlowProvider>
+      <Flow {...props} />
+    </ReactFlowProvider>
   );
 }
