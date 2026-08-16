@@ -5,17 +5,17 @@ import "@xyflow/react/dist/style.css";
 export type StageStatus = "idle" | "running" | "done" | "failed";
 
 const STATUS_STYLE: Record<StageStatus, { border: string; dot: string; glow: string }> = {
-  idle: { border: "border-slate-700", dot: "bg-slate-600", glow: "" },
+  idle: { border: "border-white/10", dot: "bg-slate-500", glow: "" },
   running: { border: "border-amber-400", dot: "bg-amber-400 animate-pulse", glow: "shadow-[0_0_24px_rgba(251,191,36,0.35)]" },
   done: { border: "border-emerald-500", dot: "bg-emerald-400", glow: "" },
   failed: { border: "border-rose-500", dot: "bg-rose-400", glow: "shadow-[0_0_24px_rgba(244,63,94,0.35)]" },
 };
 
 const KIND_TINT: Record<string, string> = {
-  ai: "bg-violet-950/80 text-violet-100",
-  code: "bg-teal-950/80 text-teal-100",
-  data: "bg-slate-900/80 text-slate-200",
-  out: "bg-yellow-950/70 text-yellow-100",
+  ai: "bg-violet-400/[0.09] text-violet-100 shadow-[inset_0_1px_0_rgba(196,181,253,0.15)]",
+  code: "bg-teal-400/[0.08] text-teal-100 shadow-[inset_0_1px_0_rgba(94,234,212,0.12)]",
+  data: "bg-white/[0.05] text-slate-200",
+  out: "bg-yellow-300/[0.10] text-yellow-100 shadow-[inset_0_1px_0_rgba(253,224,71,0.15)]",
 };
 
 type StageData = { label: string; sub: string; kind: string; status: StageStatus; selected?: boolean };
@@ -24,7 +24,7 @@ function StageNode({ data }: NodeProps<Node<StageData>>) {
   const s = STATUS_STYLE[data.status];
   return (
     <div
-      className={`rounded-xl border-2 ${s.border} ${KIND_TINT[data.kind]} ${s.glow} px-4 py-2.5 w-[210px] cursor-pointer transition-all ${data.selected ? "ring-2 ring-sky-400" : ""}`}
+      className={`rounded-xl border ${s.border} ${KIND_TINT[data.kind]} ${s.glow} backdrop-blur-md px-4 py-2.5 w-[210px] cursor-pointer transition-all duration-200 hover:!border-white/40 ${data.selected ? "ring-2 ring-sky-300/80 shadow-[0_0_28px_rgba(125,211,252,0.3)]" : ""}`}
     >
       <Handle type="target" position={Position.Left} className="!bg-slate-500" />
       <div className="flex items-center gap-2">
@@ -98,10 +98,11 @@ export default function Pipeline({
       proOptions={{ hideAttribution: true }}
       minZoom={0.4}
       colorMode="dark"
+      style={{ background: "transparent" }}
       nodesDraggable={false}
       nodesConnectable={false}
     >
-      <Background color="#1e293b" gap={22} />
+      <Background color="rgba(148,163,184,0.14)" gap={24} size={1.2} />
     </ReactFlow>
   );
 }

@@ -45,7 +45,7 @@ function ToolFeed({ calls }: { calls: ToolCall[] }) {
   return (
     <div className="space-y-2">
       {[...calls].reverse().map((c, i) => (
-        <div key={i} className="rounded-lg bg-slate-900 border border-slate-800 p-2.5">
+        <div key={i} className="rounded-lg glass-chip p-2.5">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[12px] text-sky-300">{c.tool}</span>
             <span className="text-[10px] text-slate-500">{c.ts?.slice(11, 19)}Z</span>
@@ -79,7 +79,7 @@ export default function SidePanel({ stage, state }: { stage: string | null; stat
         </Section>
         <Section title="Skills loaded (system prompt)">
           {state.skills.map((s) => (
-            <details key={s.name} className="mb-1.5 rounded-lg bg-slate-900 border border-slate-800 p-2">
+            <details key={s.name} className="mb-1.5 rounded-lg glass-chip p-2">
               <summary className="font-mono text-[12px] text-violet-300 cursor-pointer">{s.name}</summary>
               <pre className="text-[10.5px] text-slate-400 whitespace-pre-wrap mt-1 max-h-56 overflow-auto">{s.content}</pre>
             </details>
@@ -116,7 +116,7 @@ export default function SidePanel({ stage, state }: { stage: string | null; stat
               </Section>
               <Section title="Merge decisions">
                 {(rep.merge_decisions ?? []).map((d, i) => (
-                  <div key={i} className="rounded bg-slate-900 border border-slate-800 p-2 mb-1.5">
+                  <div key={i} className="rounded-lg glass-chip p-2 mb-1.5">
                     <div className="font-mono text-[12px] text-sky-300">{d.key}</div>
                     <div className={`text-[11px] ${d.action.startsWith("DIVERGENCE") ? "text-rose-300" : d.action.startsWith("UPGRADED") ? "text-emerald-300" : "text-slate-400"}`}>
                       {d.action}
@@ -140,7 +140,7 @@ export default function SidePanel({ stage, state }: { stage: string | null; stat
           <p className="text-slate-500 text-sm">Not yet computed.</p>
         ) : (
           Object.entries(cal).map(([metric, b]) => (
-            <div key={metric} className="rounded bg-slate-900 border border-slate-800 p-2.5 mb-2">
+            <div key={metric} className="rounded-lg glass-chip p-2.5 mb-2">
               <div className="font-mono text-[12px] text-sky-300">{metric}</div>
               <div className="text-[12px] text-slate-300 mt-1">
                 median beat <b className="text-emerald-300">+{b.median}</b> · mean +{b.mean} · n={b.n} · beat rate {Math.round(b.hit_rate_above_mid * 100)}%
@@ -156,7 +156,7 @@ export default function SidePanel({ stage, state }: { stage: string | null; stat
     return (
       <Section title={`Metric calculators (${state.metrics.length})`}>
         {state.metrics.map((m) => (
-          <div key={m.label} className="rounded bg-slate-900 border border-slate-800 p-2.5 mb-2">
+          <div key={m.label} className="rounded-lg glass-chip p-2.5 mb-2">
             <div className="flex justify-between items-baseline">
               <span className="text-[13px] text-slate-200">{m.label}</span>
               <span className="font-mono text-[15px] text-yellow-200">{m.value}<span className="text-[10px] text-slate-500 ml-1">{m.unit}</span></span>
@@ -179,7 +179,7 @@ export default function SidePanel({ stage, state }: { stage: string | null; stat
       <div>
         <Section title={`Validation · ${state.validationResult ?? "not run"}`}>
           {state.verdicts.map((v, i) => (
-            <div key={i} className="rounded bg-slate-900 border border-slate-800 p-2.5 mb-1.5">
+            <div key={i} className="rounded-lg glass-chip p-2.5 mb-1.5">
               <div className="flex justify-between">
                 <span className="text-[12.5px] text-slate-200">{v.metric}</span>
                 <span className="font-mono text-[12px] text-slate-400">{String(v.value)}</span>

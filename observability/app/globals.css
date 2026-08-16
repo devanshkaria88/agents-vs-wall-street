@@ -24,3 +24,37 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* --- The Truth glass system --- */
+body {
+  background:
+    radial-gradient(900px 600px at 12% -10%, rgba(124, 58, 237, 0.16), transparent 60%),
+    radial-gradient(1000px 700px at 95% 110%, rgba(13, 148, 136, 0.14), transparent 60%),
+    radial-gradient(600px 400px at 60% 40%, rgba(56, 189, 248, 0.05), transparent 70%),
+    #070b14;
+  min-height: 100vh;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px rgba(2, 6, 23, 0.45);
+}
+.glass-deep {
+  background: rgba(10, 15, 28, 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.55);
+}
+.glass-chip {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.react-flow__pane { cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse { animation: none; }
+}
