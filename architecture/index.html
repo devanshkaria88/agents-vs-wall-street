@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Truth — agent architecture</title>
+  <title>The Truth · agent architecture</title>
   <style>
     :root { color-scheme: light; --ink:#101828; --muted:#667085; --line:#d0d5dd; --blue:#155eef; --paper:#fff; --wash:#f8fafc; --cell:#fff7d6; --celledge:#e8d98a; --purple:#6941c6; --teal:#0e9384; }
     * { box-sizing: border-box; }
@@ -24,7 +24,6 @@
     th, td { padding: 7px 10px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
     .tblwrap { overflow-x: auto; margin: 14px 0; }
     .rule { font-weight: 700; }
-    /* pipeline */
     .pipe { display: flex; flex-direction: column; margin: 18px 0; }
     .stage { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 16px; background: var(--wash); }
     .stage b { font-size: 15.5px; }
@@ -44,127 +43,128 @@
   <main>
     <p class="eyebrow">Agents vs Wall Street · 16 Aug 2026</p>
     <h1>The Truth</h1>
-    <p class="lede">An agent that reads 1,139 company documents, quotes its evidence byte-for-byte, lets deterministic code do every calculation, and refuses to be a hero anywhere it lacks receipts.</p>
+    <p class="lede">An agent that reads 1,139 company documents, quotes its evidence byte for byte, lets deterministic code do every calculation, and refuses to be a hero anywhere it lacks receipts.</p>
 
     <div class="card">
-      <p style="margin:4px 0">Agent name: <b>The Truth</b> · Team: <b>Devansh Karia (solo)</b></p>
-      <p style="margin:4px 0">Build style: <b>hybrid</b> — built interactively in Claude Code (claude-fable-5); the runtime is a standalone Python agent on the Anthropic API (claude-opus-5) + deterministic Python.</p>
+      <p style="margin:4px 0">Agent name: <b>The Truth</b> · Team: <b>Devansh Karia, Jack Marshall, Mani Sarkar</b></p>
+      <p style="margin:4px 0">Build style: <b>hybrid</b>. Built interactively in Claude Code (claude-fable-5); the runtime is a standalone Python agent on the Anthropic API (claude-opus-5) plus deterministic Python.</p>
       <p style="margin:4px 0">Final command: <code>npm run forecast</code> · Repository: github.com/devanshkaria88/agents-vs-wall-street</p>
     </div>
 
     <h2>What it does, in one paragraph</h2>
-    <p>Four companies report earnings in the next four days. The Truth forecasts the twelve scored metrics by exploiting one observation: <em>the companies have already told us most of the answers.</em> Hays stated on 10 July that FY26 operating profit lands "at the top of the £37.0–46.0m consensus range". ADI guided Q3 revenue to $3.9B — and has beaten its own midpoint eight quarters straight by a measurable ~+$75M median. Home Depot's quarter contains a full quarter of the GMS acquisition (~$2.0B) that the year-ago quarter lacks. The agent's job is to find those statements, quote them exactly, and hand them to code that applies the companies' own arithmetic to their own words.</p>
+    <p>Four companies report earnings in the next four days. We forecast the twelve scored metrics by leaning on one observation: <em>the companies have already told us most of the answers.</em> Hays said on 10 July that FY26 operating profit lands "at the top of the £37.0-46.0m consensus range". ADI guided Q3 revenue to $3.9B, and it has beaten its own midpoint eight quarters straight by a measurable ~+$75M median. Home Depot's quarter contains a full quarter of the GMS acquisition that the year-ago quarter lacks. The agent's job is to find those statements, quote them exactly, and hand them to code that applies the companies' own arithmetic to their own words.</p>
 
     <div class="cells">
       <div>HD</div><div>HD</div><div>HD</div><div>ADI</div><div>ADI</div><div>ADI</div><div>HAS</div><div>HAS</div><div>HAS</div><div>DE</div><div>DE</div><div>DE</div>
     </div>
-    <p style="font-size:13.5px;color:var(--muted)">The deliverable: twelve yellow spreadsheet cells. Everything below exists to put defensible numbers in them.</p>
+    <p style="font-size:13.5px;color:var(--muted)">The deliverable is twelve yellow spreadsheet cells. Everything below exists to put defensible numbers in them.</p>
 
     <h2>Three rules the whole design hangs on</h2>
     <ol>
-      <li><span class="rule">The AI never does arithmetic; the code never guesses.</span> The LLM extracts facts with citations; pure Python applies growth rates, divides profits by share counts, blends paths. Same inputs → same twelve numbers, every run.</li>
-      <li><span class="rule">Every quote is re-verified byte-exact.</span> A citation firewall re-finds each quoted line as an exact substring of the cited file. The agent cannot invent evidence — a quote that doesn't re-find kills the driver. (Bootstrap research scored 144/144 through this same firewall; it caught two formatting drifts.)</li>
-      <li><span class="rule">Never a blank cell.</span> A missing metric scores an automatic 5.0 — the worst possible. Guidance-anchored baselines went green at 11:24; every later stage only overwrites the workbooks after validation passes.</li>
+      <li><span class="rule">The AI never does arithmetic; the code never guesses.</span> The LLM extracts facts with citations. Pure Python applies growth rates, divides profits by share counts, and blends paths. Same inputs, same twelve numbers, every run.</li>
+      <li><span class="rule">Every quote is re-verified byte-exact.</span> A citation firewall re-finds each quoted line as an exact substring of the cited file. A quote that does not re-find kills the driver, so the agent cannot invent evidence. Our bootstrap research went 144 for 144 through this firewall, and it caught two formatting drifts on the way.</li>
+      <li><span class="rule">Never a blank cell.</span> A missing metric scores an automatic 5.0, the worst possible. Guidance-anchored baselines went green at 11:24. Every later stage only overwrites the workbooks after validation passes, and the writer fills a temp copy and swaps it in atomically, so even a crash mid-write cannot blank a cell.</li>
     </ol>
 
-    <h2>The pipeline (this is the real dataflow of <code>npm run forecast</code>)</h2>
+    <h2>The pipeline (the real dataflow of <code>npm run forecast</code>)</h2>
     <div class="pipe">
-      <div class="stage"><b>Corpus</b><p>1,139 frozen markdown documents (filings, transcripts, slides) — plus a logged, reviewed public-web consensus sweep done at 12:30</p></div>
+      <div class="stage"><b>Corpus</b><p>1,139 frozen markdown documents: filings, call transcripts, slides. Plus a logged, reviewed public-web consensus sweep done at 12:30.</p></div>
       <div class="arrow">↓ raw filings &amp; transcripts</div>
-      <div class="stage ai"><b>Reader — our own agent (agent/loop.py)</b><p>Anthropic API tool loop on claude-opus-5. Tools: search_corpus (ripgrep), read_doc, submit_drivers, plus server-side web_search under a triage policy: corpus-first, escalate to the public web only when the corpus can't answer, cite URLs verbatim, and report (never apply) contradictions — the merge divergence gate stays the arbiter. Runs N× per company; every tool call and skill load logged to logs/agent-trace-*.jsonl</p></div>
-      <div class="arrow">↓ drivers.json — value, range, byte-exact citation</div>
-      <div class="stage code"><b>Citation firewall + majority vote (forecaster/extract.py)</b><p>Quotes re-found byte-exact or dropped; per-driver 2-of-3 vote; live evidence upgrades assumptions, never silently overrides reviewed anchors</p></div>
+      <div class="stage ai"><b>Reader, our own agent (agent/loop.py)</b><p>Anthropic API tool loop on claude-opus-5. Tools: search_corpus (ripgrep), read_doc, submit_drivers, and server-side web search under a triage policy: corpus first, escalate to the web only when the corpus cannot answer, cite URLs verbatim, and report contradictions instead of applying them. Runs N times per company. Every tool call and every skill load is logged to logs/agent-trace-*.jsonl.</p></div>
+      <div class="arrow">↓ drivers.json: value, range, byte-exact citation</div>
+      <div class="stage code"><b>Citation firewall + majority vote (forecaster/extract.py)</b><p>Quotes re-found byte-exact or dropped. Per-driver 2-of-3 vote. Live evidence upgrades assumptions; it never silently overrides reviewed anchors.</p></div>
       <div class="arrow">↓ verified drivers only</div>
-      <div class="stage code"><b>Calibration (forecaster/engine.py)</b><p>Bias parameters fitted at runtime from 8 quarters of guide-vs-actual pairs — ADI's +$74.5M median revenue beat is computed, not asserted</p></div>
+      <div class="stage code"><b>Calibration (forecaster/engine.py)</b><p>Bias parameters fitted at runtime from 8 quarters of guide-vs-actual pairs. ADI's +$74.5M median revenue beat is computed, not asserted.</p></div>
       <div class="arrow">↓ fitted parameters</div>
-      <div class="stage code"><b>Calculators ×12</b><p>Primary path + independent cross-check per metric; judgment drivers swept low/mid/high; final value = median of plan variants; full working saved per metric</p></div>
+      <div class="stage code"><b>Calculators ×12</b><p>Primary path plus an independent cross-check per metric. Judgment drivers are swept low/mid/high and the final value is the median of the plan variants. The full working is saved per metric.</p></div>
       <div class="arrow">↓ 12 values + evidence→calculation traces</div>
-      <div class="stage code"><b>Deterministic validator (forecaster/validate.py)</b><p>Completeness (all 12 cells present), unit sanity, position vs trailing 8-period history (with explicit justifications), cross-foots (EPS×shares≈NI). Accepted AND rejected values logged; a failure stops the pipeline before any workbook is touched</p></div>
+      <div class="stage code"><b>Deterministic validator (forecaster/validate.py)</b><p>Completeness (all 12 cells present), unit sanity, position against the trailing 8-period history with explicit justifications, and cross-foots (EPS × shares ≈ net income). Accepted and rejected values are both logged. A failure stops the pipeline before any workbook is touched.</p></div>
       <div class="arrow">↓ accepted values + rejection log</div>
-      <div class="stage ai"><b>Adversarial validator — a second agent (agent/validator.py)</b><p>Same corpus tools and skills as the Reader, opposite brief: try to REFUTE each computed metric — re-find every citation, check unit conventions, check against guidance and history. It may never do arithmetic or propose numbers; challenges require citations, and a blocker's quote must re-find byte-exact or the verdict is rejected back to the agent. Any blocker halts the run before the writer</p></div>
-      <div class="arrow">↓ confirmed (or blocked with cited evidence)</div>
-      <div class="stage out"><b>Workbook writer → submission/*.xlsx</b><p>Copies official templates, fills only Summary!C7:C9 in a temp file swapped in atomically — a mid-write failure can never leave a blank yellow cell. Then a human uploads manually (the rules require it)</p></div>
+      <div class="stage ai"><b>Adversarial validator, a second agent (agent/validator.py)</b><p>Same corpus tools and skills as the Reader, opposite brief: try to refute each computed metric. Re-find every citation, check unit conventions, check against guidance and history. It may never do arithmetic or propose numbers. Challenges require citations, and a blocker's quote must re-find byte-exact or the verdict is rejected back to the agent. Any blocker halts the run before the writer.</p></div>
+      <div class="arrow">↓ confirmed, or blocked with cited evidence</div>
+      <div class="stage out"><b>Workbook writer → submission/*.xlsx</b><p>Copies the official templates and fills only Summary!C7:C9, in a temp file swapped in atomically. Then a human uploads manually, as the rules require.</p></div>
     </div>
-    <p class="legend"><span class="p">purple = AI reasoning</span> (evidence in, critique out — never arithmetic) · <span class="t">teal = deterministic code</span> · yellow = the deliverable</p>
+    <p class="legend"><span class="p">purple = AI reasoning</span> (evidence in, critique out, never arithmetic) · <span class="t">teal = deterministic code</span> · yellow = the deliverable</p>
 
     <h2>How each number is derived</h2>
     <div class="tblwrap"><table>
       <tr><th>Metric</th><th>Primary path</th><th>Cross-check</th></tr>
-      <tr><td>Hays op profit</td><td>Company statement: top of £37.0–46.0m range → 46.0</td><td>CFO path: H1 20.1 + H2₂₅ 20.1×1.30 = 46.2 ✓</td></tr>
-      <tr><td>Hays net fees</td><td>H1 actual 453.3 + H2 reconstructed from Q3 (−7%) and Q4 (−4%) actual growth → ~903</td><td>CFO: "close to £900 million" ✓ (scored on reported group basis — organiser ruling)</td></tr>
-      <tr><td>Hays EPS</td><td>Agent-extracted H1 finance charge (£6.7m) applied to H2 op profit → 1.12p</td><td>Naive flat-vs-FY25 path flagged and rejected (ignores FY26's higher finance cost)</td></tr>
-      <tr><td>ADI revenue</td><td>Guide mid 3,900 + shrunk median beat → ~3,960</td><td>Guide high end 4,000 (3 of last 5 landed above it)</td></tr>
-      <tr><td>ADI adj EPS</td><td>Guide 3.30 + median EPS beat → ~3.39</td><td>Drop-through of revenue beat ✓</td></tr>
-      <tr><td>ADI adj gross margin</td><td>Damped trend of 69.8→71.2→73.0 series</td><td>Implied: guided adj op margin 49.0 + actual Q2 opex ratio 24.0 (agent-extracted) = 73.0 — blend 73.3</td></tr>
+      <tr><td>Hays op profit</td><td>Company statement: top of £37.0-46.0m range → 46.0</td><td>CFO path: H1 20.1 + H2₂₅ 20.1×1.30 = 46.2 ✓</td></tr>
+      <tr><td>Hays net fees</td><td>H1 actual 453.3 + H2 reconstructed from Q3 (−7%) and Q4 (−4%) actual growth → ~903</td><td>CFO: "close to £900 million" ✓ (scored on reported group basis, per an organiser ruling)</td></tr>
+      <tr><td>Hays EPS</td><td>Agent-extracted H1 finance charge (£6.7m) applied to H2 op profit → 1.12p</td><td>The naive flat-vs-FY25 path was flagged and rejected; it ignores FY26's higher finance cost</td></tr>
+      <tr><td>ADI revenue</td><td>Guide mid 3,900 + shrunk median beat → ~3,960</td><td>Guide high end 4,000 (3 of the last 5 landed above it)</td></tr>
+      <tr><td>ADI adj EPS</td><td>Guide 3.30 + median EPS beat → ~3.39</td><td>Drop-through of the revenue beat ✓</td></tr>
+      <tr><td>ADI adj gross margin</td><td>Damped trend of the 69.8→71.2→73.0 series</td><td>Implied: guided adj op margin 49.0 + actual Q2 opex ratio 24.0 (agent-extracted) = 73.0. Blend: 73.3</td></tr>
       <tr><td>HD net sales</td><td>45,277 × (1 + organic +1.5%, solved from the 10-Q's stated GMS $1.3B) + GMS × Q2 seasonal → ~47,610</td><td>FY guide midpoint applied to year-ago ✓</td></tr>
-      <tr><td>HD comps</td><td>Q1 +0.6 + cadence step ("improvement through the year") → +1.0</td><td>FY guide midpoint (flat–2.0%) ✓</td></tr>
-      <tr><td>HD adj EPS</td><td>Year-ago 4.68 × interpolated YoY cadence</td><td>Q2's historical share of FY adj EPS — blended, spread checked</td></tr>
-      <tr><td>DE revenue</td><td>Q2 13,369 × Q3/Q2 seasonal ratio (~0.94)</td><td>Year-ago 12,018 × decelerating growth — blended → ~12,540</td></tr>
+      <tr><td>HD comps</td><td>Q1 +0.6 + cadence step ("improvement through the year") → +1.0</td><td>FY guide midpoint (flat to 2.0%) ✓</td></tr>
+      <tr><td>HD adj EPS</td><td>Year-ago 4.68 × interpolated YoY cadence</td><td>Q2's historical share of FY adj EPS, blended, spread checked</td></tr>
+      <tr><td>DE revenue</td><td>Q2 13,369 × Q3/Q2 seasonal ratio (~0.94)</td><td>Year-ago 12,018 × decelerating growth, blended → ~12,540</td></tr>
       <tr><td>DE EPS</td><td>(FY NI guide mid 4,750 − H1 2,429) × Q3 share of H2 ÷ 270.7M shares → ~4.84</td><td>Year-ago 4.75; Street consensus 4.85 found independently after derivation</td></tr>
-      <tr><td>DE PPA profit</td><td>Segment-guided sales decline × margin band → ~556</td><td>Year-ago 580; widest honest uncertainty of the twelve — we sit near par deliberately</td></tr>
+      <tr><td>DE PPA profit</td><td>Segment-guided sales decline × margin band → ~556</td><td>Year-ago 580. This is the widest honest uncertainty of the twelve and we sit near par deliberately</td></tr>
     </table></div>
 
-    <h2>Backtests: the system scored against quarters it wasn't allowed to see</h2>
-    <p>Every corpus document is date-stamped, so the corpus tools accept a <b>date cutoff</b>: for a holdout quarter, every document from its report date onward simply does not exist for the Reader — <code>read_doc</code> refuses ("this document does not exist yet for you"), search hits from hidden documents are suppressed, and the refusals are logged in the trace. A time-traveled Reader (corpus tools only — <b>no web search</b>, the web knows the answers) extracts the guidance that existed at the time; deterministic code anchors on the midpoint and scores it against the actual reported number from the held-out document (itself byte-verified before the run). Ran live today from the dashboard's backtest panel:</p>
+    <h2>Backtests: scored against quarters the agent was not allowed to see</h2>
+    <p>Every corpus document is date-stamped, so the corpus tools accept a date cutoff. For a holdout quarter, every document from its report date onward simply does not exist for the Reader: <code>read_doc</code> refuses with "this document does not exist yet for you", search hits from hidden documents are suppressed, and the refusals are logged in the trace. A time-traveled Reader (corpus tools only, no web search, because the web knows the answers) extracts the guidance that existed at the time. Deterministic code anchors on the midpoint and scores it against the actual reported number from the held-out document, which is itself byte-verified before the run. We ran these live today from the dashboard's backtest panel:</p>
     <div class="tblwrap"><table>
       <tr><th>Holdout</th><th>Anchor found (cited)</th><th>Forecast</th><th>Actual</th><th>Miss</th><th>vs naive carry-forward</th></tr>
       <tr><td>Hays FY25 op profit</td><td>"c.£45m" (19 Jun 2025)</td><td>45.0</td><td>45.6</td><td>1.3%</td><td><b>×0.010</b></td></tr>
-      <tr><td>Deere FY2025 net income</td><td>"$4.75–5.25 billion"</td><td>5,000</td><td>5,027</td><td>0.5%</td><td><b>×0.013</b></td></tr>
-      <tr><td>HD FY26Q1 net sales</td><td>"growth of approximately 2.5% to 4.5%" × year-ago base (by code)</td><td>41,251</td><td>41,765</td><td>1.2%</td><td><b>×0.269</b></td></tr>
+      <tr><td>Deere FY2025 net income</td><td>"$4.75-5.25 billion"</td><td>5,000</td><td>5,027</td><td>0.5%</td><td><b>×0.013</b></td></tr>
+      <tr><td>HD FY26Q1 net sales</td><td>"growth of approximately 2.5% to 4.5%" × year-ago base, applied by code</td><td>41,251</td><td>41,765</td><td>1.2%</td><td><b>×0.269</b></td></tr>
       <tr><td>ADI FY26Q2 revenue</td><td>"$3.5 billion ± $100 million"</td><td>3,500</td><td>3,623</td><td>3.4%</td><td><b>×0.266</b></td></tr>
     </table></div>
-    <p style="font-size:14px;color:var(--muted)">Two honest caveats. These backtests score the <em>raw</em> guidance anchor — without the beat-bias calibration the live system applies: ADI's 3.4% miss IS the guidance-beat our calibration layer measures and adds (it would have moved the anchor to ~3,575). And the naive-carry-forward denominator is a weaker opponent than Wall Street; on the one holdout where we can see the street's number, consensus compiled £56.4m for Hays FY25 against an actual of £45.6m — the anchor's miss was 0.6 vs the street's 10.8. Twelve verified holdouts across the four companies ship in <code>research/backtests/holdouts.json</code>; judges can run any of them from the dashboard.</p>
+    <p style="font-size:14px;color:var(--muted)">Two honest caveats. These backtests score the raw guidance anchor, without the beat-bias calibration the live system applies: ADI's 3.4% miss is exactly the guidance-beat our calibration layer measures and adds (it would have moved the anchor to ~3,575). And the naive carry-forward denominator is a weaker opponent than Wall Street. On the one holdout where the corpus shows the street's number, analysts compiled £56.4m for Hays FY25 against an actual of £45.6m; the anchor's miss was 0.6 against the street's 10.8. Twelve verified holdouts across the four companies ship in <code>research/backtests/holdouts.json</code>, and judges can run any of them from the dashboard.</p>
 
     <h2>Why this beats "ask an AI for a number"</h2>
-    <p>Run-to-run variance is engineered out, not averaged out. Downstream of the drivers everything is bit-for-bit deterministic; the two places variance genuinely lives — which facts get extracted, and judgment parameters — are handled with 3× self-consistency voting and a deterministic sweep of each judgment band with median aggregation. An ensemble of end-to-end stochastic runs converges toward what our engine computes in closed form — we just also get to show the working.</p>
-    <p>The scoring formula (<code>min(5.0, our miss / max(WS miss, floor))</code>, blank = 5.0) punishes blowups five times harder than boldness pays. So the system anchors to guidance, adjusts only by measured bias, deviates only with cited evidence, and takes par where it has no edge (Deere). The edges it does take — Hays' pre-announcement, ADI's quantified sandbagging, HD's acquisition wedge — are all structural facts from documents, not opinions.</p>
+    <p>Run-to-run variance is engineered out, not averaged out. Downstream of the drivers everything is bit-for-bit deterministic. The two places variance genuinely lives, which facts get extracted and the judgment parameters, are handled with self-consistency voting across reader runs and a deterministic sweep of each judgment band with median aggregation. An ensemble of end-to-end stochastic runs would converge toward what our engine computes in closed form. We just also get to show the working.</p>
+    <p>The scoring formula (<code>min(5.0, our miss / max(WS miss, floor))</code>, blank = 5.0) punishes blowups five times harder than boldness pays. So the system anchors to guidance, adjusts only by measured bias, deviates only with cited evidence, and takes par where it has no edge (Deere). The edges it does take are structural facts from documents, not opinions: Hays' pre-announcement, ADI's quantified sandbagging, HD's acquisition wedge.</p>
 
     <h2>What the judges can verify</h2>
     <ul>
-      <li><b>Live observability dashboard:</b> <code>npm run observe</code> → localhost:3000 — a full-bleed React Flow view of this exact pipeline with per-stage inspection, plus a live <b>event feed</b>: every tool call and every skill load from every agent (readers, skill-writer, adversarial validator) is an event; clicking one opens the full content re-read from the frozen corpus and rendered as markdown — the exact document slice the agent saw. A follow-cam glides the viewport to whichever stage is running. The dashboard is also a <b>control plane</b>: a one-button <b>Full run</b> drives readers → firewall → vote&amp;merge → calibration → calculators → validator agent → writer (official checker deliberately excluded from this path; it remains the manual pre-upload gate), with a download button for the finished workbook — uploads stay manual per the rules. The Reader is user-configurable: skills checklist, tool toggles, web-search triage, extra system prompt, run count, persisted to <code>agent/config.json</code>.</li>
-      <li><b>The adversarial validator earned its place on day one:</b> in its first live full run (15:20), the fresh 2-reader extraction failed to re-extract Hays' H1 finance charge, the merge fell back to the pinned £9.0m assumption band — and the validator agent <b>blocked the writer</b>, citing the half-year report's "The net finance charge for H1 26 was £6.7 million" byte-exact. We pinned the extracted fact at the source (with its citation), the deterministic rerun went RUN CLEAR at 1.12p, and the validator's rerun confirmed 3/3 with zero challenges. The full trail — blocker verdict, trace, fix, clean rerun — is in <code>logs/</code> and the git history.</li>
-      <li><b>Dynamic skill generation:</b> <code>agent/skillgen.py</code> — a skill-writer agent that studies a company's corpus and writes the Reader's company skill itself (<code>agent/skills/&lt;company&gt;.md</code>, with backup and a provenance header). A guard validates that every pinned driver key survives into the generated skill, so the pipeline contract holds even when the agent rewrites its own instructions.</li>
-      <li><b>The live loop works — with receipts:</b> in the 13:40 live run, three Reader agents independently confirmed every reviewed Hays anchor (zero divergences through the firewall and vote), and upgraded one assumption to a fact: the actual H1 FY26 net finance charge (£6.7m) from the half-year report, collapsing the EPS uncertainty band (1.16p ± band → 1.12p, spread 0). In the HD run they went further: all three readers flagged that our $1,975M GMS inference contradicted the Q1 10-Q's stated "$1.3 billion" — the divergence policy held the reviewed value, we re-verified their quote byte-exact, and adopted it (net sales +$255M). The agents corrected their builders, with citations.</li>
-      <li><b>Traces:</b> <code>forecasts/traces.json</code> — every metric's inputs (with citations), formulas, variants, cross-check deltas.</li>
-      <li><b>Tool log:</b> <code>logs/agent-trace-*.jsonl</code> — every search_corpus/read_doc call the Reader made, timestamped.</li>
-      <li><b>Validation:</b> <code>logs/validation-*.json</code> — 15 verdicts per run, including justified out-of-history positions.</li>
-      <li><b>Calibration:</b> <code>forecasts/calibration.json</code> — the beat-bias table computed from cited history pairs.</li>
-      <li><b>Research record:</b> <code>research/dossiers/*.json</code> (firewall-verified corpus research), <code>research/web/consensus-2026-08-16.md</code> (logged web sweep with sources and retrieval times).</li>
-      <li><b>Provenance:</b> the git history is the build diary — bootstrap, rule verification, self-written skills, strategy gate with sign-off, then the build. Cross-agent turn commits are timestamped automatically.</li>
+      <li><b>Live observability dashboard.</b> <code>npm run observe</code> → localhost:3000. A full-bleed React Flow view of this exact pipeline with per-stage inspection, plus a live event feed: every tool call and every skill load from every agent (readers, skill-writer, adversarial validator) is an event, and clicking one opens the full content re-read from the frozen corpus, rendered as markdown. It is the exact document slice the agent saw. A follow-cam glides the viewport to whichever stage is running. The dashboard is also a control plane: a one-button Full run drives readers → firewall → vote &amp; merge → calibration → calculators → validator agent → writer, with a download button for the finished workbook. Uploads stay manual per the rules. The Reader is user-configurable: skills checklist, tool toggles, web-search triage, extra system prompt, and run count, persisted to <code>agent/config.json</code>.</li>
+      <li><b>The adversarial validator earned its place on day one.</b> In its first live full run (15:20), a fresh 2-reader extraction failed to re-extract Hays' H1 finance charge, and the merge fell back to the pinned £9.0m assumption band. The validator agent blocked the writer, citing the half-year report's "The net finance charge for H1 26 was £6.7 million" byte-exact. We pinned the extracted fact at the source with its citation, the deterministic rerun went RUN CLEAR at 1.12p, and the validator's rerun confirmed all three metrics with zero challenges. The whole trail, blocker verdict, trace, fix, and clean rerun, is in <code>logs/</code> and the git history.</li>
+      <li><b>Dynamic skill generation.</b> <code>agent/skillgen.py</code> is a skill-writer agent that studies a company's corpus and writes the Reader's company skill itself (<code>agent/skills/&lt;company&gt;.md</code>, with backup and a provenance header). A guard validates that every pinned driver key survives into the generated skill, so the pipeline contract holds even when the agent rewrites its own instructions.</li>
+      <li><b>The live loop corrected its builders, with citations.</b> In the afternoon runs the readers confirmed every reviewed Hays anchor through the firewall and vote, and in the HD run they flagged that our $1,975M GMS inference contradicted the Q1 10-Q's stated "$1.3 billion". The divergence policy held the reviewed value, we re-verified their quote byte-exact, and adopted it. Net sales moved by $255M because the agents read the filing more carefully than we had.</li>
+      <li><b>Traces.</b> <code>forecasts/traces.json</code> holds every metric's inputs with citations, formulas, variants, and cross-check deltas.</li>
+      <li><b>Tool log.</b> <code>logs/agent-trace-*.jsonl</code> holds every search_corpus and read_doc call each agent made, timestamped.</li>
+      <li><b>Validation.</b> <code>logs/validation-*.json</code> holds 15 verdicts per run, including justified out-of-history positions. <code>logs/agent-validator-*.json</code> holds the adversarial agent's verdicts with evidence.</li>
+      <li><b>Calibration.</b> <code>forecasts/calibration.json</code> is the beat-bias table computed from cited history pairs.</li>
+      <li><b>Research record.</b> <code>research/dossiers/*.json</code> (firewall-verified corpus research) and <code>research/web/consensus-2026-08-16.md</code> (the logged web sweep with sources and retrieval times).</li>
+      <li><b>Provenance.</b> The git history is the build diary: bootstrap, rule verification, self-written skills, a strategy gate with sign-off, then the build. Cross-agent turn commits are timestamped automatically.</li>
     </ul>
 
     <h2>Reproduce it</h2>
     <pre><code>git clone https://github.com/devanshkaria88/agents-vs-wall-street && cd agents-vs-wall-street
 npm install
 python3 -m venv .venv && .venv/bin/pip install openpyxl anthropic
-echo "ANTHROPIC_API_KEY=sk-..." > .env      # only needed for --live extraction
-npm run forecast                             # engine → validate → write → check
+echo "ANTHROPIC_API_KEY=sk-..." > .env      # only needed for live extraction
+npm run forecast                             # engine, validate, write, check
 npm run check:submission</code></pre>
-    <p>The default run consumes the pinned, reviewed drivers (fully offline, deterministic). <code>--live</code> re-runs the Reader agents first and diffs their output against the pinned set — matching drivers proceed, divergences are logged and the reviewed value wins.</p>
+    <p>The default run consumes the pinned, reviewed drivers. It is fully offline and deterministic. Live extraction re-runs the Reader agents first and diffs their output against the pinned set: matching drivers proceed, divergences are logged, and the reviewed value wins.</p>
 
     <h2>Honesty: what we tried, changed, and where this is weak</h2>
     <h3>Changed course</h3>
     <ul>
-      <li><b>Extraction harness, twice.</b> Started with <code>claude -p</code> subprocess calls; replaced mid-build with our own API agent loop because we wanted the tool-call trace to be ours — every ripgrep query logged, not hidden inside another harness. The retired approach is still visible in git history and in <code>forecaster/extract.py</code>.</li>
-      <li><b>Single-run extraction → 3× voting.</b> After challenging our own determinism claim: facts are voted 2-of-3, judgment bands are swept, medians aggregate.</li>
-      <li><b>Hays net-fees basis.</b> We initially hedged between reported (~£903m) and continuing-ops (~£888m) after the six-country divestiture; resolved to reported group basis with the organisers and moved the anchor.</li>
+      <li><b>Extraction harness, twice.</b> We started with <code>claude -p</code> subprocess calls and replaced them mid-build with our own API agent loop, because we wanted the tool-call trace to be ours: every ripgrep query logged, not hidden inside another harness. The retired approach is still visible in git history and in <code>forecaster/extract.py</code>.</li>
+      <li><b>Single-run extraction to voting.</b> After challenging our own determinism claim: facts are voted across runs, judgment bands are swept, medians aggregate.</li>
+      <li><b>Hays net-fees basis.</b> We initially hedged between reported (~£903m) and continuing-ops (~£888m) after the six-country divestiture. We resolved it with the organisers to the reported group basis and moved the anchor.</li>
+      <li><b>The backtest harness had a units bug we caught the same hour.</b> HD guides growth rates, not dollars, and the first HD holdout run anchored on 3.5 as if it were millions, against an actual of 41,765. We added an explicit anchor mode so code applies growth guidance to the year-ago base. The broken run and the fix are both in the history.</li>
     </ul>
     <h3>Considered and rejected</h3>
     <ul>
-      <li><b>LoRA / fine-tuning:</b> no training data of the right shape (12 targets, ~30 historical quarters — instant overfit), and it would swap the strong reader model for a weaker one. Wrong tool for a 6-hour, 4-company task.</li>
-      <li><b>Vector DB / RAG index:</b> ripgrep over 1,139 markdown files is transparent and sufficient.</li>
-      <li><b>Monte Carlo / DCF:</b> anchor + measured bias + seasonality is explainable in one sentence per metric; sophistication without evidence would be theater.</li>
+      <li><b>LoRA / fine-tuning.</b> No training data of the right shape (12 targets, ~30 historical quarters is an instant overfit), and it would swap the strong reader model for a weaker one. Wrong tool for a one-day, 4-company task.</li>
+      <li><b>Vector DB / RAG index.</b> ripgrep over 1,139 markdown files is transparent and sufficient.</li>
+      <li><b>Monte Carlo / DCF.</b> Anchor plus measured bias plus seasonality is explainable in one sentence per metric. Sophistication without evidence would be theater.</li>
     </ul>
     <h3>Known weaknesses</h3>
     <ul>
-      <li><b>No channel data.</b> Banks buy credit-card panels and dealer checks; we read what companies said. If a quarter drifted from guidance in ways only intra-quarter data shows, Wall Street beats us on that metric and the cap limits the damage to par-ish.</li>
-      <li><b>Hays EPS is a derivation, not a disclosure.</b> The finance-charge/tax structure is solved from one half-year identity; the honest band is ~1.1–1.3p. The floor on EPS metrics is tiny, so this is our most fragile number.</li>
-      <li><b>Deere's tariff-refund allocation is opaque.</b> Q2's PPA margin was inflated by a ~$272M recovery we cannot cleanly strip; the PPA forecast carries the widest band and deliberately hugs the year-ago.</li>
-      <li><b>Consensus may have converged on our Hays edge.</b> The £43.5m compiled consensus predates the "top of range" statement; analysts have had five weeks to revise toward 46. Our score there degrades gracefully toward par, not badly.</li>
-      <li><b>Extraction nondeterminism is bounded, not eliminated.</b> Voting and the firewall squeeze it; a live run can still surface a driver the pinned set lacks. Policy: divergences are logged and reviewed values win.</li>
+      <li><b>No channel data.</b> Banks buy credit-card panels and dealer checks; we read what companies said. If a quarter drifted from guidance in ways only intra-quarter data shows, Wall Street beats us on that metric and the cap limits the damage to roughly par.</li>
+      <li><b>Hays EPS is a derivation, not a disclosure.</b> The finance-charge and tax structure is solved from one half-year identity. The honest band is about 1.1p to 1.3p, and the floor on EPS metrics is tiny, so this is our most fragile number.</li>
+      <li><b>Deere's tariff-refund allocation is opaque.</b> Q2's PPA margin was inflated by a ~$272M recovery we cannot cleanly strip. The PPA forecast carries the widest band and deliberately hugs the year-ago.</li>
+      <li><b>Consensus may have converged on our Hays edge.</b> The £43.5m compiled consensus predates the "top of range" statement, and analysts have had five weeks to revise toward 46. Our score there degrades toward par rather than blowing up.</li>
+      <li><b>Extraction nondeterminism is bounded, not eliminated.</b> Voting and the firewall squeeze it, and the adversarial validator now catches what slips through: when a 2-reader run regressed the finance charge today, the validator blocked the workbooks before a stale assumption could ship. Divergences are logged and reviewed values win.</li>
     </ul>
 
-    <p style="color:var(--muted); font-size:13.5px; margin-top:36px">The Truth · Agents vs Wall Street · built 16 Aug 2026, 11:09–17:15, in-event. This page is self-contained; no scripts, no external assets, no secrets.</p>
+    <p style="color:var(--muted); font-size:13.5px; margin-top:36px">The Truth · Agents vs Wall Street · built 16 Aug 2026, 11:09 to 18:00, in-event. This page is self-contained: no scripts, no external assets, no secrets.</p>
   </main>
 </body>
 </html>
