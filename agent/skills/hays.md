@@ -170,3 +170,22 @@ Units: £m unless stated. Every value below was verified at the cited line.
 - Where: `filings/2026-02-27__has-ln-20260227-h1-8k__642921.md` note 4 line 957 (`| Net finance charge | (6.7) | (6.5) | (13.4) |`) and narrative line 318.
 - Unit: £m (charge, report as positive 6.7 or −6.7 per pipeline sign convention; state the sign used).
 - Verify: 20.1 op profit − 6.7 = 13.4 pre-exceptional PBT (line 41) ✔. Components: bank interest 4.9 payable / 0.8 received, lease interest 2.4, discount unwind 0.2, pension nil. FY26 full-year guidance **c.£13m** (line 322) — i.e. ~£6.3m in H2 26; FY25 actual 13.4.
+
+## Driver key units (contract — appended by code, do not edit)
+
+| key | unit | convention |
+|---|---|---|
+| fy25_net_fees | GBPm | as stated in the document |
+| h1_26_net_fees | GBPm | as stated in the document |
+| h1_25_net_fees | GBPm | as stated in the document |
+| q3_26_actual_growth | fraction | a 4% decline = -0.04 |
+| q4_26_actual_growth | fraction | a 4% decline = -0.04 |
+| q3_share_of_h2 | fraction | a 4% decline = -0.04 |
+| op_guide_range_top | GBPm | as stated in the document |
+| op_consensus | GBPm | as stated in the document |
+| h1_26_op | GBPm | as stated in the document |
+| h2_25_op | GBPm | as stated in the document |
+| h2_26_op_yoy | ratio | +30% = 1.30 |
+| h1_26_eps | GBp | as stated in the document |
+| h1_26_shares | millions | as stated in the document |
+| half_year_finance_charge | GBPm | as stated in the document |

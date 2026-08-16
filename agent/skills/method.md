@@ -18,6 +18,11 @@ arithmetic. Precision of citation is worth more than breadth of commentary.
 4. If a value genuinely is not in the corpus, return null with a note saying
    what you searched. A justified null beats a fabricated value.
 5. Prefer the most recent document when sources conflict, and say so in note.
+6. UNITS ARE A CONTRACT. Each driver key declares its unit — return the value
+   in exactly that unit. Keys with unit "fraction": a 4% DECLINE is -0.04,
+   never -4.0. Keys with unit "ratio": "up about 30%" is 1.30, never 30.
+   Percentage-point keys (pp) keep document form: 4.5 means 4.5%. Downstream
+   code multiplies these directly; a scale slip corrupts the forecast.
 
 ## Search strategy
 
