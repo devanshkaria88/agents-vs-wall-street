@@ -31,10 +31,33 @@ DEFAULT_CONFIG: dict = {
     "effort": "medium",
     "runs": 3,
     "system_prompt_extra": "",
-    "tools": {"search_corpus": True, "read_doc": True, "web_search": False},
+    "tools": {"search_corpus": True, "read_doc": True, "web_search": True},
     "web_search_max_uses": 5,
     "skills": {},
 }
+
+# Appended to the reader's system prompt only when the web_search tool is
+# armed (config). Public web info is allowed (RULES.md:22); this policy makes
+# the escalation dynamic and disciplined rather than habitual.
+WEB_SEARCH_POLICY = """
+## Web search triage (web_search tool is available)
+
+The frozen corpus (2026-08-14) is your primary source — corpus citations are
+byte-verified downstream, web citations are not. Escalate to web_search ONLY
+when one of these holds:
+1. A driver task cannot be resolved from the corpus (searches exhausted, the
+   skill brief says the figure is not in the corpus, or the document that
+   would contain it post-dates the freeze).
+2. You need to cross-check a consensus or guidance figure against something
+   that may have changed after 2026-08-14 (newer results, profit warnings,
+   major announcements).
+Never web-search what the corpus already answers. When a web result supplies
+or changes a driver: set citation.doc_path to the source URL, verbatim_line to
+the exact quoted sentence, published to the article date — and if it
+contradicts corpus guidance, keep the corpus-derived value in the driver and
+report the contradiction in additional_evidence instead (the merge stage
+handles divergences; never silently override the corpus).
+"""
 
 
 def load_config() -> dict:
@@ -139,6 +162,12 @@ def run_reader(company: str, run_idx: int = 0) -> dict | None:
         tools.log_event("load_skill", {"file": "config.json: system_prompt_extra"},
                         f"{len(extra)} chars into system prompt")
 
+    web_enabled = bool((cfg.get("tools") or {}).get("web_search", False))
+    system = system_prompt(company, cfg) + (WEB_SEARCH_POLICY if web_enabled else "")
+    if web_enabled:
+        tools.log_event("load_skill", {"file": "policy: web-search triage"},
+                        f"{len(WEB_SEARCH_POLICY)} chars into system prompt")
+
     messages: list = [{"role": "user", "content":
                        f"Extract all driver keys for {company}. Work driver by driver; "
                        f"verify hints against the corpus; then call submit_drivers once."}]
@@ -153,7 +182,7 @@ def run_reader(company: str, run_idx: int = 0) -> dict | None:
             model=cfg["model"],
             max_tokens=16000,
             output_config={"effort": cfg["effort"]},
-            system=system_prompt(company, cfg),
+            system=system,
             tools=tool_list,
             messages=messages,
             max_iterations=MAX_ITERATIONS,

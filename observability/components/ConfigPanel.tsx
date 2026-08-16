@@ -130,7 +130,9 @@ export default function ConfigPanel({ company }: { company: string }) {
                 </button>
               </div>
               {t.id === "web_search" && (
-                <p className="mt-0.5 text-[10px] text-amber-700/80">server-side; keep OFF for the offline final run</p>
+                <p className="mt-0.5 text-[10px] text-slate-500">
+                  server-side · corpus-first; the reader escalates to the web only when the corpus can&apos;t answer (allowed, RULES.md:22)
+                </p>
               )}
             </div>
           );
