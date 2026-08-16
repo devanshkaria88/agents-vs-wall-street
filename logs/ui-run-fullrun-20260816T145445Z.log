@@ -1,0 +1,13 @@
+# fullrun deere — progress: logs/fullrun-deere-20260816T145445Z.json
+[readers] launching 2 parallel reader agents
+[readers] done — 2/2 runs parsed
+[firewall] done — 8 citation drops
+[consensus] done — 0 upgraded, 1 divergences, 0 unresolved -> research/drivers/live/deere.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] validate passed
+[validator] launching adversarial validator agent
+[validator deere] 3 verdicts (1 challenged) -> logs/agent-validator-deere-20260816T145735Z.json (trace: logs/agent-trace-validator-deere-20260816T145735Z.jsonl)
+[validator] done — 3 verdicts, 1 challenged, 0 blockers
+[writer] done — submission/DE-FY2026Q3.xlsx
+# fullrun deere CLEAR — all stages passed

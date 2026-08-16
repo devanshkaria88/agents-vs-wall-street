@@ -1,0 +1,36 @@
+{
+ "company": "deere",
+ "timestamp": "2026-08-16T14:58:55.589263+00:00",
+ "verdicts": [
+  {
+   "metric": "Worldwide net sales and revenues",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "All cited bases re-find and match the corpus: Q2 FY26 total net sales and revenues $13,369M and Q2 FY25 $12,763M appear verbatim in the 2026-05-21 Q2 8-K; Q3 FY25 $12,018M (and Q3 FY24 $13,152M) are confirmed in the Q3 FY25 10-Q/8-K, so the seasonal-ratio and YoY-comp inputs are consistent with reported history. Units are USDm throughout and the Q3 YoY assumption (+4%) is a flagged judgment driver, directionally consistent with management's Q2 FY26 comment that top-line growth for the year should be 'more than 5%' with H1 at +8%. No contradicting quarter-specific Q3 revenue guidance exists (Deere gives no quarterly guidance).",
+   "evidence": {
+    "doc_path": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md",
+    "verbatim_line": "| Total net sales and revenues         | $13,369         | $12,763         | +5         | $22,981         | $21,272         | +8         |"
+   }
+  },
+  {
+   "metric": "Diluted EPS (GAAP)",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "FY26 net income guide of $4.5-5.0bn re-finds verbatim in the 2026-05-21 Q2 8-K and was reaffirmed on the Q2 call ('our net income forecast remains unchanged between $4.5 billion and $5 billion'), so the $4,750M midpoint is current. H1 FY26 net income attributable to Deere of $2,429M is confirmed in the same 8-K income statement, and Q2 FY26 diluted average shares of 270.8M is confirmed (driver 270.7M is a trivially flagged trend adjustment). Year-ago cross-check EPS $4.75 for Q3 FY25 is verbatim in the Q3 FY25 press release. Units are USDm / USD-per-share as required; the Q3-share-of-H2 split (0.565) is an explicitly flagged judgment driver with no document contradicting it.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md",
+    "verbatim_line": "| Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |"
+   }
+  },
+  {
+   "metric": "Production & Precision Ag operating profit",
+   "verdict": "challenged",
+   "severity": "warning",
+   "reason": "Base facts check out (Q3 FY25 PPA net sales $4,273M, operating profit $580M, margin 13.6%; FY26 PPA net sales guide 'Down 5 to 10%'; H1 FY26 PPA sales $7,666M, -8%). Two concerns with the assumption inputs: (1) the assumed Q3 margin of 14.0pp sits above management's reaffirmed FY26 PPA operating-margin guidance of 11%-13% (Q2 call, 2026-05-21), and H1 FY26 PPA operating profit of $845M on $7,666M sales is running well below that assumed level, so 14.0pp is aggressive relative to stated guidance; (2) the driver justification states the ~$272M IEEPA refund allocation 'is unclear', but the Q2 FY26 Q&A explicitly discloses it ('About 50% of the refund went to the Construction & Forestry division, about 30% to Small Ag & Turf, the remaining 20% went to the large ag business'), i.e. only ~20% flowed to PPA \u2014 the rationale for the margin assumption rests on a premise the corpus contradicts. Not a unit/scale error, so not a blocker.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+    "verbatim_line": "Our full-year forecast for the segment's operating margin is also unchanged and remains between 11% and 13%."
+   }
+  }
+ ]
+}

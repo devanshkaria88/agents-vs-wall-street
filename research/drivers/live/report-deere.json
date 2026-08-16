@@ -1,14 +1,10 @@
 {
  "company": "deere",
- "runs_attempted": 3,
- "runs_parsed": 3,
- "timestamp": "2026-08-16T12:48:44.579692+00:00",
+ "runs_attempted": 2,
+ "runs_parsed": 2,
+ "timestamp": "2026-08-16T14:57:33.275633+00:00",
  "firewall_drops": [
   [
-   "q3_share_of_h2_ni",
-   "null value"
-  ],
-  [
    "q3_q2_seasonal_ratio",
    "null value"
   ],
@@ -22,30 +18,6 @@
   ],
   [
    "q3_ppa_margin",
-   "null value"
-  ],
-  [
-   "q3_share_of_h2_ni",
-   "null value"
-  ],
-  [
-   "q3_q2_seasonal_ratio",
-   "null value"
-  ],
-  [
-   "q3_rev_yoy",
-   "null value"
-  ],
-  [
-   "q3_ppa_sales_yoy",
-   "null value"
-  ],
-  [
-   "q3_ppa_margin",
-   "null value"
-  ],
-  [
-   "q3_share_of_h2_ni",
    "null value"
   ],
   [
@@ -78,9 +50,19 @@
    "value": -0.075
   },
   {
+   "key": "q3_25_eps",
+   "action": "confirmed",
+   "value": 4.75
+  },
+  {
    "key": "q3_25_ppa_op",
    "action": "confirmed",
    "value": 580.0
+  },
+  {
+   "key": "h1_26_ni",
+   "action": "confirmed",
+   "value": 2429.0
   },
   {
    "key": "q2_26_total_rev",
@@ -88,14 +70,9 @@
    "value": 13369.0
   },
   {
-   "key": "fy26_ni_guide_mid",
+   "key": "diluted_shares",
    "action": "confirmed",
-   "value": 4750.0
-  },
-  {
-   "key": "q3_25_eps",
-   "action": "confirmed",
-   "value": 4.75
+   "value": 270.7
   },
   {
    "key": "h1_26_ppa_sales_yoy",
@@ -103,106 +80,107 @@
    "value": -0.08
   },
   {
-   "key": "diluted_shares",
-   "action": "confirmed",
-   "value": 270.7
-  },
-  {
    "key": "q3_25_ppa_sales",
    "action": "confirmed",
    "value": 4273.0
   },
   {
-   "key": "h1_26_ni",
+   "key": "fy26_ni_guide_mid",
    "action": "confirmed",
-   "value": 2429.0
+   "value": 4750.0
+  },
+  {
+   "key": "q3_share_of_h2_ni",
+   "action": "DIVERGENCE \u2014 pinned wins, review needed",
+   "pinned": 0.565,
+   "live": 0.548,
+   "live_citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+    "verbatim_line": "| Net income         | $ 1,289         | $ 1,734         | -26%         | $ 3,962        | $ 5,855        | -32%         |",
+    "published": "2025-08-15"
+   }
   }
  ],
  "additional_evidence": [
   {
-   "doc_path": "challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 12 percent, to $15.235 billion, for the second quarter of 2024 and decreased 9 percent, to $27.420 billion, for six months.",
-   "published": "2024-05-16"
+   "note": "FY2025 Q4 net income $1.065bn (used with Q3 FY25 $1.289bn for the Q3 share of H2 net income).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+    "verbatim_line": "| Net income         | $ 1,065         | $ 1,245         | -14%         | $ 5,027     | $ 7,100     | -29%        |",
+    "published": "2025-11-26"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 17 percent, to $13.152 billion, for the third quarter of 2024 and decreased 11 percent, to $40.572 billion, for nine months.",
-   "published": "2024-08-15"
+   "note": "Q2 FY2024 total net sales and revenues $15,235m (seasonal-ratio input).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md",
+    "verbatim_line": "| Net sales and revenues         | $15,235         | $17,387         | -12%         | $27,420        | $30,038        | -9%         |",
+    "published": "2024-05-16"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
-   "verbatim_line": "Deere &amp; Company reported net income of $1.065 billion for the fourth quarter ended November 2, 2025, or $3.93 per share",
-   "published": "2025-11-26"
+   "note": "Q3 FY2024 total net sales and revenues $13,152m (seasonal-ratio input).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
+    "verbatim_line": "| Net sales and revenues         | $13,152         | $15,801         | -17%         | $40,572        | $45,839        | -11%         |",
+    "published": "2024-08-15"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
-   "verbatim_line": "we recognized a recovery of $272 million related to refund claims associated with IEEPA tariffs that were filed and accepted by U.S. Customs and Border Protection, which benefited our production cost this quarter and lifted margins by nearly 2.5 points.",
-   "published": "2026-05-21"
+   "note": "Segment allocation of the $272m IEEPA tariff refund recognized in Q2 FY26 (~20% to large ag / PPA).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md",
+    "verbatim_line": "We did recognize, as we talked about, the tariff refund in the quarter, $272 million. On a full year impact, that's about a point of tailwind for the equipment operations. You net out the run rate on tariffs versus that one-time refund of a point. To give you some sense of splits, they're pretty close to the tariff exposure as well. About 50% of the refund went to the Construction & Forestry division, about 30% to Small Ag & Turf, the remaining 20% went to the large ag business. Thanks for the question.",
+    "published": "2026-05-21"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
-   "verbatim_line": "Our full-year forecast for the segment's operating margin is also unchanged and remains between 11% and 13%.",
-   "published": "2026-05-21"
+   "note": "H2 FY26 cadence guidance: back-half revenue slightly higher, Q4 above Q3 (relevant to q3_rev_yoy and Q3 vs Q4 margin split).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+    "verbatim_line": "Unknown speaker: Thanks, Josh. One thing I would add is that as you consider the financial outlook for the rest of the year, we would expect slightly higher revenue in the back half, with the fourth quarter being higher than the third quarter. In addition, we would expect to see our most favorable cost comparisons in the fourth quarter as well.",
+    "published": "2026-05-21"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 12 percent, to $15.235 billion, for the second quarter of 2024 and decreased 9 percent, to $27.420 billion, for six months.",
-   "published": "2024-05-16",
-   "note": "Q2 FY24 total net sales and revenues = $15,235m (for q3_q2_seasonal_ratio)."
+   "note": "FY24 Q2 total net sales and revenues = $15,235m (for the Q3/Q2 seasonal ratio).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md",
+    "verbatim_line": "Worldwide net sales and revenues decreased 12 percent, to $15.235 billion, for the second quarter of 2024 and decreased 9 percent, to $27.420 billion, for six months.",
+    "published": "2024-05-16"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 17 percent, to $13.152 billion, for the third quarter of 2024 and decreased 11 percent, to $40.572 billion, for nine months.",
-   "published": "2024-08-15",
-   "note": "Q3 FY24 total net sales and revenues = $13,152m (for q3_q2_seasonal_ratio)."
+   "note": "FY24 Q3 total net sales and revenues = $13,152m (for the Q3/Q2 seasonal ratio).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
+    "verbatim_line": "Worldwide net sales and revenues decreased 17 percent, to $13.152 billion, for the third",
+    "published": "2024-08-15"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md",
-   "verbatim_line": "About 50% of the refund went to the Construction & Forestry division, about 30% to Small Ag & Turf, the remaining 20% went to the large ag business.",
-   "published": "2026-05-21",
-   "note": "Segment allocation of the one-time $272m IEEPA tariff-refund recovery recorded in Q2 FY26."
+   "note": "IEEPA $272m tariff-refund allocation across segments in Q2 FY26 (~20% to large ag / PPA).",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md",
+    "verbatim_line": "About 50% of the refund went to the Construction & Forestry division, about 30% to Small Ag & Turf, the remaining 20% went to the large ag business.",
+    "published": "2026-05-21"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md",
-   "verbatim_line": "Yeah. Brent mentioned that in overall that we expect back half to be higher than the front half, Q4 would be a little bit higher than Q3 overall.",
-   "published": "2026-05-21",
-   "note": "H2 FY26 cadence: Q4 > Q3 for both sales and margin; large ag Q4 stronger due to Waterloo shipment timing; Small Ag & Turf steps down in Q3 and again in Q4; C&F fairly balanced."
+   "note": "Q3 vs Q4 FY26 revenue cadence guidance from the Q2 FY26 call.",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+    "verbatim_line": "we would expect slightly higher revenue in the back half, with the fourth quarter being higher than the third quarter",
+    "published": "2026-05-21"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
-   "verbatim_line": "| Net income         | $ 1,065         | $ 1,245         | -14%         | $ 5,027     | $ 7,100     | -29%        |",
-   "published": "2025-11-26",
-   "note": "FY25 Q4 net income $1,065m and full-year $5,027m \u2014 H2 FY25 split reference alongside Q3 FY25 $1,289m."
-  },
-  {
-   "doc_path": "challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 12 percent, to $15.235 billion, for the second quarter of 2024 and decreased 9 percent, to $27.420 billion, for six months.",
-   "published": "2024-05-16",
-   "note": "Q2 FY2024 total net sales and revenues = $15,235m (for seasonal ratio)."
-  },
-  {
-   "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
-   "verbatim_line": "Worldwide net sales and revenues decreased 17 percent, to $13.152 billion, for the third quarter of 2024 and decreased 11 percent, to $40.572 billion, for nine months.",
-   "published": "2024-08-15",
-   "note": "Q3 FY2024 total net sales and revenues = $13,152m (for seasonal ratio)."
-  },
-  {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md",
-   "verbatim_line": "About 50% of the refund went to the Construction & Forestry division, about 30% to Small Ag & Turf, the remaining 20% went to the large ag business.",
-   "published": "2026-05-21",
-   "note": "Allocation of the $272m IEEPA tariff refund across segments (Q2 FY26)."
-  },
-  {
-   "doc_path": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
-   "verbatim_line": "we would expect slightly higher revenue in the back half, with the fourth quarter being higher than the third quarter",
-   "published": "2026-05-21",
-   "note": "Directional H2 FY26 revenue cadence; Q4 > Q3."
-  },
-  {
-   "doc_path": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
-   "verbatim_line": "| Net income         | $ 1,065         | $ 1,245         | -14%         | $ 5,027     | $ 7,100     | -29%        |",
-   "published": "2025-11-26",
-   "note": "Q4 FY2025 net income $1,065m (with Q3 FY25 $1,289m gives prior-year Q3 share of H2 NI)."
+   "note": "FY25 Q4 net income $1,065m and FY25 total $5,027m \u2014 used with Q3 FY25 $1,289m to derive q3_share_of_h2_ni.",
+   "citation": {
+    "doc_path": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+    "verbatim_line": "| Net income         | $ 1,065         | $ 1,245         | -14%         | $ 5,027     | $ 7,100     | -29%        |",
+    "published": "2025-11-26"
+   }
   }
  ]
 }

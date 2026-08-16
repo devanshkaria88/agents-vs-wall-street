@@ -1,0 +1,6 @@
+PASS [holdout firewall] all 3 quotes byte-exact; doc dates on the correct sides of cutoff 2024-11-21
+PASS [cutoff mechanics] challenge/offline-data/deere/filings/2024-11-21__de-us-20241121-q4-8k__105840.md is invisible to read_doc and search_corpus under the cutoff
+[backtest deere FY2024] launching time-traveled reader (cutoff 2024-11-21)
+[backtest deere FY2024] Net income attributable to Deere & Company (fiscal year) (USDm) — anchor [7000.0, 7000.0] -> forecast 7000.0
+[backtest deere FY2024] actual 7100.0 | miss 100.00 (1.41%) | naive miss 3066.00 | ratio_vs_naive 0.033 (beat the naive carry-forward)
+[backtest deere FY2024] result -> logs/backtest-deere-FY2024-20260816T145409Z.json

@@ -76,5 +76,21 @@
     "quarter": "FY25",
     "logfile": "logs/ui-run-backtest-20260816T144348Z.log",
     "startedAt": "2026-08-16T14:43:48.247Z"
+  },
+  {
+    "pid": 167,
+    "action": "backtest",
+    "company": "deere",
+    "quarter": "FY2024",
+    "logfile": "logs/ui-run-backtest-20260816T145408Z.log",
+    "startedAt": "2026-08-16T14:54:08.559Z"
+  },
+  {
+    "pid": 181,
+    "action": "fullrun",
+    "company": "deere",
+    "quarter": null,
+    "logfile": "logs/ui-run-fullrun-20260816T145445Z.log",
+    "startedAt": "2026-08-16T14:54:45.101Z"
   }
 ]

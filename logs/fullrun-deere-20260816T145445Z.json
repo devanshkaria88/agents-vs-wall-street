@@ -1,0 +1,19 @@
+{
+ "company": "deere",
+ "startedAt": "2026-08-16T14:54:45.693277+00:00",
+ "updatedAt": "2026-08-16T14:58:59.446344+00:00",
+ "stages": {
+  "readers": "done",
+  "firewall": "done",
+  "consensus": "done",
+  "calibration": "done",
+  "calculators": "done",
+  "validator": "done",
+  "writer": "done"
+ },
+ "workbook": "submission/DE-FY2026Q3.xlsx",
+ "done": true,
+ "ok": true,
+ "error": null,
+ "warning": null
+}

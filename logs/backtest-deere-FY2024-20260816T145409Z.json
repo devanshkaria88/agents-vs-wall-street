@@ -1,0 +1,28 @@
+{
+ "company": "deere",
+ "quarter": "FY2024",
+ "label": "Net income attributable to Deere & Company (fiscal year)",
+ "unit": "USDm",
+ "cutoff": "2024-11-21",
+ "forecast": 7000.0,
+ "actual": 7100.0,
+ "abs_miss": 100.0,
+ "pct_miss": 0.014084507042253521,
+ "naive": 10166.0,
+ "naive_miss": 3066.0,
+ "ratio_vs_naive": 0.03261578604044357,
+ "anchor_mode": "absolute",
+ "anchor": {
+  "low": 7000.0,
+  "high": 7000.0,
+  "mid": 7000.0,
+  "citation": {
+   "doc_path": "challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md",
+   "verbatim_line": "Net income attributable to Deere &amp; Company for fiscal 2024 is forecasted to be approximately $7.0 billion.",
+   "published": "2024-08-15"
+  }
+ },
+ "verified": true,
+ "timestamp": "2026-08-16T14:54:30.408404+00:00",
+ "trace": "logs/agent-trace-backtest-deere-FY2024-20260816T145409Z.jsonl"
+}
