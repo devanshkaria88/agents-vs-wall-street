@@ -32,7 +32,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden text-slate-100">
+    <div className="relative h-screen w-screen overflow-hidden text-slate-900">
       {/* Full-bleed graph canvas */}
       <div className="absolute inset-0 z-0">
         {state && <Pipeline statuses={state.stages as Record<string, StageStatus>} selected={selected} onSelect={setSelected} />}
@@ -51,8 +51,8 @@ export default function Home() {
               onClick={() => setCompany(c.id)}
               className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
                 company === c.id
-                  ? "!border-sky-400/50 !bg-sky-400/10 text-sky-200"
-                  : "text-slate-400 hover:text-slate-200 hover:!border-white/25"
+                  ? "!border-sky-400/50 !bg-sky-400/10 text-sky-800"
+                  : "text-slate-600 hover:text-slate-800 hover:!border-slate-400/60"
               }`}
             >
               {c.label}
@@ -66,7 +66,7 @@ export default function Home() {
           <button
             onClick={() => setLive(!live)}
             className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
-              live ? "!border-emerald-400/40 text-emerald-300" : "text-slate-500"
+              live ? "!border-emerald-400/40 text-emerald-700" : "text-slate-500"
             }`}
           >
             {live ? "● live 2s" : "○ paused"}

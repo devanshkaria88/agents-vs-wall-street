@@ -30,15 +30,15 @@ type StageData = { label: string; sub: string; kind: string; status: StageStatus
 function StageNode({ data }: NodeProps<Node<StageData>>) {
   return (
     <div
-      className={`relative w-[210px] overflow-hidden rounded-lg border border-white/10 bg-[#0d1117]/90 backdrop-blur-sm cursor-pointer transition-all duration-150 hover:border-white/30 ${STATUS_FX[data.status]} ${data.selected ? "ring-2 ring-sky-400/70" : ""}`}
+      className={`relative w-[210px] overflow-hidden rounded-lg border border-white/70 bg-white/60 backdrop-blur-md cursor-pointer transition-all duration-150 shadow-[0_4px_18px_rgba(51,65,85,0.12)] hover:border-slate-300 ${STATUS_FX[data.status]} ${data.selected ? "ring-2 ring-sky-400/70" : ""}`}
     >
       <span className={`absolute left-0 top-[6px] bottom-[6px] w-[2px] rounded-full ${KIND_ACCENT[data.kind] ?? KIND_ACCENT.data}`} />
       <Handle type="target" position={Position.Left} className="!opacity-0" />
-      <div className="flex items-center gap-2 border-b border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+      <div className="flex items-center gap-2 border-b border-slate-200/70 bg-white/45 px-3 py-1.5">
         <span className={`h-2 w-2 shrink-0 rounded-full ${STATUS_DOT[data.status]}`} />
-        <span className="text-[12.5px] font-medium leading-tight text-slate-200">{data.label}</span>
+        <span className="text-[12.5px] font-medium leading-tight text-slate-800">{data.label}</span>
       </div>
-      <div className="px-3 py-1.5 text-[11px] leading-snug text-slate-400">{data.sub}</div>
+      <div className="px-3 py-1.5 text-[11px] leading-snug text-slate-600">{data.sub}</div>
       <Handle type="source" position={Position.Right} className="!opacity-0" />
     </div>
   );
@@ -97,7 +97,7 @@ export default function Pipeline({
         ? { stroke: "#f59e0b", strokeWidth: 2, strokeDasharray: "5 5", filter: "drop-shadow(0 0 6px rgba(245,158,11,0.8))" }
         : done
           ? { stroke: "#34d399", strokeWidth: 1.5, opacity: 0.5 }
-          : { stroke: "rgba(148,163,184,0.35)", strokeWidth: 1.2, strokeDasharray: "5 5" },
+          : { stroke: "rgba(71,85,105,0.45)", strokeWidth: 1.3, strokeDasharray: "5 5" },
     };
   });
   return (
@@ -110,12 +110,12 @@ export default function Pipeline({
       fitViewOptions={{ padding: { top: "84px", right: "440px", bottom: "32px", left: "32px" } }}
       proOptions={{ hideAttribution: true }}
       minZoom={0.4}
-      colorMode="dark"
+      colorMode="light"
       style={{ background: "transparent" }}
       nodesDraggable={false}
       nodesConnectable={false}
     >
-      <Background variant={BackgroundVariant.Dots} color="rgba(148,163,184,0.25)" gap={20} size={1} />
+      <Background variant={BackgroundVariant.Dots} color="rgba(100,116,139,0.35)" gap={20} size={1.1} />
     </ReactFlow>
   );
 }

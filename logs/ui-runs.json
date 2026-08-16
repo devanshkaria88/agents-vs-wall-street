@@ -1,0 +1,16 @@
+[
+  {
+    "pid": 91973,
+    "action": "forecast",
+    "company": null,
+    "logfile": "logs/ui-run-forecast-20260816T131216Z.log",
+    "startedAt": "2026-08-16T13:12:16.502Z"
+  },
+  {
+    "pid": 92108,
+    "action": "skillgen",
+    "company": "hays",
+    "logfile": "logs/ui-run-skillgen-20260816T131245Z.log",
+    "startedAt": "2026-08-16T13:12:45.200Z"
+  }
+]

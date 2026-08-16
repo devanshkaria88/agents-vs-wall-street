@@ -81,8 +81,8 @@ export default function RunControls({ company }: { company: string }) {
               onClick={() => launch(action, perCompany)}
               className={`glass-chip flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-2 py-1.5 text-[11.5px] transition-all duration-200 ${
                 busy
-                  ? "cursor-not-allowed !border-amber-400/30 text-slate-500"
-                  : "cursor-pointer text-slate-300 hover:!border-white/25 hover:!bg-white/[0.07] hover:text-slate-100"
+                  ? "cursor-not-allowed !border-amber-500/40 text-slate-500"
+                  : "cursor-pointer font-medium text-slate-700 hover:!border-sky-500/50 hover:!bg-sky-500/10 hover:text-sky-800"
               }`}
             >
               {running && <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-amber-400" />}

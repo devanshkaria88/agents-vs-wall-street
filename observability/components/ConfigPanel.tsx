@@ -90,7 +90,7 @@ export default function ConfigPanel({ company }: { company: string }) {
         {availableSkills.map((f) => (
           <label
             key={f}
-            className="flex cursor-pointer items-center gap-2 font-mono text-[11.5px] text-slate-300 transition-colors duration-150 hover:text-slate-100"
+            className="flex cursor-pointer items-center gap-2 font-mono text-[11.5px] text-slate-700 transition-colors duration-150 hover:text-slate-900"
           >
             <input
               type="checkbox"
@@ -111,7 +111,7 @@ export default function ConfigPanel({ company }: { company: string }) {
           return (
             <div key={t.id}>
               <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-[11.5px] text-slate-300" title={t.desc}>
+                <span className="font-mono text-[11.5px] text-slate-700" title={t.desc}>
                   {t.id}
                   <span className="ml-1.5 text-[9.5px] uppercase text-slate-600">{t.kind}</span>
                 </span>
@@ -130,7 +130,7 @@ export default function ConfigPanel({ company }: { company: string }) {
                 </button>
               </div>
               {t.id === "web_search" && (
-                <p className="mt-0.5 text-[10px] text-amber-300/80">server-side; keep OFF for the offline final run</p>
+                <p className="mt-0.5 text-[10px] text-amber-700/80">server-side; keep OFF for the offline final run</p>
               )}
             </div>
           );
@@ -143,11 +143,11 @@ export default function ConfigPanel({ company }: { company: string }) {
         onChange={(e) => setConfig((c) => (c ? { ...c, system_prompt_extra: e.target.value } : c))}
         rows={3}
         placeholder="Appended verbatim to the reader system prompt…"
-        className="mb-3 w-full resize-y rounded-md border border-white/10 bg-white/[0.03] p-2 font-mono text-[11px] text-slate-200 outline-none transition-colors duration-150 placeholder:text-slate-600 focus:border-sky-400/40"
+        className="mb-3 w-full resize-y rounded-md border border-slate-300/60 bg-white/55 p-2 font-mono text-[11px] text-slate-800 outline-none transition-colors duration-150 placeholder:text-slate-600 focus:border-sky-500/60"
       />
 
       <div className="flex items-center gap-2">
-        <label className="text-[11px] text-slate-400">runs</label>
+        <label className="text-[11px] text-slate-600">runs</label>
         <input
           type="number"
           min={1}
@@ -157,7 +157,7 @@ export default function ConfigPanel({ company }: { company: string }) {
             const v = Math.max(1, Math.min(3, Math.round(Number(e.target.value) || 1)));
             setConfig((c) => (c ? { ...c, runs: v } : c));
           }}
-          className="w-14 rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-[12px] text-slate-200 outline-none transition-colors duration-150 focus:border-sky-400/40"
+          className="w-14 rounded-md border border-slate-300/60 bg-white/55 px-2 py-1 text-[12px] text-slate-800 outline-none transition-colors duration-150 focus:border-sky-500/60"
         />
         <button
           onClick={save}
@@ -170,7 +170,7 @@ export default function ConfigPanel({ company }: { company: string }) {
         </button>
       </div>
       {feedback && (
-        <p className={`mt-1.5 text-[11px] ${feedback.ok ? "text-emerald-300" : "text-rose-300"}`}>
+        <p className={`mt-1.5 text-[11px] ${feedback.ok ? "text-emerald-700" : "text-rose-300"}`}>
           {feedback.ok ? "✓ " : "✗ "}
           {feedback.msg}
         </p>

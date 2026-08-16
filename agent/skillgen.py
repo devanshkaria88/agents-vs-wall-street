@@ -130,7 +130,7 @@ def run_skill_writer(company: str) -> str | None:
 
     runner = client.beta.messages.tool_runner(
         model=cfg["model"],
-        max_tokens=32000,
+        max_tokens=16000,  # non-streaming SDK guard: >16K risks the 10-minute rule
         output_config={"effort": cfg["effort"]},
         system=system,
         tools=[tools.search_corpus, tools.read_doc, submit_skill],

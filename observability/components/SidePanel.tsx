@@ -26,17 +26,17 @@ export type State = {
 
 const badge = (s: string) =>
   s.startsWith("FAIL") || s === "failed"
-    ? "bg-rose-500/20 text-rose-300"
+    ? "bg-rose-500/15 text-rose-700"
     : s === "running"
-      ? "bg-amber-500/20 text-amber-300"
+      ? "bg-amber-500/15 text-amber-700"
       : s === "done" || s === "PASS" || s.startsWith("pass")
-        ? "bg-emerald-500/20 text-emerald-300"
-        : "bg-slate-600/30 text-slate-300";
+        ? "bg-emerald-500/15 text-emerald-700"
+        : "bg-slate-500/15 text-slate-700";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-5">
-      <h3 className="text-[11px] uppercase tracking-[0.14em] text-slate-400 mb-2">{title}</h3>
+      <h3 className="text-[11px] uppercase tracking-[0.14em] text-slate-600 mb-2">{title}</h3>
       {children}
     </div>
   );
@@ -49,10 +49,10 @@ function ToolFeed({ calls }: { calls: ToolCall[] }) {
       {[...calls].reverse().map((c, i) => (
         <div key={i} className="rounded-md glass-chip p-2.5">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[12px] text-sky-300">{c.tool}</span>
+            <span className="font-mono text-[12px] text-sky-700">{c.tool}</span>
             <span className="text-[10px] text-slate-500">{c.ts?.slice(11, 19)}Z</span>
           </div>
-          <div className="font-mono text-[11px] text-slate-300 mt-1 break-all">
+          <div className="font-mono text-[11px] text-slate-700 mt-1 break-all">
             {JSON.stringify(c.input).slice(0, 180)}
           </div>
           <div className="text-[11px] text-slate-500 mt-1 line-clamp-2">→ {c.output_head?.slice(0, 160)}</div>
@@ -65,7 +65,7 @@ function ToolFeed({ calls }: { calls: ToolCall[] }) {
 export default function SidePanel({ stage, state, company }: { stage: string | null; state: State; company: string }) {
   if (!stage)
     return (
-      <div className="text-slate-400 text-sm p-2">
+      <div className="text-slate-600 text-sm p-2">
         Click a stage to inspect what it did — the exact skills it loaded, the tools it invoked, and the artifacts it produced.
       </div>
     );
@@ -97,8 +97,8 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
         <Section title="Skills loaded (system prompt)">
           {state.skills.map((s) => (
             <details key={s.name} className="mb-1.5 rounded-md glass-chip p-2">
-              <summary className="font-mono text-[12px] text-violet-300 cursor-pointer">{s.name}</summary>
-              <pre className="text-[10.5px] text-slate-400 whitespace-pre-wrap mt-1 max-h-56 overflow-auto">{s.content}</pre>
+              <summary className="font-mono text-[12px] text-violet-700 cursor-pointer">{s.name}</summary>
+              <pre className="text-[10.5px] text-slate-600 whitespace-pre-wrap mt-1 max-h-56 overflow-auto">{s.content}</pre>
             </details>
           ))}
         </Section>
@@ -118,24 +118,24 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
             <p className="text-slate-500 text-sm">Waiting for all reader runs to finish…</p>
           ) : (
             <>
-              <p className="text-sm text-slate-300 mb-2">{rep.runs_parsed} runs parsed</p>
+              <p className="text-sm text-slate-700 mb-2">{rep.runs_parsed} runs parsed</p>
               <Section title={`Firewall drops (${rep.firewall_drops?.length ?? 0})`}>
                 {(rep.firewall_drops ?? []).map(([k, why], i) => (
-                  <div key={i} className="text-[12px] text-rose-300 font-mono">{k}: <span className="text-slate-400">{why}</span></div>
+                  <div key={i} className="text-[12px] text-rose-700 font-mono">{k}: <span className="text-slate-600">{why}</span></div>
                 ))}
                 {!rep.firewall_drops?.length && <p className="text-slate-500 text-sm">Nothing dropped — all quotes re-found byte-exact.</p>}
               </Section>
               <Section title={`Unresolved after vote (${rep.unresolved?.length ?? 0})`}>
                 {(rep.unresolved ?? []).map((u, i) => (
-                  <div key={i} className="text-[12px] font-mono text-amber-300">{u.key} <span className="text-slate-500">{JSON.stringify(u.candidates)}</span></div>
+                  <div key={i} className="text-[12px] font-mono text-amber-700">{u.key} <span className="text-slate-500">{JSON.stringify(u.candidates)}</span></div>
                 ))}
                 {!rep.unresolved?.length && <p className="text-slate-500 text-sm">Every driver reached 2-of-3 agreement.</p>}
               </Section>
               <Section title="Merge decisions">
                 {(rep.merge_decisions ?? []).map((d, i) => (
                   <div key={i} className="rounded-md glass-chip p-2 mb-1.5">
-                    <div className="font-mono text-[12px] text-sky-300">{d.key}</div>
-                    <div className={`text-[11px] ${d.action.startsWith("DIVERGENCE") ? "text-rose-300" : d.action.startsWith("UPGRADED") ? "text-emerald-300" : "text-slate-400"}`}>
+                    <div className="font-mono text-[12px] text-sky-700">{d.key}</div>
+                    <div className={`text-[11px] ${d.action.startsWith("DIVERGENCE") ? "text-rose-700" : d.action.startsWith("UPGRADED") ? "text-emerald-700" : "text-slate-600"}`}>
                       {d.action}
                       {d.pinned !== undefined && <span className="text-slate-500"> pinned={String(d.pinned)} live={String(d.live ?? "—")}</span>}
                     </div>
@@ -158,9 +158,9 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
         ) : (
           Object.entries(cal).map(([metric, b]) => (
             <div key={metric} className="rounded-md glass-chip p-2.5 mb-2">
-              <div className="font-mono text-[12px] text-sky-300">{metric}</div>
-              <div className="text-[12px] text-slate-300 mt-1">
-                median beat <b className="text-emerald-300">+{b.median}</b> · mean +{b.mean} · n={b.n} · beat rate {Math.round(b.hit_rate_above_mid * 100)}%
+              <div className="font-mono text-[12px] text-sky-700">{metric}</div>
+              <div className="text-[12px] text-slate-700 mt-1">
+                median beat <b className="text-emerald-700">+{b.median}</b> · mean +{b.mean} · n={b.n} · beat rate {Math.round(b.hit_rate_above_mid * 100)}%
               </div>
             </div>
           ))
@@ -175,15 +175,15 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
         {state.metrics.map((m) => (
           <div key={m.label} className="rounded-md glass-chip p-2.5 mb-2">
             <div className="flex justify-between items-baseline">
-              <span className="text-[13px] text-slate-200">{m.label}</span>
-              <span className="font-mono text-[15px] text-yellow-200">{m.value}<span className="text-[10px] text-slate-500 ml-1">{m.unit}</span></span>
+              <span className="text-[13px] text-slate-800">{m.label}</span>
+              <span className="font-mono text-[15px] text-amber-700">{m.value}<span className="text-[10px] text-slate-500 ml-1">{m.unit}</span></span>
             </div>
             <div className="text-[11px] text-slate-500 mt-0.5">{m.variants.length} plan variants · spread {m.spread}</div>
             {m.trace.map((t, i) => (
-              <div key={i} className="text-[11px] text-slate-400 mt-1"><span className="text-slate-500 font-mono">{t.formula}</span> — {t.desc}</div>
+              <div key={i} className="text-[11px] text-slate-600 mt-1"><span className="text-slate-500 font-mono">{t.formula}</span> — {t.desc}</div>
             ))}
             {m.cross_checks.map((c, i) => (
-              <div key={i} className="text-[11px] text-teal-300 mt-0.5">✓ cross-check: {c.desc} → {c.result} (Δ {c.delta_vs_primary})</div>
+              <div key={i} className="text-[11px] text-teal-700 mt-0.5">✓ cross-check: {c.desc} → {c.result} (Δ {c.delta_vs_primary})</div>
             ))}
           </div>
         ))}
@@ -198,8 +198,8 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
           {state.verdicts.map((v, i) => (
             <div key={i} className="rounded-md glass-chip p-2.5 mb-1.5">
               <div className="flex justify-between">
-                <span className="text-[12.5px] text-slate-200">{v.metric}</span>
-                <span className="font-mono text-[12px] text-slate-400">{String(v.value)}</span>
+                <span className="text-[12.5px] text-slate-800">{v.metric}</span>
+                <span className="font-mono text-[12px] text-slate-600">{String(v.value)}</span>
               </div>
               {Object.entries(v.checks).map(([name, res]) => (
                 <div key={name} className="flex justify-between mt-1">
@@ -218,12 +218,12 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
     return (
       <Section title={stage === "corpus" ? "Corpus" : "Run log (latest)"}>
         {stage === "corpus" ? (
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-700">
             1,139 markdown documents (507 filings, 538 transcript sections, 94 slide docs) frozen 2026-08-14, plus the logged
             public-web consensus sweep in <span className="font-mono text-[12px]">research/web/</span>.
           </p>
         ) : (
-          <pre className="text-[11px] text-slate-400 whitespace-pre-wrap max-h-[60vh] overflow-auto">{state.runLog.join("\n")}</pre>
+          <pre className="text-[11px] text-slate-600 whitespace-pre-wrap max-h-[60vh] overflow-auto">{state.runLog.join("\n")}</pre>
         )}
       </Section>
     );

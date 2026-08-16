@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File [35m"<frozen runpy>"[0m, line [35m203[0m, in [35m_run_module_as_main[0m
+  File [35m"<frozen runpy>"[0m, line [35m88[0m, in [35m_run_code[0m
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/agent/skillgen.py"[0m, line [35m168[0m, in [35m<module>[0m
+    raise SystemExit([31mmain[0m[1;31m()[0m)
+                     [31m~~~~[0m[1;31m^^[0m
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/agent/skillgen.py"[0m, line [35m164[0m, in [35mmain[0m
+    return 0 if [31mrun_skill_writer[0m[1;31m(sys.argv[1])[0m else 1
+                [31m~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^[0m
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/agent/skillgen.py"[0m, line [35m144[0m, in [35mrun_skill_writer[0m
+    for message in [1;31mrunner[0m:
+                   [1;31m^^^^^^[0m
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/.venv/lib/python3.14/site-packages/anthropic/lib/tools/_beta_runner.py"[0m, line [35m179[0m, in [35m__iter__[0m
+    for item in [1;31mself._iterator[0m:
+                [1;31m^^^^^^^^^^^^^^[0m
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/.venv/lib/python3.14/site-packages/anthropic/lib/tools/_beta_runner.py"[0m, line [35m274[0m, in [35m__run__[0m
+    with [31mself._handle_request[0m[1;31m()[0m as item:
+         [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py"[0m, line [35m141[0m, in [35m__enter__[0m
+    return next(self.gen)
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/.venv/lib/python3.14/site-packages/anthropic/lib/tools/_beta_runner.py"[0m, line [35m412[0m, in [35m_handle_request[0m
+    message = self._client.beta.messages.parse(**self._params, **self._options)
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/.venv/lib/python3.14/site-packages/anthropic/resources/beta/messages/messages.py"[0m, line [35m1324[0m, in [35mparse[0m
+    timeout = self._client._calculate_nonstreaming_timeout(
+        max_tokens, MODEL_NONSTREAMING_TOKENS.get(model, None)
+    )
+  File [35m"/Users/devansh/hackathonProjects/agents-vs-wall-street/.venv/lib/python3.14/site-packages/anthropic/_base_client.py"[0m, line [35m775[0m, in [35m_calculate_nonstreaming_timeout[0m
+    raise ValueError(
+    ...<2 lines>...
+    )
+[1;35mValueError[0m: [35mStreaming is required for operations that may take longer than 10 minutes. See https://github.com/anthropics/anthropic-sdk-python#long-requests for more details[0m
