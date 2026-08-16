@@ -94,6 +94,27 @@ export async function POST(req: NextRequest) {
   if ((action === "skillgen" || action === "fullrun") && company === null) {
     return NextResponse.json({ error: `${action} requires a company` }, { status: 400 });
   }
+  if (action === "fullrun") {
+    // One fullrun at a time, ANY company: its engine + writer stages rewrite
+    // global artifacts (forecasts.json, all four workbooks), so two concurrent
+    // runs could interleave and write workbooks from a forecasts.json that was
+    // never the validated one.
+    const aliveFullrun = readRuns().some((r) => {
+      if (r.action !== "fullrun") return false;
+      try {
+        process.kill(r.pid, 0);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+    if (aliveFullrun) {
+      return NextResponse.json(
+        { error: "a full run is already in progress — its engine/writer stages are global, one at a time" },
+        { status: 409 },
+      );
+    }
+  }
 
   const ts = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, "Z");
   const logDir = path.join(REPO, "logs");

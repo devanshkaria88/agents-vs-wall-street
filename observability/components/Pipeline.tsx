@@ -65,15 +65,15 @@ const NODE_H = 64;
 // between consensus and calculators, so no edge ever crosses another.
 const LAYOUT: { id: string; label: string; sub: string; kind: string; x: number; y: number }[] = [
   { id: "corpus", label: "Corpus", sub: "1,139 frozen documents", kind: "data", x: 0, y: 190 },
-  { id: "reader0", label: "Reader agent · run 0", sub: "claude-opus-5 + tools", kind: "ai", x: 290, y: 40 },
-  { id: "reader1", label: "Reader agent · run 1", sub: "claude-opus-5 + tools", kind: "ai", x: 290, y: 190 },
-  { id: "reader2", label: "Reader agent · run 2", sub: "claude-opus-5 + tools", kind: "ai", x: 290, y: 340 },
-  { id: "firewall", label: "Citation firewall", sub: "quotes re-found byte-exact", kind: "code", x: 580, y: 190 },
-  { id: "consensus", label: "Vote & merge", sub: "2-of-3 consensus · live upgrades pinned", kind: "code", x: 870, y: 190 },
-  { id: "calibration", label: "Calibration", sub: "bias fitted from history", kind: "code", x: 1160, y: 40 },
-  { id: "calculators", label: "Calculators ×12", sub: "primary + cross-check", kind: "code", x: 1450, y: 190 },
-  { id: "validator", label: "Validator agent", sub: "adversarial re-read of the calcs", kind: "ai", x: 1740, y: 190 },
-  { id: "writer", label: "Workbook writer", sub: "fills the yellow cells · download", kind: "out", x: 2030, y: 190 },
+  { id: "reader0", label: "Reader agent · run 0", sub: "claude-opus-5 + tools", kind: "ai", x: 250, y: 40 },
+  { id: "reader1", label: "Reader agent · run 1", sub: "claude-opus-5 + tools", kind: "ai", x: 250, y: 190 },
+  { id: "reader2", label: "Reader agent · run 2", sub: "claude-opus-5 + tools", kind: "ai", x: 250, y: 340 },
+  { id: "firewall", label: "Citation firewall", sub: "quotes re-found byte-exact", kind: "code", x: 500, y: 190 },
+  { id: "consensus", label: "Vote & merge", sub: "2-of-3 consensus · live upgrades pinned", kind: "code", x: 750, y: 190 },
+  { id: "calibration", label: "Calibration", sub: "bias fitted from history", kind: "code", x: 1000, y: 40 },
+  { id: "calculators", label: "Calculators ×12", sub: "primary + cross-check", kind: "code", x: 1250, y: 190 },
+  { id: "validator", label: "Validator agent", sub: "adversarial re-read of the calcs", kind: "ai", x: 1500, y: 190 },
+  { id: "writer", label: "Workbook writer", sub: "fills the yellow cells · download", kind: "out", x: 1750, y: 190 },
 ];
 
 const FLOWS: [string, string][] = [
@@ -85,8 +85,10 @@ const FLOWS: [string, string][] = [
   ["calculators", "validator"], ["validator", "writer"],
 ];
 
-// Fit padding mirrors the floating panels: header top, event feed left, inspector right.
-const FIT_PADDING = { top: "84px", right: "440px", bottom: "32px", left: "364px" } as const;
+// The floating panels are translucent glass, so the graph may breathe UNDER
+// their edges at overview zoom — modest padding keeps the middle legible
+// instead of squeezing 1960px of spine into the gap between the panels.
+const FIT_PADDING = { top: "84px", right: "200px", bottom: "40px", left: "150px" } as const;
 
 // Follow-cam: while a run is live, glide the viewport to the bounding box of
 // every running stage, and glide back to the full graph when the run ends.
@@ -100,8 +102,12 @@ function FollowCam({ statuses, follow }: { statuses: Record<string, StageStatus>
     const wasOff = lastSig.current === "off" || lastSig.current === "init";
     lastSig.current = sig;
     if (!follow) return;
+    // Animated viewport transitions ride on requestAnimationFrame, which is
+    // frozen while the tab is hidden — the glide would silently never run.
+    // Hidden tab (screenshots, background polling): jump instantly instead.
+    const duration = document.visibilityState === "visible" ? 900 : 0;
     if (!running.length) {
-      if (!wasOff) fitView({ padding: FIT_PADDING, duration: 900 });
+      if (!wasOff) fitView({ padding: FIT_PADDING, duration });
       return;
     }
     const minX = Math.min(...running.map((n) => n.x));
@@ -113,7 +119,7 @@ function FollowCam({ statuses, follow }: { statuses: Record<string, StageStatus>
     const h = Math.max(maxY - minY + 160, 520);
     const cx = (minX + maxX) / 2;
     const cy = (minY + maxY) / 2;
-    fitBounds({ x: cx - w / 2 + 48, y: cy - h / 2, width: w, height: h }, { duration: 900 });
+    fitBounds({ x: cx - w / 2 + 48, y: cy - h / 2, width: w, height: h }, { duration });
   }, [statuses, follow, fitBounds, fitView]);
   return null;
 }
@@ -162,7 +168,9 @@ function Flow({
       fitView
       fitViewOptions={{ padding: FIT_PADDING }}
       proOptions={{ hideAttribution: true }}
-      minZoom={0.4}
+      // 0.22: the widened layout (~2240px of nodes) + 804px of floating-panel
+      // fit padding must still fit a ~1500px laptop window at min zoom.
+      minZoom={0.22}
       colorMode="light"
       style={{ background: "transparent" }}
       nodesDraggable={false}

@@ -18,10 +18,12 @@ const TOOL_CHIP: Record<string, string> = {
   web_search: "bg-amber-500/15 text-amber-700",
   submit_drivers: "bg-emerald-500/15 text-emerald-700",
   submit_skill: "bg-emerald-500/15 text-emerald-700",
+  submit_verdict: "bg-emerald-500/15 text-emerald-700",
 };
 
 const SRC_CHIP: Record<string, string> = {
   SW: "bg-fuchsia-500/15 text-fuchsia-700",
+  VA: "bg-rose-500/15 text-rose-700",
 };
 
 function hint(e: FeedEvent): string {

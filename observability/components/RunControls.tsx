@@ -80,8 +80,9 @@ export default function RunControls({ company, state }: { company: string; state
     : null;
   const fullrunBusy = fullrunActive || posting === "fullrun";
 
-  const canDownload =
-    !!state && (!!state.fullrun?.workbook || (!!state.workbook && state.validationResult === "PASS"));
+  // Real file existence gates the anchor — state.workbook is just the expected
+  // filename and is always set, so it must never be the signal.
+  const canDownload = !!state?.workbookExists;
 
   return (
     <div className="glass-deep rounded-xl px-3 py-2.5">
@@ -135,9 +136,14 @@ export default function RunControls({ company, state }: { company: string; state
           full run · <span className="font-semibold text-amber-700">{fullrunStage}</span>
         </div>
       )}
-      {fullrun?.error && (
+      {fullrun?.error && fullrun.ok !== true && (
         <div className="mt-1.5 truncate font-mono text-[10px] text-rose-600" title={fullrun.error}>
           {fullrun.error}
+        </div>
+      )}
+      {fullrun?.warning && (
+        <div className="mt-1.5 truncate font-mono text-[10px] text-amber-700" title={fullrun.warning}>
+          ⚠ {fullrun.warning}
         </div>
       )}
       {!active && !fullrun?.active && lastRun && (

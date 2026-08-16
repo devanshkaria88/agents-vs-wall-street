@@ -13,6 +13,7 @@ Input schema: {"HD-FY2026Q2.xlsx": {"Net sales": 45300.0, ...}, ...}
 """
 import json
 import math
+import os
 import shutil
 import sys
 from datetime import datetime, timezone
@@ -43,23 +44,32 @@ def main(forecasts_path: str) -> None:
 
         template = ROOT / "challenge" / "templates" / out_name
         target = ROOT / "submission" / out_name
-        shutil.copy(template, target)
-
-        wb = openpyxl.load_workbook(target)
-        ws = wb["Summary"]
-        for row, metric in zip(YELLOW_ROWS, company["metrics"]):
-            label, units = metric["label"], metric["units"]
-            if ws[f"A{row}"].value != label or ws[f"B{row}"].value != units:
-                fail(f"{out_name}: template row {row} is {ws[f'A{row}'].value!r}/"
-                     f"{ws[f'B{row}'].value!r}, expected {label!r}/{units!r}")
-            if label not in values:
-                fail(f"{out_name}: missing forecast for {label!r}")
-            v = values[label]
-            if not isinstance(v, (int, float)) or isinstance(v, bool) or not math.isfinite(v):
-                fail(f"{out_name}: {label!r} = {v!r} is not a finite number")
-            ws[f"C{row}"] = float(v)
-            print(f"WROTE {out_name} C{row} {label} ({units}) = {float(v)} at {stamp}")
-        wb.save(target)
+        # Fill a temp copy and only os.replace() it into submission/ after a
+        # successful save — a mid-write failure (bad label, missing value) can
+        # never leave a template with BLANK yellow cells in submission/, which
+        # would score an automatic 5.0 per metric. Dot-prefixed but keeping the
+        # .xlsx suffix: openpyxl refuses to open any other extension.
+        tmp = target.with_name("." + out_name)
+        try:
+            shutil.copy(template, tmp)
+            wb = openpyxl.load_workbook(tmp)
+            ws = wb["Summary"]
+            for row, metric in zip(YELLOW_ROWS, company["metrics"]):
+                label, units = metric["label"], metric["units"]
+                if ws[f"A{row}"].value != label or ws[f"B{row}"].value != units:
+                    fail(f"{out_name}: template row {row} is {ws[f'A{row}'].value!r}/"
+                         f"{ws[f'B{row}'].value!r}, expected {label!r}/{units!r}")
+                if label not in values:
+                    fail(f"{out_name}: missing forecast for {label!r}")
+                v = values[label]
+                if not isinstance(v, (int, float)) or isinstance(v, bool) or not math.isfinite(v):
+                    fail(f"{out_name}: {label!r} = {v!r} is not a finite number")
+                ws[f"C{row}"] = float(v)
+                print(f"WROTE {out_name} C{row} {label} ({units}) = {float(v)} at {stamp}")
+            wb.save(tmp)
+            os.replace(tmp, target)
+        finally:
+            tmp.unlink(missing_ok=True)
 
     print("All four workbooks written.")
 

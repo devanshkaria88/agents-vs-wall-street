@@ -19,6 +19,7 @@ Artifacts:
 CLI: .venv/bin/python -m agent.validator <company>
 """
 import json
+import os
 import sys
 from datetime import datetime, timezone
 
@@ -122,6 +123,24 @@ def _validate_verdicts(raw, labels: list[str]) -> tuple[list | None, str | None]
                 and isinstance(evidence.get("verbatim_line"), str)):
             return None, (f"entry {i} evidence must be null or "
                           "{doc_path: str, verbatim_line: str}")
+        # A challenge without a citation is just an opinion — the traceability
+        # contract (every claim carries evidence) applies to the validator too.
+        if v["verdict"] == "challenged" and evidence is None:
+            return None, (f"entry {i} challenges {metric!r} without evidence — "
+                          "attach the doc_path + verbatim_line that grounds it")
+        # Blockers halt the run before the workbooks, so they get the same
+        # byte-exact firewall as extraction citations: the quote must re-find
+        # in a corpus document, or the blocker is rejected back to the agent.
+        if v.get("severity") == "blocker":
+            path = evidence["doc_path"] if evidence else ""
+            if not path.startswith("challenge/"):
+                return None, (f"entry {i} blocker evidence must cite a corpus "
+                              "doc (challenge/...) — blockers cannot rest on "
+                              "outside sources")
+            f = ROOT / path
+            if not f.is_file() or evidence["verbatim_line"] not in f.read_text():
+                return None, (f"entry {i} blocker quote not re-found byte-exact "
+                              f"in {path} — re-read the document and resubmit")
         seen.append(metric)
         cleaned.append({"metric": metric, "verdict": v["verdict"],
                         "severity": v["severity"], "reason": reason.strip(),
@@ -197,7 +216,11 @@ def run_validator(company: str) -> dict | None:
                 payload = {"company": company,
                            "timestamp": datetime.now(timezone.utc).isoformat(),
                            "verdicts": cleaned}
-                verdict_path.write_text(json.dumps(payload, indent=1))
+                # Atomic: the dashboard polls this file; never let it read half
+                # a document. Dot-prefixed so the latest() prefix glob skips it.
+                vtmp = verdict_path.with_name("." + verdict_path.name + ".tmp")
+                vtmp.write_text(json.dumps(payload, indent=1))
+                os.replace(vtmp, verdict_path)
                 result["payload"] = payload
                 out = f"received: {len(cleaned)} verdicts"
         tools.log_event("submit_verdict", {"chars": len(verdicts_json or "")}, out)

@@ -10,7 +10,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   const company = req.nextUrl.searchParams.get("company") ?? "";
-  const meta = COMPANIES[company];
+  // Own-property gate: a plain [company] lookup would resolve prototype keys
+  // like "constructor" to truthy values and skip the whitelist branch.
+  const meta = Object.hasOwn(COMPANIES, company) ? COMPANIES[company] : undefined;
   if (!meta) {
     return NextResponse.json(
       { error: `unknown company: ${company || "(missing)"}` },

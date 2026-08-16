@@ -46,9 +46,23 @@ def main() -> int:
     traces = json.loads((ROOT / "forecasts" / "traces.json").read_text())
     verdicts, failed = [], False
 
+    # Completeness gate: all 12 (workbook, metric) cells must be present BEFORE
+    # the writer runs — this is the write-gate's guarantee that a partial
+    # forecasts.json can never reach write_workbooks (a blank cell scores 5.0).
+    for wb, label in CHECKS:
+        if not isinstance(forecasts.get(wb), dict) or label not in forecasts[wb]:
+            verdicts.append({"workbook": wb, "metric": label, "value": None,
+                             "checks": {"present": "FAIL: missing from forecasts.json"}})
+            failed = True
+
     for wb, metrics in forecasts.items():
         for label, value in metrics.items():
-            spec = CHECKS[(wb, label)]
+            spec = CHECKS.get((wb, label))
+            if spec is None:
+                verdicts.append({"workbook": wb, "metric": label, "value": value,
+                                 "checks": {"known_metric": "FAIL: not a known (workbook, metric) pair"}})
+                failed = True
+                continue
             v = {"workbook": wb, "metric": label, "value": value, "checks": {}}
 
             ok = isinstance(value, (int, float)) and math.isfinite(value)

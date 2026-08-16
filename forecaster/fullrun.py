@@ -24,6 +24,7 @@ import json
 import os
 import subprocess
 import sys
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,6 +66,7 @@ class Progress:
         logdir = ROOT / "logs"
         logdir.mkdir(exist_ok=True)
         self.path = logdir / f"fullrun-{company}-{stamp}.json"
+        self._lock = threading.Lock()  # heartbeat thread flushes concurrently
         now = datetime.now(timezone.utc).isoformat()
         self.data = {
             "company": company,
@@ -75,6 +77,7 @@ class Progress:
             "done": False,
             "ok": None,
             "error": None,
+            "warning": None,
         }
         self._flush()
 
@@ -84,18 +87,20 @@ class Progress:
         # dot-prefixed so the dashboard's latest("logs", "fullrun-<company>-")
         # prefix glob can never match it — an undotted "...json.tmp" sorts
         # AFTER the real ".json" and would shadow the progress file.
-        self.data["updatedAt"] = datetime.now(timezone.utc).isoformat()
-        tmp = self.path.with_name("." + self.path.name + ".tmp")
-        tmp.write_text(json.dumps(self.data, indent=1))
-        os.replace(tmp, self.path)
+        with self._lock:
+            self.data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            tmp = self.path.with_name("." + self.path.name + ".tmp")
+            tmp.write_text(json.dumps(self.data, indent=1))
+            os.replace(tmp, self.path)
 
     def stage(self, name: str, status: str) -> None:
         self.data["stages"][name] = status
         self._flush()
 
-    def note_error(self, error: str) -> None:
-        """Record a non-fatal error without stopping the run."""
-        self.data["error"] = error
+    def note_warning(self, warning: str) -> None:
+        """Record a non-fatal warning without stopping the run. Kept separate
+        from 'error' so a successful run never renders a red error line."""
+        self.data["warning"] = warning
         self._flush()
 
     def fail(self, stage_name: str, error: str) -> None:
@@ -117,6 +122,19 @@ def run(company: str) -> int:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")  # computed once
     progress = Progress(company, stamp)  # initial file: all stages pending
     _say(f"# fullrun {company} — progress: {progress.path.relative_to(ROOT)}")
+
+    # Heartbeat: the LLM stages (readers, validator) can run for many minutes
+    # without a stage transition; refreshing updatedAt every 30s keeps the
+    # dashboard's staleness window (180s) satisfied so the live overlay never
+    # flickers off mid-stage.
+    stop_heartbeat = threading.Event()
+
+    def _heartbeat() -> None:
+        while not stop_heartbeat.wait(30):
+            progress._flush()
+
+    threading.Thread(target=_heartbeat, daemon=True).start()
+
     current = "readers"
     try:
         # -- readers ---------------------------------------------------------
@@ -209,7 +227,7 @@ def run(company: str) -> int:
         if verdict is None:
             # No verdict submitted: treated as a warning — proceed, but the
             # progress file records it so the dashboard can surface it.
-            progress.note_error("validator agent did not submit a verdict")
+            progress.note_warning("validator agent did not submit a verdict")
             progress.stage("validator", "done")
             _say("[validator] no verdict submitted — proceeding (warning recorded)")
         else:
@@ -248,6 +266,8 @@ def run(company: str) -> int:
             pass
         _say(f"# fullrun {company} FAILED at {current}: {e}")
         return 1
+    finally:
+        stop_heartbeat.set()
 
 
 def main() -> int:

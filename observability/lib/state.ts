@@ -151,11 +151,15 @@ export function assemble(company: string) {
   const vTraceStamp = stampOf(vTraceRel);
   const vVerdictStamp = stampOf(vVerdictRel);
   const verdictCurrent = !!validatorVerdict && (!vTraceStamp || !vVerdictStamp || vVerdictStamp >= vTraceStamp);
+  // The validator's window is much wider than the readers': a high-effort
+  // adversarial turn routinely thinks >20s between tool calls, and 20s of
+  // silence must not flick the node back to idle mid-run.
+  const VALIDATOR_WINDOW_MS = 150_000;
   const validatorStatus: StageStatus = verdictCurrent
     ? (validatorVerdict?.verdicts ?? []).some((v) => v.severity === "blocker")
       ? "failed"
       : "done"
-    : vTraceRel && vTraceM && now - vTraceM < RUNNING_WINDOW_MS
+    : vTraceRel && vTraceM && now - vTraceM < VALIDATOR_WINDOW_MS
       ? "running"
       : "idle";
 
@@ -238,6 +242,7 @@ export function assemble(company: string) {
         done?: boolean;
         ok?: boolean | null;
         error?: string | null;
+        warning?: string | null;
       } | null)
     : null;
   let fullrun: {
@@ -246,6 +251,7 @@ export function assemble(company: string) {
     workbook: string | null;
     ok: boolean | null;
     error: string | null;
+    warning: string | null;
     startedAt: string | null;
   } | null = null;
   if (fullrunRaw) {
@@ -258,6 +264,7 @@ export function assemble(company: string) {
       workbook: fullrunRaw.workbook ?? null,
       ok: fullrunRaw.ok ?? null,
       error: fullrunRaw.error ?? null,
+      warning: fullrunRaw.warning ?? null,
       startedAt: fullrunRaw.startedAt ?? null,
     };
     if (active) {
@@ -277,6 +284,21 @@ export function assemble(company: string) {
         else if (p === "done" && stages[id] !== "running") stages[id] = "done";
         // "pending" → leave the artifact-derived status alone.
       }
+    } else if (fullrunRaw.done && fullrunRaw.ok === false && Number.isFinite(updatedMs) && now - updatedMs < 600_000) {
+      // A failed run must stay visible: fail() sets done=true in the same
+      // flush, so the 'active' override above can never observe it. Keep the
+      // failed stages red for 10 minutes (unless a newer manual run has that
+      // stage running again) instead of snapping back to last run's green.
+      for (const [id, p] of Object.entries(prog)) {
+        if (p !== "failed") continue;
+        if (id === "readers") {
+          for (const r of ["reader0", "reader1", "reader2"]) {
+            if (stages[r] !== "running") stages[r] = "failed";
+          }
+        } else if (id in stages && stages[id] !== "running") {
+          stages[id] = "failed";
+        }
+      }
     }
   }
 
@@ -284,6 +306,7 @@ export function assemble(company: string) {
     company,
     companies: Object.entries(COMPANIES).map(([id, c]) => ({ id, label: c.label })),
     workbook: meta.file,
+    workbookExists: wbM !== null,
     generatedAt: new Date().toISOString(),
     stages,
     events,

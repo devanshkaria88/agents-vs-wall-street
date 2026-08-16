@@ -26,11 +26,13 @@ export type Fullrun = {
   workbook: string | null;
   ok: boolean | null;
   error: string | null;
+  warning: string | null;
   startedAt: string | null;
 };
 
 export type State = {
   workbook: string;
+  workbookExists: boolean;
   stages: Record<string, string>;
   readers: Reader[];
   skillgen?: { status: string; trace: string | null; calls: ToolCall[] } | null;
@@ -311,7 +313,11 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
     return (
       <div>
         <Section title="Workbook">
-          <DownloadChip company={company} />
+          {state.workbookExists ? (
+            <DownloadChip company={company} />
+          ) : (
+            <p className="text-sm text-slate-500">Not written yet — run the pipeline first.</p>
+          )}
         </Section>
         <Section title="Run log (latest)">
           <pre className="text-[11px] text-slate-600 whitespace-pre-wrap max-h-[60vh] overflow-auto">{state.runLog.join("\n")}</pre>
