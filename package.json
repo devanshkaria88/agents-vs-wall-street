@@ -1,0 +1,16 @@
+{
+  "name": "agents-vs-wall-street-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup:entry": "node scripts/setup-entry.mjs",
+    "check:entry": "node scripts/check-entry.mjs",
+    "check:forecasts": "node scripts/check-forecasts.mjs submission",
+    "check:submission": "npm run check:entry && npm run check:forecasts",
+    "test:starter": "python3 -m unittest discover -s starter -p 'test_*.py'"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

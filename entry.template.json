@@ -1,0 +1,24 @@
+{
+  "agentName": "",
+  "oneLineDescription": "",
+  "teamMembers": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "technicalSetup": {
+    "buildStyle": "",
+    "harnessOrFramework": "",
+    "primaryModels": [],
+    "languagesAndFrameworks": [],
+    "preExistingComponents": [],
+    "humanInputDuringFinalRun": ""
+  },
+  "submission": {
+    "repositoryUrl": "",
+    "finalCommit": "",
+    "finalCommand": ""
+  },
+  "emailUseConfirmed": false
+}

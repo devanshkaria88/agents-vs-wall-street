@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent architecture — team name</title>
+  <style>
+    :root { color-scheme: light; --ink:#101828; --muted:#667085; --line:#d0d5dd; --blue:#155eef; --paper:#fff; --wash:#f8fafc; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--wash); font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width: min(920px, calc(100% - 32px)); margin: 40px auto; padding: clamp(24px, 6vw, 64px); background: var(--paper); border: 1px solid var(--line); border-radius: 20px; }
+    h1 { margin: 0 0 8px; font-size: clamp(40px, 8vw, 72px); line-height: .98; letter-spacing: -.05em; }
+    h2 { margin: 48px 0 12px; font-size: 24px; letter-spacing: -.02em; }
+    p, li { max-width: 72ch; }
+    .eyebrow { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .lede { color: var(--muted); font-size: 20px; }
+    .card { margin-top: 24px; padding: 20px; background: var(--wash); border: 1px solid var(--line); border-radius: 12px; }
+    code { padding: 2px 6px; border-radius: 5px; background: #eef4ff; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Agents vs Wall Street</p>
+    <h1>Team name</h1>
+    <p class="lede">In one sentence, explain what your agent does and what makes the approach worth understanding.</p>
+
+    <div class="card">
+      <p>Agent name: <strong>add agent name</strong></p>
+      <p>Team: <strong>add everyone's name</strong></p>
+      <p>Build style and harness: <strong>add headless agent, coding harness or hybrid setup</strong></p>
+      <p>Models: <strong>add the primary models</strong></p>
+    </div>
+
+    <section>
+      <h2>How it works</h2>
+      <p>Explain the path from a company ticker to the three forecasts. Name the main stages, models, tools and data sources. A simple diagram is welcome.</p>
+    </section>
+
+    <section>
+      <h2>Research and financial reasoning</h2>
+      <p>Explain how the agent finds information, interprets the requested metrics and units, deals with conflicting evidence and turns the research into a forecast.</p>
+    </section>
+
+    <section>
+      <h2>Important design choices</h2>
+      <p>Describe the decisions that most affected autonomy, quality, runtime or cost. Include the alternatives you rejected and why.</p>
+    </section>
+
+    <section>
+      <h2>Checks and tests</h2>
+      <p>Show how the system catches missing information, bad units, implausible values, malformed workbooks and failed model calls. Explain what you tested and what happened.</p>
+    </section>
+
+    <section>
+      <h2>Reproducing the run</h2>
+      <p>State what someone needs to install or configure, the command they run and any remaining human input. Explain how the system accepts the company and metric specification.</p>
+    </section>
+
+    <section>
+      <h2>Known weaknesses</h2>
+      <p>Be specific about where the agent still needs human help, where it may fail and what you would improve next.</p>
+    </section>
+
+    <section>
+      <h2>How to reproduce the final run</h2>
+      <div class="card">
+        <p>Final commit: <code>add commit hash</code></p>
+        <p>Final command: <code>add command</code></p>
+        <p>Expected output: four completed workbooks in <code>submission/</code>.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
