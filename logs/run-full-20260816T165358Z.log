@@ -1,0 +1,13 @@
+
+> agents-vs-wall-street-starter@0.1.0 forecast:full
+> for c in hays home-depot analog-devices deere; do .venv/bin/python -m forecaster.fullrun $c || exit 1; done
+
+# fullrun hays — progress: logs/fullrun-hays-20260816T165359Z.json
+[readers] launching 3 parallel reader agents
+[readers] done — 3/3 runs parsed
+[firewall] done — 1 citation drops
+[consensus] done — 1 upgraded, 0 divergences, 0 unresolved -> research/drivers/live/hays.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] validate passed
+[validator] launching adversarial validator agent

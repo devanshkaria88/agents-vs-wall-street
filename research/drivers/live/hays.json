@@ -60,7 +60,7 @@
    "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "no material working day impacts anticipated in Q3 and Q4 26",
+    "verbatim_line": "| Net fees (2)         | 453.3  | 496.0  | (9)%         | (9)%         |",
     "published": "2026-02-27"
    },
    "vote_support": "3/3"
