@@ -80,6 +80,24 @@ export function assemble(company: string) {
     return { run: i, status, trace: rel, calls: calls.slice(-80) };
   });
 
+  // Skill-writer agent: newest skillgen trace for this company
+  const skillgenRel = latest("logs", `agent-trace-skillgen-${company}-`);
+  const skillgenM = skillgenRel ? mtime(skillgenRel) : null;
+  const skillgenCalls = skillgenRel ? readTrace(skillgenRel) : [];
+  const skillgenSubmitted = skillgenCalls.some(
+    (c) => c.tool === "submit_skill" && String(c.output_head).startsWith("written"),
+  );
+  const skillgenStatus: StageStatus = !skillgenRel
+    ? "idle"
+    : skillgenSubmitted
+      ? "done"
+      : skillgenM && now - skillgenM < RUNNING_WINDOW_MS
+        ? "running"
+        : skillgenCalls.length
+          ? "done"
+          : "idle";
+  const skillgen = { status: skillgenStatus, trace: skillgenRel, calls: skillgenCalls.slice(-80) };
+
   const liveReport = readJson(`research/drivers/live/report-${company}.json`) as {
     firewall_drops?: unknown[];
     unresolved?: unknown[];
@@ -164,6 +182,7 @@ export function assemble(company: string) {
     generatedAt: new Date().toISOString(),
     stages,
     readers: readers.map((r) => ({ ...r, calls: r.calls })),
+    skillgen,
     liveReport,
     calibration,
     metrics,

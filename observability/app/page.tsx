@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Pipeline, { type StageStatus } from "@/components/Pipeline";
+import RunControls from "@/components/RunControls";
 import SidePanel, { type State } from "@/components/SidePanel";
 
 export default function Home() {
@@ -31,20 +32,26 @@ export default function Home() {
   ];
 
   return (
-    <div className="h-screen flex flex-col text-slate-100 p-4 gap-4">
-      <header className="glass-deep rounded-2xl flex items-center gap-4 px-5 py-3 z-20">
+    <div className="relative h-screen w-screen overflow-hidden text-slate-100">
+      {/* Full-bleed graph canvas */}
+      <div className="absolute inset-0 z-0">
+        {state && <Pipeline statuses={state.stages as Record<string, StageStatus>} selected={selected} onSelect={setSelected} />}
+      </div>
+
+      {/* Floating header */}
+      <header className="glass-deep absolute left-4 right-4 top-4 z-10 flex items-center gap-4 rounded-xl px-4 py-2.5">
         <div>
-          <span className="font-bold tracking-tight text-[17px]">The Truth</span>
-          <span className="text-slate-500 text-[13px] ml-2">pipeline observability</span>
+          <span className="text-[15px] font-bold tracking-tight">The Truth</span>
+          <span className="ml-2 text-[12px] text-slate-500">pipeline observability</span>
         </div>
-        <nav className="flex gap-1.5 ml-4">
+        <nav className="ml-4 flex gap-1.5">
           {companies.map((c) => (
             <button
               key={c.id}
               onClick={() => setCompany(c.id)}
-              className={`glass-chip cursor-pointer px-3 py-1 rounded-full text-[12.5px] transition-all duration-200 ${
+              className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
                 company === c.id
-                  ? "!bg-sky-400/15 !border-sky-300/60 text-sky-100 shadow-[0_0_18px_rgba(56,189,248,0.25)]"
+                  ? "!border-sky-400/50 !bg-sky-400/10 text-sky-200"
                   : "text-slate-400 hover:text-slate-200 hover:!border-white/25"
               }`}
             >
@@ -54,22 +61,24 @@ export default function Home() {
         </nav>
         <div className="ml-auto flex items-center gap-3">
           <span className="text-[11px] text-slate-500">
-            purple = AI · teal = deterministic code · yellow = output
+            violet = AI · teal = deterministic code · yellow = output
           </span>
           <button
             onClick={() => setLive(!live)}
-            className={`glass-chip cursor-pointer px-3 py-1 rounded-full text-[12px] transition-all duration-200 ${live ? "!border-emerald-400/50 text-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.2)]" : "text-slate-500"}`}
+            className={`glass-chip cursor-pointer rounded-full px-3 py-1 text-[12px] transition-all duration-150 ${
+              live ? "!border-emerald-400/40 text-emerald-300" : "text-slate-500"
+            }`}
           >
             {live ? "● live 2s" : "○ paused"}
           </button>
         </div>
       </header>
-      <div className="flex flex-1 min-h-0 gap-4">
-        <div className="flex-1 min-w-0 glass rounded-2xl overflow-hidden">
-          {state && <Pipeline statuses={state.stages as Record<string, StageStatus>} selected={selected} onSelect={setSelected} />}
-        </div>
-        <aside className="w-[400px] glass-deep rounded-2xl overflow-y-auto p-4">
-          {state && <SidePanel stage={selected} state={state} />}
+
+      {/* Floating right column: run controls + inspector */}
+      <div className="absolute bottom-4 right-4 top-24 z-10 flex w-[400px] flex-col gap-3">
+        <RunControls company={company} />
+        <aside className="glass-deep min-h-0 flex-1 overflow-y-auto rounded-xl p-4">
+          {state && <SidePanel stage={selected} state={state} company={company} />}
         </aside>
       </div>
     </div>

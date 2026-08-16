@@ -1,0 +1,30 @@
+{
+  "model": "claude-opus-5",
+  "effort": "medium",
+  "runs": 2,
+  "system_prompt_extra": "",
+  "tools": {
+    "search_corpus": true,
+    "read_doc": true,
+    "web_search": true
+  },
+  "web_search_max_uses": 5,
+  "skills": {
+    "hays": [
+      "method.md",
+      "hays.md"
+    ],
+    "home-depot": [
+      "method.md",
+      "home-depot.md"
+    ],
+    "analog-devices": [
+      "method.md",
+      "analog-devices.md"
+    ],
+    "deere": [
+      "method.md",
+      "deere.md"
+    ]
+  }
+}

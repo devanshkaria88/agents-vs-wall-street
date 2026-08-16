@@ -38,6 +38,13 @@ def _log(tool: str, tool_input: dict, output: str) -> None:
             f.write(json.dumps(entry) + "\n")
 
 
+def log_server_tool(tool: str, tool_input: dict) -> None:
+    """Mirror a server-side tool call (e.g. web_search) into the JSONL trace.
+    Server tools execute on Anthropic's side, so there is no local output —
+    we log the call itself so the dashboard's tool feed shows it."""
+    _log(tool, tool_input, "(server-side tool call)")
+
+
 @beta_tool
 def search_corpus(query: str, company: str, max_results: int = 25) -> str:
     """Search the offline document corpus with ripgrep (case-insensitive regex).

@@ -1,38 +1,45 @@
 "use client";
-import { ReactFlow, Background, Handle, Position, type Node, type Edge, type NodeProps } from "@xyflow/react";
+import { ReactFlow, Background, BackgroundVariant, Handle, Position, type Node, type Edge, type NodeProps } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 export type StageStatus = "idle" | "running" | "done" | "failed";
 
-const STATUS_STYLE: Record<StageStatus, { border: string; dot: string; glow: string }> = {
-  idle: { border: "border-white/10", dot: "bg-slate-500", glow: "" },
-  running: { border: "border-amber-400", dot: "bg-amber-400 animate-pulse", glow: "shadow-[0_0_24px_rgba(251,191,36,0.35)]" },
-  done: { border: "border-emerald-500", dot: "bg-emerald-400", glow: "" },
-  failed: { border: "border-rose-500", dot: "bg-rose-400", glow: "shadow-[0_0_24px_rgba(244,63,94,0.35)]" },
+const STATUS_DOT: Record<StageStatus, string> = {
+  idle: "bg-slate-500",
+  running: "bg-amber-400 animate-pulse",
+  done: "bg-emerald-400",
+  failed: "bg-rose-400",
 };
 
-const KIND_TINT: Record<string, string> = {
-  ai: "bg-violet-400/[0.09] text-violet-100 shadow-[inset_0_1px_0_rgba(196,181,253,0.15)]",
-  code: "bg-teal-400/[0.08] text-teal-100 shadow-[inset_0_1px_0_rgba(94,234,212,0.12)]",
-  data: "bg-white/[0.05] text-slate-200",
-  out: "bg-yellow-300/[0.10] text-yellow-100 shadow-[inset_0_1px_0_rgba(253,224,71,0.15)]",
+const STATUS_FX: Record<StageStatus, string> = {
+  idle: "",
+  running: "shadow-[0_0_22px_rgba(245,158,11,0.28)]",
+  done: "",
+  failed: "shadow-[0_0_22px_rgba(244,63,94,0.28)]",
+};
+
+const KIND_ACCENT: Record<string, string> = {
+  ai: "bg-violet-400/80",
+  code: "bg-teal-400/80",
+  data: "bg-slate-500/70",
+  out: "bg-yellow-300/80",
 };
 
 type StageData = { label: string; sub: string; kind: string; status: StageStatus; selected?: boolean };
 
 function StageNode({ data }: NodeProps<Node<StageData>>) {
-  const s = STATUS_STYLE[data.status];
   return (
     <div
-      className={`rounded-xl border ${s.border} ${KIND_TINT[data.kind]} ${s.glow} backdrop-blur-md px-4 py-2.5 w-[210px] cursor-pointer transition-all duration-200 hover:!border-white/40 ${data.selected ? "ring-2 ring-sky-300/80 shadow-[0_0_28px_rgba(125,211,252,0.3)]" : ""}`}
+      className={`relative w-[210px] overflow-hidden rounded-lg border border-white/10 bg-[#0d1117]/90 backdrop-blur-sm cursor-pointer transition-all duration-150 hover:border-white/30 ${STATUS_FX[data.status]} ${data.selected ? "ring-2 ring-sky-400/70" : ""}`}
     >
-      <Handle type="target" position={Position.Left} className="!bg-slate-500" />
-      <div className="flex items-center gap-2">
-        <span className={`inline-block h-2.5 w-2.5 rounded-full ${s.dot}`} />
-        <span className="font-semibold text-[13px] leading-tight">{data.label}</span>
+      <span className={`absolute left-0 top-[6px] bottom-[6px] w-[2px] rounded-full ${KIND_ACCENT[data.kind] ?? KIND_ACCENT.data}`} />
+      <Handle type="target" position={Position.Left} className="!opacity-0" />
+      <div className="flex items-center gap-2 border-b border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+        <span className={`h-2 w-2 shrink-0 rounded-full ${STATUS_DOT[data.status]}`} />
+        <span className="text-[12.5px] font-medium leading-tight text-slate-200">{data.label}</span>
       </div>
-      <div className="text-[11px] opacity-70 mt-0.5 leading-snug">{data.sub}</div>
-      <Handle type="source" position={Position.Right} className="!bg-slate-500" />
+      <div className="px-3 py-1.5 text-[11px] leading-snug text-slate-400">{data.sub}</div>
+      <Handle type="source" position={Position.Right} className="!opacity-0" />
     </div>
   );
 }
@@ -78,13 +85,19 @@ export default function Pipeline({
     data: { label: n.label, sub: n.sub, kind: n.kind, status: statuses[n.id] ?? "idle", selected: selected === n.id },
   }));
   const edges: Edge[] = FLOWS.map(([a, b]) => {
-    const active = statuses[b] === "running";
+    const target = statuses[b];
+    const running = target === "running";
+    const done = target === "done";
     return {
       id: `${a}-${b}`,
       source: a,
       target: b,
-      animated: active,
-      style: { stroke: active ? "#fbbf24" : statuses[b] === "done" ? "#34d399" : "#475569", strokeWidth: active ? 2.2 : 1.4 },
+      animated: running,
+      style: running
+        ? { stroke: "#f59e0b", strokeWidth: 2, strokeDasharray: "5 5", filter: "drop-shadow(0 0 6px rgba(245,158,11,0.8))" }
+        : done
+          ? { stroke: "#34d399", strokeWidth: 1.5, opacity: 0.5 }
+          : { stroke: "rgba(148,163,184,0.35)", strokeWidth: 1.2, strokeDasharray: "5 5" },
     };
   });
   return (
@@ -94,7 +107,7 @@ export default function Pipeline({
       nodeTypes={nodeTypes}
       onNodeClick={(_, node) => onSelect(node.id)}
       fitView
-      fitViewOptions={{ padding: 0.12 }}
+      fitViewOptions={{ padding: { top: "84px", right: "440px", bottom: "32px", left: "32px" } }}
       proOptions={{ hideAttribution: true }}
       minZoom={0.4}
       colorMode="dark"
@@ -102,7 +115,7 @@ export default function Pipeline({
       nodesDraggable={false}
       nodesConnectable={false}
     >
-      <Background color="rgba(148,163,184,0.14)" gap={24} size={1.2} />
+      <Background variant={BackgroundVariant.Dots} color="rgba(148,163,184,0.25)" gap={20} size={1} />
     </ReactFlow>
   );
 }
