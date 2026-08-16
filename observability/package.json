@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "observe": "npm --prefix observability run dev"
+    "lint": "eslint"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.3",

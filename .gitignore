@@ -8,3 +8,5 @@ __pycache__/
 entry.json
 submission/*.xlsx
 .venv/
+observability/.next/
+observability/node_modules/

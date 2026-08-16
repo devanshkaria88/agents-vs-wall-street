@@ -1,0 +1,161 @@
+{
+ "company": "home-depot",
+ "output_file": "HD-FY2026Q2.xlsx",
+ "note": "Pinned drivers, hand-reviewed from research/dossiers/home-depot.json (citations firewall-verified 2026-08-16).",
+ "drivers": {
+  "q2_25_net_sales": {
+   "value": 45277.0,
+   "unit": "USDm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2025-08-19__hd-us-20250819-q2-8k__143666.md",
+    "verbatim_line": "today reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9% from the second quarter of fiscal 2024",
+    "published": "2025-08-19",
+    "precise_from": "research/dossiers/home-depot.json: $45,277M"
+   }
+  },
+  "q2_25_adj_eps": {
+   "value": 4.68,
+   "unit": "USD/share",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2025-08-19__hd-us-20250819-q2-8k__143666.md",
+    "verbatim_line": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with adjusted diluted earnings per share of $4.67 in the same period of fiscal 2024.",
+    "published": "2025-08-19"
+   }
+  },
+  "q2_25_comps": {
+   "value": 1.0,
+   "unit": "pp",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2025-08-19__hd-us-20250819-q2-8k__143666.md",
+    "verbatim_line": "Comparable sales for the second quarter of fiscal 2025 increased 1.0%, and comparable sales in the U.S. increased 1.4%.",
+    "published": "2025-08-19"
+   }
+  },
+  "q1_26_net_sales": {
+   "value": 41765.0,
+   "unit": "USDm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "reported sales of $41.8 billion for the first quarter of fiscal 2026, an increase of $1.9 billion, or 4.8% from",
+    "published": "2026-05-19",
+    "precise_from": "research/dossiers/home-depot.json: $41,765M"
+   }
+  },
+  "q1_25_net_sales": {
+   "value": 39856.0,
+   "unit": "USDm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "research/dossiers/home-depot.json",
+    "verbatim_line": "Q1 FY2025 (ended May 4, 2025) $39,856M (+9.4% YoY)",
+    "published": "2025-05-20"
+   }
+  },
+  "q1_26_comps": {
+   "value": 0.6,
+   "unit": "pp",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and",
+    "published": "2026-05-19"
+   }
+  },
+  "q1_26_adj_eps_yoy": {
+   "value": -0.037,
+   "unit": "fraction",
+   "kind": "base",
+   "citation": {
+    "doc_path": "research/dossiers/home-depot.json",
+    "verbatim_line": "Q1 FY2026 $3.43 (-3.7% YoY); GAAP diluted EPS $3.30",
+    "published": "2026-05-19"
+   }
+  },
+  "fy25_adj_eps": {
+   "value": 14.69,
+   "unit": "USD/share",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-8k__615609.md",
+    "verbatim_line": "Adjusted diluted earnings per share for fiscal 2025 were $14.69, compared with adjusted diluted",
+    "published": "2026-02-24"
+   }
+  },
+  "fy26_gaap_eps_guide_base": {
+   "value": 14.23,
+   "unit": "USD/share",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
+    "published": "2026-05-19"
+   }
+  },
+  "fy26_eps_growth_mid": {
+   "value": 0.02,
+   "low": 0.0,
+   "high": 0.04,
+   "unit": "fraction",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
+    "published": "2026-05-19"
+   }
+  },
+  "fy26_comp_guide_mid": {
+   "value": 1.0,
+   "low": 0.0,
+   "high": 2.0,
+   "unit": "pp",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "\u2022 Comparable sales growth of approximately flat to 2.0%",
+    "published": "2026-05-19"
+   }
+  },
+  "fy26_sales_growth_guide": {
+   "value": 0.035,
+   "low": 0.025,
+   "high": 0.045,
+   "unit": "fraction",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "\u2022 Total sales growth of approximately 2.5% to 4.5%",
+    "published": "2026-05-19"
+   }
+  },
+  "gms_quarterly_sales": {
+   "value": 1975.0,
+   "low": 1900.0,
+   "high": 2050.0,
+   "unit": "USDm",
+   "kind": "structure",
+   "citation": {
+    "doc_path": "research/dossiers/home-depot.json",
+    "verbatim_line": "only anchors are ~$900M for ~8 weeks in Q3 FY25 and 'approximately $2.0 billion'",
+    "published": "2026-02-24"
+   },
+   "justification": "GMS acquired ~Sep 2025; Q2 FY26 contains a full GMS quarter, the year-ago quarter contains none. Judgment driver \u2014 plan-ensemble varies this."
+  },
+  "comp_cadence_step": {
+   "value": 0.4,
+   "low": 0.2,
+   "high": 0.6,
+   "unit": "pp",
+   "kind": "assumption",
+   "citation": {
+    "doc_path": "research/dossiers/home-depot.json",
+    "verbatim_line": "Guidance does imply a slight improvement in comps as we move through the year. I don't think the shape of the year has changed rel",
+    "published": "2026-02-24"
+   },
+   "justification": "Management cadence commentary; Q2 comp = Q1 + step. Judgment driver \u2014 plan-ensemble varies this."
+  }
+ }
+}
