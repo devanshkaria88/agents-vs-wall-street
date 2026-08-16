@@ -1,0 +1,19 @@
+{
+ "company": "hays",
+ "startedAt": "2026-08-16T14:23:21.446669+00:00",
+ "updatedAt": "2026-08-16T14:25:50.539885+00:00",
+ "stages": {
+  "readers": "done",
+  "firewall": "done",
+  "consensus": "done",
+  "calibration": "done",
+  "calculators": "done",
+  "validator": "failed",
+  "writer": "pending"
+ },
+ "workbook": null,
+ "done": true,
+ "ok": false,
+ "error": "The EPS build rests on an un-extracted, back-solved half-year finance charge of \u00a39.0m (band \u00a36-12m) and an unstated 'plausible UK ETR'. Both are directly disclosed in the corpus and contradict the assumption: the H1 26 report states the net finance charge for H1 26 was \u00a36.7 million (note 4 table: Net finance charge (6.7) / (6.5) / (13.4)) and guides FY26 to c.\u00a313 million; it also guides the FY26 pre-exceptional ETR to c.45% (H1 26 actual 44.8%), well above a UK-statutory-style rate. Using a ~\u00a39m half-charge and an unpinned tax rate mis-states the H2 26 earnings drop-through and hence the FY26 EPS cell (variants already spread 1.11-1.25p). Secondary issues: the h1_26_eps (0.46p) and h1_26_shares (1,595.7m) citations point at research/dossiers/hays.json rather than the corpus file (the values themselves do re-find at lines 44/1003/1007 of the H1 26 report), and the H1 weighted-average share count predates the buyback completed 29 June 2026.",
+ "warning": null
+}

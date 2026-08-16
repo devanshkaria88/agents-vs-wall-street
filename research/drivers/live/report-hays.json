@@ -2,24 +2,31 @@
  "company": "hays",
  "runs_attempted": 2,
  "runs_parsed": 2,
- "timestamp": "2026-08-16T13:45:50.652624+00:00",
- "firewall_drops": [],
- "unresolved": [],
- "merge_decisions": [
+ "timestamp": "2026-08-16T14:24:52.575359+00:00",
+ "firewall_drops": [
+  [
+   "half_year_finance_charge",
+   "quote not re-found in challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md"
+  ]
+ ],
+ "unresolved": [
   {
-   "key": "h1_26_op",
-   "action": "confirmed",
-   "value": 20.1
-  },
+   "key": "half_year_finance_charge",
+   "candidates": [
+    6.7
+   ]
+  }
+ ],
+ "merge_decisions": [
   {
    "key": "h2_25_op",
    "action": "confirmed",
    "value": 20.1
   },
   {
-   "key": "h1_25_net_fees",
+   "key": "h2_26_op_yoy",
    "action": "confirmed",
-   "value": 496.0
+   "value": 1.3
   },
   {
    "key": "op_guide_range_top",
@@ -32,30 +39,29 @@
    "value": -0.04
   },
   {
-   "key": "h1_26_eps",
-   "action": "confirmed",
-   "value": 0.46
-  },
-  {
-   "key": "q3_share_of_h2",
-   "action": "UPGRADED assumption -> extracted",
-   "pinned": 0.5,
-   "live": 0.5
-  },
-  {
    "key": "q3_26_actual_growth",
    "action": "confirmed",
    "value": -0.07
   },
   {
-   "key": "op_consensus",
+   "key": "h1_26_op",
    "action": "confirmed",
-   "value": 43.5
+   "value": 20.1
   },
   {
-   "key": "h1_26_net_fees",
+   "key": "fy25_net_fees",
    "action": "confirmed",
-   "value": 453.3
+   "value": 972.4
+  },
+  {
+   "key": "h1_25_net_fees",
+   "action": "confirmed",
+   "value": 496.0
+  },
+  {
+   "key": "h1_26_eps",
+   "action": "confirmed",
+   "value": 0.46
   },
   {
    "key": "h1_26_shares",
@@ -63,73 +69,33 @@
    "value": 1595.7
   },
   {
-   "key": "half_year_finance_charge",
+   "key": "h1_26_net_fees",
+   "action": "confirmed",
+   "value": 453.3
+  },
+  {
+   "key": "op_consensus",
+   "action": "confirmed",
+   "value": 43.5
+  },
+  {
+   "key": "q3_share_of_h2",
    "action": "UPGRADED assumption -> extracted",
-   "pinned": 9.0,
-   "live": 6.7
-  },
-  {
-   "key": "h2_26_op_yoy",
-   "action": "confirmed",
-   "value": 1.3
-  },
-  {
-   "key": "fy25_net_fees",
-   "action": "confirmed",
-   "value": 972.4
+   "pinned": 0.5,
+   "live": 0.5
   }
  ],
  "additional_evidence": [
   {
-   "note": "FY26 exceptional items guidance: c.GBP40m restructuring plus c.GBP30m ROU impairment - below the pre-exceptional guidance line.",
+   "note": "FY26 exceptional charges guided: c.GBP40m restructuring plus c.GBP30m ROU impairment - keeps guidance pre-exceptional only.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
-    "verbatim_line": "c.\u00a340m exceptional restructuring charge",
+    "verbatim_line": "we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
     "published": "2026-07-10"
    }
   },
   {
-   "note": "Six disposed countries (16 June 2026) are excluded from LFL but contributed to reported FY26 net fees - reported FY26 net fees are not LFL-consistent.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
-    "verbatim_line": "- (1) Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden are no longer considered continuing operations following their disposal on 16 June 2026.",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "note": "June 26 exit rate: (5)% working-day adjusted, consistent with the Q4 quarter - relevant to FY27 momentum.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/call-transcripts/2026-07-10__has-ln-20260710-call-qna__1573114.md",
-    "verbatim_line": "We were 5% down in the quarter and 5% down in June if I adjust for working days.",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "note": "FY26 pre-exceptional effective tax rate guided c.45%; H1 26 pre-exceptional ETR 44.8% - needed to convert operating profit to EPS.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "The Group's effective tax rate on a pre -exceptional basis for the six months ended 31 December 2025 was 44.8%",
-    "published": "2026-02-27"
-   }
-  },
-  {
-   "note": "c.GBP50m annualised structural cost savings secured in FY26, three years ahead of the c.GBP45m-by-FY29 target - driver of the H2 26 profit inflection.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
-    "verbatim_line": "with c.\u00a350 m annualised savings secured three years ahead of schedule in FY2 6",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "note": "FY26 exceptional items guidance: c.\u00a340m restructuring plus c.\u00a330m ROU impairment - excluded from pre-exceptional guidance.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
-    "verbatim_line": "we expect to incur a  c.\u00a340m exceptional restructuring charge",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "note": "Six disposed countries (16 June 2026) are excluded from LFL but still contributed c.\u00a315m to reported FY26 net fees - reported FY26 net fees are not LFL-consistent.",
+   "note": "Six disposed countries (16 June 2026) excluded from LFL from Q4 26 - reported FY26 net fees are not LFL-consistent.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
     "verbatim_line": "- (1) Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden are no longer considered continuing operations following their disposal on 16 June 2026.",
@@ -137,27 +103,67 @@
    }
   },
   {
-   "note": "June 26 exit rate: net fees down 5% in the quarter and 5% in June on a working-day adjusted basis.",
+   "note": "Disposed countries generated c.GBP15m annual net fees and essentially zero profit.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/call-transcripts/2026-07-10__has-ln-20260710-call-qna__1573114.md",
-    "verbatim_line": "We were 5% down in the quarter and 5% down in June if I adjust for working days.",
+    "verbatim_line": "the six countries that we disposed of made around GBP 15 million per annum in fees and pretty much zero from a P&L perspective",
     "published": "2026-07-10"
    }
   },
   {
-   "note": "Superseded consensus print from Q3 26 statement (15 April 2026) - do not use for latest guidance.",
+   "note": "FY26 structural cost savings c.GBP50m annualised secured three years ahead of schedule - driver of H2 26 profit growth.",
    "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-q3-8k-2__955907.md",
-    "verbatim_line": "- (2) As of  15  April 2026 , company complied consensus for FY26 pre -exceptional operating profit is \u00a345. 2m, based on 11 analysts .",
-    "published": "2026-04-16"
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "- Strong  progress with our i nitiatives to deliver  further  structural  cost  savings of c.\u00a3 45 m per annum by the end of FY2 9 with c.\u00a350 m annualised savings secured three years ahead of schedule in FY2 6",
+    "published": "2026-07-10"
    }
   },
   {
-   "note": "FY26 pre-exceptional effective tax rate guidance basis: H1 26 pre-exceptional ETR 44.8%.",
+   "note": "FY26 results (not in corpus, post-freeze) are scheduled for 20 August 2026.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "We are on track to share an update alongside our full -year results on 20 August 2026 .",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "note": "FY26 guidance: profit at top of consensus range following return to strong H2 YoY growth.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "note": "Continuing-operations redefinition: six countries excluded from LFL from Q4 26 after 16 June 2026 disposal; reported FY26 net fees still include them (c.\u00a315m).",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "- (1) Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden are no longer considered continuing operations following their disposal on 16 June 2026.",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "note": "Structural cost savings of c.\u00a350m annualised secured in FY26, three years ahead of the c.\u00a345m by FY29 target.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "- Strong  progress with our i nitiatives to deliver  further  structural  cost  savings of c.\u00a3 45 m per annum by the end of FY2 9 with c.\u00a350 m annualised savings secured three years ahead of schedule in FY2 6",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "note": "FY26 pre-exceptional ETR guided c.45%; H1 26 pre-exceptional ETR 44.8% - relevant for converting operating profit to EPS.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "The Group's effective tax rate on a pre -exceptional basis for the six months ended 31 December 2025 was 44.8%",
+    "verbatim_line": "The Group's effective tax rate on a pre -exceptional basis for the six months ended 31 December 2025 was 44.8% (31 December 2024: 32.1%, 30 June 2025: 35.1%) and is based on the forecasted pre-exceptional effective tax rate for the full year.",
     "published": "2026-02-27"
+   }
+  },
+  {
+   "note": "FY26 results (not in corpus) scheduled for 20 August 2026, after the 2026-08-14 corpus freeze.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "We are on track to share an update alongside our full -year results on 20 August 2026 .",
+    "published": "2026-07-10"
    }
   }
  ]

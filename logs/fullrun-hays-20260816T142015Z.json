@@ -1,0 +1,19 @@
+{
+ "company": "hays",
+ "startedAt": "2026-08-16T14:20:15.677985+00:00",
+ "updatedAt": "2026-08-16T14:22:50.571306+00:00",
+ "stages": {
+  "readers": "done",
+  "firewall": "done",
+  "consensus": "done",
+  "calibration": "done",
+  "calculators": "done",
+  "validator": "done",
+  "writer": "done"
+ },
+ "workbook": "submission/HAS-FY2026.xlsx",
+ "done": true,
+ "ok": true,
+ "error": null,
+ "warning": null
+}

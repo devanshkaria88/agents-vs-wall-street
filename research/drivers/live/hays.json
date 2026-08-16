@@ -60,7 +60,7 @@
    "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "no material working day impacts anticipated in Q3 and Q4 26",
+    "verbatim_line": "There are no material working day impacts anticipated in Q3 and Q4 26.",
     "published": "2026-02-27"
    },
    "vote_support": "2/2"
@@ -123,8 +123,8 @@
    "unit": "GBp",
    "kind": "base",
    "citation": {
-    "doc_path": "research/dossiers/hays.json",
-    "verbatim_line": "H1 FY26 pre-exceptional basic EPS 0.46p per H1 26 report",
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "The Group's pre -exceptional basic earnings per share (EPS) of 0.46p was 43% lower than the prior year.",
     "published": "2026-02-27"
    }
   },
@@ -133,22 +133,22 @@
    "unit": "millions",
    "kind": "structure",
    "citation": {
-    "doc_path": "research/dossiers/hays.json",
-    "verbatim_line": "H1 26 weighted average 1,595.7m",
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Weighted average number of shares         | 1,595.7         | 1,588.5         | 1,590.2         |",
     "published": "2026-02-27"
    }
   },
   "half_year_finance_charge": {
    "value": 6.7,
    "unit": "GBPm",
-   "kind": "extracted-live",
+   "kind": "extracted",
    "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements.",
    "citation": {
     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "| Net finance charge         | (6.7)         | (6.5)         | (13.4)         |",
+    "verbatim_line": "The net finance charge for H1 26 was \u00a36.7 million (H1 25: \u00a36.5 million).",
     "published": "2026-02-27"
    },
-   "vote_support": "2/2"
+   "note": "H1 26 actual net finance charge (note 4). FY26 guided to c.\u00a313m total, so the H2 half-charge ~6.3m is consistent with using 6.7 per half. Upgraded from the 9.0 (6-12 band) assumption: extracted by two independent reader runs 2026-08-16, re-confirmed byte-exact by the adversarial validator agent, which blocked a fullrun that had regressed to the assumption."
   }
  },
  "cfo_cross_check": {

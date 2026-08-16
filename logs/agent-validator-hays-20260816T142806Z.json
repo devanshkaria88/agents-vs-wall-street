@@ -1,0 +1,36 @@
+{
+ "company": "hays",
+ "timestamp": "2026-08-16T14:28:59.622058+00:00",
+ "verdicts": [
+  {
+   "metric": "Net fees",
+   "verdict": "confirmed",
+   "severity": "warning",
+   "reason": "All cited lines re-find byte-exact: FY25 972.4 (h2-8k line 43), H1 26 453.3 / H1 25 496.0 (h1-8k line 38), Q3 26 Actual (7)% and Q4 26 Actual (4)% read from the 'Actual' column of the Financial Summary tables (Q4 filing-2 lines 51-56), correctly signed as fractions -0.07/-0.04. CFO cross-check 'close to GBP 900 million' corroborates the ~903.5 scale. Warning only: the quarterly growth columns are stated on a continuing-operations basis (Czech Republic, Denmark, Hungary, Luxembourg, Romania, Sweden excluded after the 16 June 2026 disposal, per footnote (1)), while the metric is scored on REPORTED group net fees which still include c.\u00a315m from those countries in FY26 \u2014 a basis mismatch that could bias the reconstructed H2. The 50/50 q3_share_of_h2 is an assumption, not a disclosure (Hays never gives quarterly \u00a3 fees); its citation only supports 'no material working day impacts'.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "- (1) Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden are no longer considered continuing operations following their disposal on 16 June 2026."
+   }
+  },
+  {
+   "metric": "Pre-exceptional operating profit",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "Guidance quote re-finds byte-exact at line 124 (and in substance at line 71) of the 10 July 2026 Q4 statement: FY26 pre-exceptional operating profit 'at the top of the \u00a337.0-46.0m consensus range', so 46.0 GBPm is the stated range top, correctly in \u00a3m and on a pre-exceptional basis. Consensus 43.5m (footnote (2), 9 July 2026, 10 analysts) and the CFO's 'up about 30% versus H2 last year' remark re-find exactly and are internally consistent with the top-of-range anchor. Info: 46.0 is the optimistic end \u2014 it sits \u00a32.5m above company-compiled consensus, and the April 2026 print of \u00a345.2m is superseded, correctly not used.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts ."
+   }
+  },
+  {
+   "metric": "Pre-exceptional basic EPS",
+   "verdict": "confirmed",
+   "severity": "warning",
+   "reason": "All cited inputs re-find byte-exact and are in the right units: H1 26 pre-exceptional basic EPS 0.46p (pence, line 332 \u2014 correctly NOT the 0.02p post-exceptional figure), weighted average shares 1,595.7m (note 7, line 1003), H1 26 pre-exceptional operating profit 20.1 (line 39), net finance charge \u00a36.7m for H1 26 (line 318). Warnings: (a) the trace applies a tax factor (1-t) but no tax citation is supplied in the metric's evidence set \u2014 the supporting disclosure is the c.45% FY26 ETR guidance at line 328; (b) the FY26 finance charge is guided to c.\u00a313m in total, so using the H1 \u00a36.7m per half slightly overstates the H2 charge; (c) share count is held at the H1 weighted average despite the buyback completed 29 June 2026, which lowers H2 shares. Both are small, offsetting, and do not mis-state the unit or scale.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "We expect the Group's ETR in FY26 to be c.45%, consistent with the first half, assuming no material change in geographic mix of profits, and to reduce as profits rebuild over time."
+   }
+  }
+ ]
+}

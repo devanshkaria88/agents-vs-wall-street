@@ -1,0 +1,11 @@
+# fullrun hays — progress: logs/fullrun-hays-20260816T142321Z.json
+[readers] launching 2 parallel reader agents
+[readers] done — 2/2 runs parsed
+[firewall] done — 1 citation drops
+[consensus] done — 1 upgraded, 0 divergences, 1 unresolved -> research/drivers/live/hays.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] validate passed
+[validator] launching adversarial validator agent
+[validator hays] 3 verdicts (1 challenged) -> logs/agent-validator-hays-20260816T142455Z.json (trace: logs/agent-trace-validator-hays-20260816T142455Z.jsonl)
+[validator] BLOCKER — The EPS build rests on an un-extracted, back-solved half-year finance charge of £9.0m (band £6-12m) and an unstated 'plausible UK ETR'. Both are directly disclosed in the corpus and contradict the assumption: the H1 26 report states the net finance charge for H1 26 was £6.7 million (note 4 table: Net finance charge (6.7) / (6.5) / (13.4)) and guides FY26 to c.£13 million; it also guides the FY26 pre-exceptional ETR to c.45% (H1 26 actual 44.8%), well above a UK-statutory-style rate. Using a ~£9m half-charge and an unpinned tax rate mis-states the H2 26 earnings drop-through and hence the FY26 EPS cell (variants already spread 1.11-1.25p). Secondary issues: the h1_26_eps (0.46p) and h1_26_shares (1,595.7m) citations point at research/dossiers/hays.json rather than the corpus file (the values themselves do re-find at lines 44/1003/1007 of the H1 26 report), and the H1 weighted-average share count predates the buyback completed 29 June 2026. — stopping before workbooks are written

@@ -1,0 +1,13 @@
+# fullrun hays — progress: logs/fullrun-hays-20260816T142015Z.json
+[readers] launching 2 parallel reader agents
+[readers] done — 2/2 runs parsed
+[firewall] done — 1 citation drops
+[consensus] done — 2 upgraded, 0 divergences, 1 unresolved -> research/drivers/live/hays.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] validate passed
+[validator] launching adversarial validator agent
+[validator hays] 3 verdicts (0 challenged) -> logs/agent-validator-hays-20260816T142149Z.json (trace: logs/agent-trace-validator-hays-20260816T142149Z.jsonl)
+[validator] done — 3 verdicts, 0 challenged, 0 blockers
+[writer] done — submission/HAS-FY2026.xlsx
+# fullrun hays CLEAR — all stages passed

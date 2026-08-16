@@ -144,13 +144,13 @@
    "cross_checks": [],
    "citations": {
     "h1_26_eps": {
-     "doc_path": "research/dossiers/hays.json",
-     "verbatim_line": "H1 FY26 pre-exceptional basic EPS 0.46p per H1 26 report",
+     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+     "verbatim_line": "The Group's pre -exceptional basic earnings per share (EPS) of 0.46p was 43% lower than the prior year.",
      "published": "2026-02-27"
     },
     "h1_26_shares": {
-     "doc_path": "research/dossiers/hays.json",
-     "verbatim_line": "H1 26 weighted average 1,595.7m",
+     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+     "verbatim_line": "| Weighted average number of shares         | 1,595.7         | 1,588.5         | 1,590.2         |",
      "published": "2026-02-27"
     },
     "op_guide_range_top": {
@@ -165,7 +165,7 @@
     },
     "half_year_finance_charge": {
      "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-     "verbatim_line": "| Net finance charge         | (6.7)         | (6.5)         | (13.4)         |",
+     "verbatim_line": "The net finance charge for H1 26 was \u00a36.7 million (H1 25: \u00a36.5 million).",
      "published": "2026-02-27"
     }
    }

@@ -54,5 +54,19 @@
     "company": "hays",
     "logfile": "logs/ui-run-extract-20260816T134444Z.log",
     "startedAt": "2026-08-16T13:44:44.217Z"
+  },
+  {
+    "pid": 97765,
+    "action": "fullrun",
+    "company": "hays",
+    "logfile": "logs/ui-run-fullrun-20260816T142014Z.log",
+    "startedAt": "2026-08-16T14:20:14.929Z"
+  },
+  {
+    "pid": 97950,
+    "action": "fullrun",
+    "company": "hays",
+    "logfile": "logs/ui-run-fullrun-20260816T142320Z.log",
+    "startedAt": "2026-08-16T14:23:20.770Z"
   }
 ]
