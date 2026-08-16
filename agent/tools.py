@@ -6,6 +6,7 @@ is the terminal structured hand-off to the deterministic engine. The trace
 logger is process-local and set per run by loop.py.
 """
 import json
+import re
 import shutil
 import subprocess
 import threading
@@ -21,9 +22,35 @@ RG = shutil.which("rg") or "/opt/homebrew/bin/rg"
 _trace_lock = threading.Lock()
 _trace_file: dict[int, Path] = {}  # keyed by thread ident so parallel runs don't interleave
 
+# Backtest date cutoff, keyed by thread ident like _trace_file. When set for a
+# thread, corpus documents whose filename date is on/after the cutoff do not
+# exist for that thread's agent. No cutoff set (the default, and always the
+# case for fullrun/extraction/validator) leaves behavior byte-identical.
+_cutoff: dict[int, str] = {}
+_DOC_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
+
 
 def set_trace(path: Path) -> None:
     _trace_file[threading.get_ident()] = path
+
+
+def set_cutoff(date: str | None) -> None:
+    """Arm ('YYYY-MM-DD') or clear (None) the corpus date cutoff for this thread."""
+    if date is None:
+        _cutoff.pop(threading.get_ident(), None)
+    else:
+        _cutoff[threading.get_ident()] = date
+
+
+def _blocked(path: Path) -> bool:
+    """True when this thread has a cutoff and the file's basename carries a
+    YYYY-MM-DD date on/after it. ISO dates compare correctly as strings;
+    undated files (INDEX.md, README.md) are never blocked."""
+    cutoff = _cutoff.get(threading.get_ident())
+    if cutoff is None:
+        return False
+    m = _DOC_DATE.match(path.name)
+    return bool(m) and m.group(0) >= cutoff
 
 
 def _log(tool: str, tool_input: dict, output: str) -> None:
@@ -69,10 +96,26 @@ def search_corpus(query: str, company: str, max_results: int = 25) -> str:
             [RG, "-i", "-n", "--max-columns", "400", query, str(target)],
             capture_output=True, text=True, timeout=30)
         lines = proc.stdout.splitlines()
+        # Backtest cutoff: drop matches from hidden documents BEFORE the
+        # max_results truncation, so blocked lines never eat the budget.
+        # rg -n output is '<abs path>:<line>:<text>' — the path is the first
+        # ':'-segment (absolute corpus paths contain no ':').
+        suppressed = 0
+        if _cutoff.get(threading.get_ident()) is not None:
+            kept = []
+            for ln in lines:
+                if _blocked(Path(ln.split(":", 1)[0])):
+                    suppressed += 1
+                else:
+                    kept.append(ln)
+            lines = kept
         shown = [ln.replace(str(ROOT) + "/", "") for ln in lines[:max_results]]
         out = "\n".join(shown) if shown else "NO MATCHES"
         if len(lines) > max_results:
             out += f"\n... ({len(lines) - max_results} more matches truncated — refine the query)"
+        if suppressed:
+            out += (f"\n(backtest cutoff {_cutoff[threading.get_ident()]}: "
+                    f"{suppressed} matches in hidden documents suppressed)")
     _log("search_corpus", {"query": query, "company": company}, out)
     return out
 
@@ -89,6 +132,12 @@ def read_doc(path: str, start_line: int = 1, num_lines: int = 150) -> str:
     f = (ROOT / path).resolve()
     if not str(f).startswith(str(CORPUS.resolve())) or not f.is_file():
         out = f"ERROR: '{path}' is not a readable corpus document"
+    elif _blocked(f):
+        # The refusal is logged below like every other call — the trace shows
+        # the agent tried to read the future and was told it does not exist.
+        out = (f"ERROR: '{path}' is beyond the backtest cutoff "
+               f"({_cutoff[threading.get_ident()]}) — this document does not "
+               f"exist yet for you")
     else:
         lines = f.read_text().splitlines()
         end = min(start_line - 1 + min(num_lines, 400), len(lines))

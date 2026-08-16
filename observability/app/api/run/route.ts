@@ -1,8 +1,8 @@
 // Run-trigger API: launches pipeline stages as detached child processes from
-// the dashboard. POST starts a run (extract | forecast | skillgen | fullrun);
-// GET reports every launched run with liveness + log tail. All state lives in
-// files under logs/ so it survives dev-server restarts and stays
-// judge-inspectable.
+// the dashboard. POST starts a run (extract | forecast | skillgen | fullrun |
+// backtest); GET reports every launched run with liveness + log tail. All
+// state lives in files under logs/ so it survives dev-server restarts and
+// stays judge-inspectable.
 import { NextRequest, NextResponse } from "next/server";
 import { spawn } from "node:child_process";
 import fs from "node:fs";
@@ -14,12 +14,13 @@ export const dynamic = "force-dynamic";
 const COMPANIES = ["hays", "home-depot", "analog-devices", "deere"];
 const RUNS_FILE = path.join(REPO, "logs", "ui-runs.json");
 
-type Action = "extract" | "forecast" | "skillgen" | "fullrun";
+type Action = "extract" | "forecast" | "skillgen" | "fullrun" | "backtest";
 
 interface RunEntry {
   pid: number;
   action: Action;
   company: string | null;
+  quarter?: string | null;
   logfile: string;
   startedAt: string;
 }
@@ -48,7 +49,11 @@ function configuredRuns(): number {
   }
 }
 
-function buildCommand(action: Action, company: string | null): { cmd: string; args: string[] } {
+function buildCommand(
+  action: Action,
+  company: string | null,
+  quarter: string | null,
+): { cmd: string; args: string[] } {
   const py = path.join(REPO, ".venv", "bin", "python");
   switch (action) {
     case "extract":
@@ -66,11 +71,14 @@ function buildCommand(action: Action, company: string | null): { cmd: string; ar
       return { cmd: py, args: ["-m", "agent.skillgen", company ?? "hays"] };
     case "fullrun":
       return { cmd: py, args: ["-m", "forecaster.fullrun", company ?? "hays"] };
+    case "backtest":
+      // POST validation guarantees company + quarter are non-null here.
+      return { cmd: py, args: ["-m", "forecaster.backtest", company ?? "", quarter ?? ""] };
   }
 }
 
 export async function POST(req: NextRequest) {
-  let body: { action?: string; company?: string };
+  let body: { action?: string; company?: string; quarter?: string };
   try {
     body = await req.json();
   } catch {
@@ -78,9 +86,9 @@ export async function POST(req: NextRequest) {
   }
 
   const action = body.action as Action | undefined;
-  if (!action || !["extract", "forecast", "skillgen", "fullrun"].includes(action)) {
+  if (!action || !["extract", "forecast", "skillgen", "fullrun", "backtest"].includes(action)) {
     return NextResponse.json(
-      { error: "action must be one of extract | forecast | skillgen | fullrun" },
+      { error: "action must be one of extract | forecast | skillgen | fullrun | backtest" },
       { status: 400 },
     );
   }
@@ -91,8 +99,15 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
-  if ((action === "skillgen" || action === "fullrun") && company === null) {
+  if ((action === "skillgen" || action === "fullrun" || action === "backtest") && company === null) {
     return NextResponse.json({ error: `${action} requires a company` }, { status: 400 });
+  }
+  const quarter = typeof body.quarter === "string" ? body.quarter : null;
+  if (action === "backtest" && (quarter === null || !/^[A-Za-z0-9]+$/.test(quarter))) {
+    return NextResponse.json(
+      { error: "backtest requires a quarter matching [A-Za-z0-9]+" },
+      { status: 400 },
+    );
   }
   if (action === "fullrun") {
     // One fullrun at a time, ANY company: its engine + writer stages rewrite
@@ -122,7 +137,7 @@ export async function POST(req: NextRequest) {
   const logfile = path.join(logDir, `ui-run-${action}-${ts}.log`);
   const out = fs.openSync(logfile, "a");
 
-  const { cmd, args } = buildCommand(action, company);
+  const { cmd, args } = buildCommand(action, company, quarter);
   const child = spawn(cmd, args, {
     cwd: REPO,
     detached: true,
@@ -139,6 +154,7 @@ export async function POST(req: NextRequest) {
     pid: child.pid,
     action,
     company,
+    quarter: action === "backtest" ? quarter : null,
     logfile: path.relative(REPO, logfile),
     startedAt: new Date().toISOString(),
   };
