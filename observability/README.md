@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Observability UI
 
-## Getting Started
+A Next.js dashboard for inspecting agent traces, extraction outputs, and forecast results during a run.
 
-First, run the development server:
+## Start the dev server
+
+From the **repo root**:
+
+```bash
+npm run observe
+```
+
+Or directly from this directory:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The page hot-reloads as you edit files under `observability/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What it shows
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Per-company agent traces and extraction logs
+- Forecast values and evidence citations for each of the 12 metrics
+- Validation status (blank-cell warnings, unit checks)
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+observability/
+├── app/           Next.js App Router pages and layouts
+├── components/    Shared UI components
+├── lib/           Data-loading utilities (reads from forecasts/ and logs/)
+└── public/        Static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js 15 (App Router) · TypeScript · Tailwind CSS
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This UI is read-only — it does not trigger or modify forecasts.
+- Log files are read from `../logs/` and forecast JSON from `../forecasts/`.
+- For the forecasting agent itself, see the repo-root `README.md`.
