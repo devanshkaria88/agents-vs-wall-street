@@ -1,0 +1,36 @@
+{
+ "company": "hays",
+ "timestamp": "2026-08-16T16:56:02.505977+00:00",
+ "verdicts": [
+  {
+   "metric": "Net fees",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "All inputs re-found byte-exact: FY25 net fees 972.4 and H1 25 496.0 / H1 26 453.3 (H1 26 report line 38), Q3 26 Actual (7)% and Q4 26 Actual (4)% taken correctly from the 'Actual' (first) column, not the LFL headline (Q4 doc line 51 header 'Actual | LFL'; narrative line 90 'On an actual basis, net fees decreased by 4%'). Applying actual (reported) growth to the reported H2 25 base is basis-consistent with the organiser's reported-group-net-fees ruling, and the CFO's 'close to GBP 900 million' remark corroborates the magnitude. Caveat (info only): q3_share_of_h2 = 0.50 is an assumption \u2014 Hays never discloses quarterly net fees in GBP \u2014 and its citation line (the H1 net fees row) does not itself evidence a 50/50 split; management has historically described Q4 as the seasonally larger quarter, so the split is a modelling judgement rather than a disclosure.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "Group net fees decreased by 5% YoY  on a like-for-like basis. On an actual basis, net fees decreased by 4% due to a weakening  of sterling versus the Euro and Australian Dollar  partially offset by  our previously communicated action to close our operations in four countries  and divest  in the Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden ."
+   }
+  },
+  {
+   "metric": "Pre-exceptional operating profit",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "The 46.0 anchor is exactly what the 10 July 2026 statement says: FY26 pre-exceptional operating profit 'at the top of the \u00a337.0-46.0m consensus range', re-found byte-exact in the cited filing-2 duplicate (line 71) and in the q4-8k twin (line 71), with the CEO quote at line 75 repeating it. Units are GBPm and the measure is pre-exceptional, correctly excluding the guided c.\u00a340m restructuring / c.\u00a330m ROU impairment. The independent CFO path (H1 26 20.1 actual, H2 25 base 20.1 derived from FY25 45.6 less H1 25 25.5, uplifted by the 'up about 30%' Q&A remark) lands at 46.2, corroborating. Info only: the point estimate sits at the top of the range rather than the company-compiled consensus of \u00a343.5m (9 July 2026, 10 analysts), so it is deliberately at the optimistic edge of the guided band; also h2_25_op is a derivation, and its citation line shows only the FY25 45.6 figure, not the half-year split.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts ."
+   }
+  },
+  {
+   "metric": "Pre-exceptional basic EPS",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "Inputs verify: pre-exceptional basic EPS of 0.46p (H1 26 report narrative line 332 and note 7 line 1007, prior year 0.81p, FY25 1.31p \u2014 post-exceptional 0.02p correctly avoided); weighted average shares 1,595.7m (note 7 line 1003); net finance charge \u00a36.7m for H1 26 (line 318). Unit is pence per share and the 1.12p output is the correct pence scale versus the 0.46p half-year print. Two info-level conservatisms worth noting, neither contradicted by any document: (a) the FY26 finance charge is guided to c.\u00a313 million (line 322), implying roughly \u00a36.3m in H2 rather than a repeat of the \u00a36.7m H1 charge; (b) the share count used is the H1 weighted average, whereas the buyback completed 29 June 2026 reduces the H2 count. The implied tax drag is consistent with the stated FY26 ETR guidance of c.45% (line 328).",
+   "evidence": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "We expect the net finance charge for FY26 to be c.\u00a313 million, slightly below FY25 due to the impact of the defined benefit pension buy-in and lower utilisation of our revolving credit facility in H2 26, driven by improving working capital."
+   }
+  }
+ ]
+}

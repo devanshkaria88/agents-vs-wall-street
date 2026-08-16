@@ -1,0 +1,36 @@
+{
+ "company": "home-depot",
+ "timestamp": "2026-08-16T17:00:16.411654+00:00",
+ "verdicts": [
+  {
+   "metric": "Comparable sales, total company",
+   "verdict": "challenged",
+   "severity": "warning",
+   "reason": "Inputs re-find correctly (Q1 FY26 comp +0.6%, FY26 guide flat to 2.0%), but the cadence assumption behind the primary path is contradicted in emphasis by management. The quoted cadence line is an analyst's question, not management, and it is dated 2026-02-24 in the citation while the text actually appears in the 2026-05-19 Q1 call Q&A. Management's own answer on that call, and the Q4 call shape-of-year commentary ('we expect our comps in the second half to be slightly higher than our comps in the first half'), place the improvement in H2 driven solely by storm compares, not as an even step into Q2. Applying a full +0.4pp step to Q2 therefore risks overstating the near-term comp; the FY-midpoint cross-check happens to agree, which masks the issue.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
+    "verbatim_line": "Unknown speaker: Yeah, we are not looking at a marked improvement in underlying demand. We are looking at a higher comp in the second half of the year, and that is solely driven by a return to normal storm activity."
+   }
+  },
+  {
+   "metric": "Net sales",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "All cited inputs re-find and match the corpus at the correct scale in USDm: Q2 FY25 net sales $45,277M and Q1 FY26 $41,765M vs Q1 FY25 $39,856M appear in the income statements; the 10-Q states GMS contributed $1.3 billion in Q1 FY26; FY26 guide of 2.5%-4.5% total sales growth is verbatim in the 2026-05-19 8-K. Note only: the result implies ~5.2% YoY growth, above the FY guide range, which is defensible while GMS is still non-comp (acquired Sep 4, 2025) but leaves the -751 cross-check delta and the judgment GMS seasonal factor (1.125) as the main uncertainty, not a documented error.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
+    "verbatim_line": "| Net sales         | $ 45,277         | $ 43,175         | 4.9%    | $ 85,133         | $ 79,593         | 7.0 %   |"
+   }
+  },
+  {
+   "metric": "Adjusted diluted EPS",
+   "verdict": "confirmed",
+   "severity": "info",
+   "reason": "Year-ago base $4.68 adjusted diluted EPS re-finds verbatim in the Q2 FY25 8-K; FY25 adjusted EPS $14.69 and the FY26 GAAP base $14.23 with flat-to-4.0% growth re-find in the Q4 and Q1 releases; Q1 FY26 adjusted EPS $3.43 vs $3.56 corroborates the -3.7% YoY driver. Info only: the trace reconstructs FY26 adjusted EPS from the GAAP guide plus the FY25 adj-GAAP gap when the corpus states the adjusted guide directly ('grow approximately flat to 4.0% from $14.69'), an unnecessary indirection; and the flat-YoY Q2 result relies on management's 'improving through the year' EPS cadence, which is stated but not quantified for Q2.",
+   "evidence": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "verbatim_line": "- Adjusted diluted earnings-per-share to grow approximately flat to 4.0% from $14.69 in fiscal 2025 (1)"
+   }
+  }
+ ]
+}

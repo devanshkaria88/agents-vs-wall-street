@@ -11,3 +11,28 @@
 [calculators] engine passed
 [calculators] validate passed
 [validator] launching adversarial validator agent
+[validator hays] 3 verdicts (0 challenged) -> logs/agent-validator-hays-20260816T165511Z.json (trace: logs/agent-trace-validator-hays-20260816T165511Z.jsonl)
+[validator] done — 3 verdicts, 0 challenged, 0 blockers
+[writer] done — submission/HAS-FY2026.xlsx
+# fullrun hays CLEAR — all stages passed
+# fullrun home-depot — progress: logs/fullrun-home-depot-20260816T165606Z.json
+[readers] launching 3 parallel reader agents
+[readers] done — 3/3 runs parsed
+[firewall] done — 2 citation drops
+[consensus] done — 0 upgraded, 0 divergences, 1 unresolved -> research/drivers/live/home-depot.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] validate passed
+[validator] launching adversarial validator agent
+[validator home-depot] 3 verdicts (1 challenged) -> logs/agent-validator-home-depot-20260816T165905Z.json (trace: logs/agent-trace-validator-home-depot-20260816T165905Z.jsonl)
+[validator] done — 3 verdicts, 1 challenged, 0 blockers
+[writer] done — submission/HD-FY2026Q2.xlsx
+# fullrun home-depot CLEAR — all stages passed
+# fullrun analog-devices — progress: logs/fullrun-analog-devices-20260816T170019Z.json
+[readers] launching 3 parallel reader agents
+[readers] done — 3/3 runs parsed
+[firewall] done — 3 citation drops
+[consensus] done — 1 upgraded, 0 divergences, 0 unresolved -> research/drivers/live/analog-devices.json
+[calibration] done — applied inside the engine
+[calculators] engine passed
+[calculators] FAILED at validate (exit 1) — submission/ untouched

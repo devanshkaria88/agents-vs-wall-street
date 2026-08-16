@@ -2,16 +2,8 @@
  "company": "home-depot",
  "runs_attempted": 3,
  "runs_parsed": 3,
- "timestamp": "2026-08-16T12:45:01.293335+00:00",
+ "timestamp": "2026-08-16T16:59:02.983827+00:00",
  "firewall_drops": [
-  [
-   "comp_cadence_step",
-   "null value"
-  ],
-  [
-   "q1_26_adj_eps_yoy",
-   "quote not re-found in challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md"
-  ],
   [
    "comp_cadence_step",
    "null value"
@@ -21,53 +13,39 @@
    "null value"
   ]
  ],
- "unresolved": [],
+ "unresolved": [
+  {
+   "key": "comp_cadence_step",
+   "candidates": [
+    0.56
+   ]
+  }
+ ],
  "merge_decisions": [
   {
-   "key": "fy26_sales_growth_guide",
+   "key": "q1_26_net_sales",
    "action": "confirmed",
-   "value": 0.035
+   "value": 41765.0
   },
   {
-   "key": "q2_25_comps",
+   "key": "fy26_comp_guide_mid",
    "action": "confirmed",
    "value": 1.0
   },
   {
+   "key": "q1_26_comps",
+   "action": "confirmed",
+   "value": 0.6
+  },
+  {
    "key": "gms_quarterly_sales",
-   "action": "DIVERGENCE \u2014 pinned wins, review needed",
-   "pinned": 1975.0,
-   "live": 1300.0,
-   "live_citation": {
-    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-10q__1053121.md",
-    "verbatim_line": "The increase in net sales for the first quarter of fiscal 2026 was primarily driven by sales from GMS, which was acquired on September 4, 2025 and contributed $1.3 billion of net sales during the first quarter of fiscal 2026.",
-    "published": "2026-05-19"
-   }
-  },
-  {
-   "key": "q1_26_adj_eps_yoy",
-   "action": "confirmed",
-   "value": -0.037
-  },
-  {
-   "key": "fy25_adj_eps",
-   "action": "confirmed",
-   "value": 14.69
+   "action": "ignored",
+   "why": "not a known driver key"
   },
   {
    "key": "q2_25_net_sales",
    "action": "confirmed",
    "value": 45277.0
-  },
-  {
-   "key": "q2_25_adj_eps",
-   "action": "confirmed",
-   "value": 4.68
-  },
-  {
-   "key": "q1_26_net_sales",
-   "action": "confirmed",
-   "value": 41765.0
   },
   {
    "key": "q1_25_net_sales",
@@ -80,101 +58,126 @@
    "value": 0.02
   },
   {
+   "key": "fy25_adj_eps",
+   "action": "confirmed",
+   "value": 14.69
+  },
+  {
+   "key": "q2_25_adj_eps",
+   "action": "confirmed",
+   "value": 4.68
+  },
+  {
+   "key": "q2_25_comps",
+   "action": "confirmed",
+   "value": 1.0
+  },
+  {
+   "key": "fy26_sales_growth_guide",
+   "action": "confirmed",
+   "value": 0.035
+  },
+  {
    "key": "fy26_gaap_eps_guide_base",
    "action": "confirmed",
    "value": 14.23
   },
   {
-   "key": "fy26_comp_guide_mid",
+   "key": "q1_26_adj_eps_yoy",
    "action": "confirmed",
-   "value": 1.0
-  },
-  {
-   "key": "q1_26_comps",
-   "action": "confirmed",
-   "value": 0.6
+   "value": -0.037
   }
  ],
  "additional_evidence": [
   {
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-02-24__hd-us-20260224-call-qna__629737.md",
+   "verbatim_line": "First, we expect our comps in the second half to be slightly higher than our comps in the first half this is a reflection of compares to 2025 storm activity in the absence thereof.",
+   "published": "2026-02-24",
+   "note": "Qualitative comp cadence guidance (no pp quantification)."
+  },
+  {
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-02-24__hd-us-20260224-call-qna__629737.md",
+   "verbatim_line": "our expectations are that our year-over-year EPS performance will be mid-single digit % negative in Q1, improving through the year",
+   "published": "2026-02-24",
+   "note": "FY26 EPS quarterly shape: negative Q1, improving through year \u2014 relevant to Q2 FY26 forecast."
+  },
+  {
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+   "verbatim_line": "Last week, we completed the acquisition of Mingledorff's, the leading wholesale distributor of heating, ventilation, and air conditioning equipment, serving residential and commercial customers through 42 locations in five states across the Southeastern U.S.",
+   "published": "2026-05-19",
+   "note": "New tuck-in acquisition closed in Q2 FY26; adds inorganic sales not in Q1 base."
+  },
+  {
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+   "verbatim_line": "our total company comps were positive 0.6%, with comps of positive 0.7% in February, positive 2% in March, and negative 0.5% in April",
+   "published": "2026-05-19",
+   "note": "Intra-quarter comp cadence; April exit rate negative."
+  },
+  {
+   "doc_path": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-10k__940544.md",
+   "verbatim_line": "Net sales attributable to GMS since the completion of the acquisition and included within our results of operations for fiscal 2025 totaled $2.0 billion.",
+   "published": "2026-02-24",
+   "note": "FY25 GMS contribution (~5 months of ownership); GMS remains non-comp until September 2026."
+  },
+  {
+   "note": "Qualitative FY26 comp cadence: H2 comp improvement attributed solely to normalized storm activity, not underlying demand.",
    "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "Unknown speaker: Yeah, we are not looking at a marked improvement in underlying demand. We are looking at a higher comp in the second half of the year, and that is solely driven by a return to normal storm activity.",
+   "verbatim_line": "We are not looking at a marked improvement in underlying demand. We are looking at a higher comp in the second half of the year, and that is solely driven by a return to normal storm activity.",
    "published": "2026-05-19"
   },
   {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "As for storms, as you mentioned, we did have 56 basis points of impact in Q1, but that'll dissipate throughout the balance of the year.",
-   "published": "2026-05-19"
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
-   "verbatim_line": "- Adjusted diluted earnings-per-share to grow approximately flat to 4.0% from $14.69 in fiscal 2025 (1)",
-   "published": "2026-05-19"
-  },
-  {
+   "note": "FY26 margin guidance reaffirmed at Q1: gross margin ~33.1%, adjusted operating margin 12.8%-13.0%, tax ~24.3%, net interest ~$2.3bn.",
    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
    "verbatim_line": "- Adjusted operating margin of approximately 12.8% to 13.0% (1)",
    "published": "2026-05-19"
   },
   {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2025-11-18__hd-us-20251118-call-pres__1565276.md",
-   "verbatim_line": "Total sales include approximately $900 million from the recent acquisition of GMS, which represents approximately eight weeks of sales in the quarter.",
-   "published": "2025-11-18"
+   "note": "Q1 FY26 GAAP diluted EPS $3.30 vs $3.45 LY; adjusted $3.43 vs $3.56 LY.",
+   "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+   "verbatim_line": "Adjusted diluted earnings per share for the first quarter of fiscal 2026 were $3.43, compared with adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025. (1)",
+   "published": "2026-05-19"
+  },
+  {
+   "note": "FY25 full-year base: sales $164.7bn, comps +0.3%.",
+   "doc_path": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-8k__615609.md",
+   "verbatim_line": "Sales for fiscal 2025 were $164.7 billion, an increase of $5.2 billion, or 3.2% from fiscal 2024. Comparable sales for fiscal 2025 increased 0.3%, and comparable sales in the U.S. increased 0.5%.",
+   "published": "2026-02-24"
+  },
+  {
+   "note": "SRS organic growth assumption embedded in FY26 total sales guidance (mid-single-digit), plus 40-50 new SRS locations.",
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+   "verbatim_line": "For the year, we expect SRS to deliver mid-single-digit % organic sales growth.",
+   "published": "2026-05-19"
   },
   {
    "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "Yeah, we are not looking at a marked improvement in underlying demand. We are looking at a higher comp in the second half of the year, and that is solely driven by a return to normal storm activity.",
+   "verbatim_line": "Unknown speaker: Yeah, we are not looking at a marked improvement in underlying demand. We are looking at a higher comp in the second half of the year, and that is solely driven by a return to normal storm activity.",
    "published": "2026-05-19",
-   "note": "Shape-of-year comp commentary at Q1 FY2026."
+   "note": "Qualitative comp cadence: 2H FY2026 comps expected higher, driven by storm normalisation, not demand recovery."
   },
   {
    "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "As we move through the year, you're still gonna see pressure on a year-over-year basis in Q2, not quite the degree that you saw in Q1, and then improving significantly, more really sort of flattish year-over-year when you get into Q3 and Q4.",
+   "verbatim_line": "As for storms, as you mentioned, we did have 56 basis points of impact in Q1, but that'll dissipate throughout the balance of the year.",
    "published": "2026-05-19",
-   "note": "Gross margin cadence: Q2 FY2026 still down YoY but less than Q1's ~75bp."
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "Just to talk about current performance, they delivered $4 billion in sales in the quarter.",
-   "published": "2026-05-19",
-   "note": "SRS delivered $4bn of sales in Q1 FY2026; comps slightly negative, mid-single-digit organic growth expected for FY2026."
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-02-24__hd-us-20260224-call-qna__629737.md",
-   "verbatim_line": "As a result of all this, our expectations are that our year-over-year EPS performance will be mid-single digit % negative in Q1, improving through the year.",
-   "published": "2026-02-24",
-   "note": "FY2026 EPS quarterly cadence guidance."
+   "note": "Quantified storm drag of 56bps in Q1 FY2026, expected to fade through the year \u2014 relevant to Q2 comp bridge."
   },
   {
    "doc_path": "challenge/offline-data/home-depot/filings/2026-02-24__hd-us-20260224-q4-10k__940544.md",
    "verbatim_line": "Results of Operations. Net sales attributable to GMS since the completion of the acquisition and included within our results of operations for fiscal 2025 totaled $2.0 billion. Net earnings attributable to GMS since the completion of the acquisition and included within our results of operations for fiscal 2025 were immaterial.",
    "published": "2026-02-24",
-   "note": "FY2025 GMS sales contribution since Sept 4, 2025 acquisition."
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-02-24__hd-us-20260224-call-qna__629737.md",
-   "verbatim_line": "First, we expect our comps in the second half to be slightly higher than our comps in the first half this is a reflection of compares to 2025 storm activity in the absence thereof.",
-   "published": "2026-02-24"
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-02-24__hd-us-20260224-call-qna__629737.md",
-   "verbatim_line": "As a result of all this, our expectations are that our year-over-year EPS performance will be mid-single digit % negative in Q1, improving through the year.",
-   "published": "2026-02-24"
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "As we move through the year, you're still gonna see pressure on a year-over-year basis in Q2, not quite the degree that you saw in Q1, and then improving significantly, more really sort of flattish year-over-year when you get into Q3 and Q4.",
-   "published": "2026-05-19"
-  },
-  {
-   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-qna__1039119.md",
-   "verbatim_line": "Just to talk about current performance, they delivered $4 billion in sales in the quarter.",
-   "published": "2026-05-19"
+   "note": "Annual GMS sales contribution for FY2025 (5 months of ownership) = $2.0bn; earnings immaterial."
   },
   {
    "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
-   "verbatim_line": "In the first quarter, our gross margin was 33%, a decrease of approximately 75 basis points from the first quarter of last year, which was in line with our expectations and reflects a change in mix as a result of the GMS acquisition.",
-   "published": "2026-05-19"
+   "verbatim_line": "Unknown speaker: Thank you, Isabel, and good morning, everyone. Sales for the first quarter were $41.8 billion, an increase of 4.8% from the same period last year. Comp sales increased 0.6% from the same period last year, and comps in the U.S. increased 0.4%. Adjusted diluted earnings per share were $3.43 in the first quarter compared to $3.56 in the first quarter of last year. Our results were in line with our expectations. In the U.S., our Northern and Western divisions had positive comps as customers engaged in outdoor projects when weather was favorable. In local currency, Mexico had positive comps, while Canada was negative. The underlying demand in our business was relatively similar to what we saw throughout fiscal 2025, despite greater consumer uncertainty and housing affordability pressure.",
+   "published": "2026-05-19",
+   "note": "Q1 FY2026 adjusted EPS $3.43 vs $3.56 prior year \u2014 base for YoY adj EPS trend."
+  },
+  {
+   "doc_path": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+   "verbatim_line": "Mingledorff's brings an extensive product portfolio, a robust distribution network, and established customer relationships that are highly complementary to SRS's existing business. In addition, Mingledorff gives us an incredible opportunity to penetrate the national market for HVAC parts and supplies, leveraging the power of our enterprise to create a superior value proposition for the pro customer. HVAC distribution represents an addressable market of approximately $100 billion and increases our total addressable market to $1.2 trillion. SRS can now serve more pros and win greater share of wallet in this highly fragmented market. As a reminder, pro represents a $700 billion market opportunity. We know we have the right to win in this space as we continue developing differentiated capabilities to better serve residential pro customers.",
+   "published": "2026-05-19",
+   "note": "New M&A: Mingledorff's HVAC distributor (42 locations) closed in May 2026 \u2014 incremental inorganic sales in Q2 FY2026 not in the GMS figures."
   }
  ]
 }

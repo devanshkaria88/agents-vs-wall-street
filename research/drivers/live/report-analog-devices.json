@@ -2,7 +2,7 @@
  "company": "analog-devices",
  "runs_attempted": 3,
  "runs_parsed": 3,
- "timestamp": "2026-08-16T12:46:08.307371+00:00",
+ "timestamp": "2026-08-16T17:01:41.925768+00:00",
  "firewall_drops": [
   [
    "beat_shrink",
@@ -20,14 +20,20 @@
  "unresolved": [],
  "merge_decisions": [
   {
+   "key": "trailing_opex_ratio",
+   "action": "UPGRADED assumption -> extracted",
+   "pinned": 24.3,
+   "live": 49.0
+  },
+  {
+   "key": "q3_guide_adj_opm",
+   "action": "confirmed",
+   "value": 49.0
+  },
+  {
    "key": "q3_guide_rev_mid",
    "action": "confirmed",
    "value": 3900.0
-  },
-  {
-   "key": "q2_26_adj_gm",
-   "action": "confirmed",
-   "value": 73.0
   },
   {
    "key": "adj_gm_series",
@@ -40,102 +46,107 @@
    "value": 3.3
   },
   {
-   "key": "trailing_opex_ratio",
-   "action": "UPGRADED assumption -> extracted",
-   "pinned": 24.3,
-   "live": 49.0
-  },
-  {
-   "key": "q3_guide_adj_opm",
+   "key": "q2_26_adj_gm",
    "action": "confirmed",
-   "value": 49.0
+   "value": 73.0
   }
  ],
  "additional_evidence": [
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
-   "published": "2026-02-18",
-   "note": "Q1 FY26 adjusted GM 71.2% \u2014 prior point of adj_gm_series."
+   "note": "Q2 FY26 results beat the high end of guidance (guide was rev $3.5bn, adj EPS $2.88, adj OpM 47.5%); actuals rev $3,623m, adj EPS $3.09, adj OpM 49.0% \u2014 relevant to any beat calibration.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+    "verbatim_line": "For the second quarter of fiscal 2026, we are forecasting revenue of $3.5 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 36.4%, +/-150 bps, and adjusted operating margin of approximately 47.5%, +/-100 bps. We are planning for reported EPS to be $2.19, +/-$0.15, and adjusted EPS to be $2.88, +/-$0.15.",
+    "published": "2026-02-18"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
-   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
-   "published": "2025-11-25",
-   "note": "Q4 FY25 adjusted GM 69.8%; FY25 69.3%."
+   "note": "Management framing of demand momentum; record quarter posted and another record quarter guided (latest corpus doc, 2026-06-02, no numeric revision to Q3 guidance).",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
+    "verbatim_line": "We just posted a record quarter. We've guided another record quarter.",
+    "published": "2026-06-02"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
-   "published": "2025-08-20",
-   "note": "Q3 FY25 adjusted GM 69.2%."
+   "note": "Q2 FY26 GAAP opex 29.3% of revenue (adjusted opex lower after excluding acquisition-related expenses) \u2014 useful cross-check on opex ratio derivation.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "| Percent of revenue | 29.3 | % | | 35.4 | % | | 31.1 | % | | 37.0 | % |",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
-   "verbatim_line": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
-   "published": "2026-05-20",
-   "note": "Q2 FY26 actual revenue $3,623m (base for sequential growth), +37% y/y."
+   "note": "Q2 FY26 beat: revenue, profitability and EPS finished above the high end of guidance, with record bookings across B2B markets \u2014 relevant to the historical beat pattern.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "\"ADI's second quarter revenue and earnings were above the high end of our outlook, reflecting the combination of record demand and sharp operational discipline,\" said Vincent Roche, CEO and Chair.",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
-   "verbatim_line": "We just did our first big price increase in 2026 now.",
-   "published": "2026-06-02",
-   "note": "Latest corpus doc (post-guidance): CFO cites first broad 2026 price increase to offset input inflation; no revision to Q3 guidance."
+   "note": "Q3 FY26 tax rate assumption underpinning the EPS guide: 12%-14%.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-pres__1041157.md",
+    "verbatim_line": "Our tax rate is expected to be 12%-14%, and based on these inputs, adjusted EPS is expected to be $3.30, +-$0.15.",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
-   "published": "2026-02-18",
-   "note": "Q1 FY26 adjusted gross margin 71.2%."
+   "note": "Q2 FY26 gross margin drivers and opex level ($872m) \u2014 useful for opex-ratio modelling.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-pres__1041157.md",
+    "verbatim_line": "OpEx in the quarter was $872 million, resulting in an operating margin above the high end of our guidance, or 49%, up 350 basis points sequentially and 780 basis points year-over-year.",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
-   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
-   "published": "2025-11-25",
-   "note": "Q4 FY25 adjusted gross margin 69.8%, FY25 69.3%."
+   "note": "Pending acquisition of Empower Semiconductor (not yet closed at freeze) \u2014 potential future opex/margin impact.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "Now, before I conclude my remarks today, let me speak briefly about our planned acquisition of Empower Semiconductor",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
-   "published": "2025-08-20",
-   "note": "Q3 FY25 adjusted gross margin 69.2%."
+   "note": "Q1 FY26 adjusted gross margin 71.2% (prior point in adj_gm_series).",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+    "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
+    "published": "2026-02-18"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
-   "verbatim_line": "\u2022Revenue of $3.62 billion, with year-over-year growth across all end markets, led by Industrial and Communications",
-   "published": "2026-05-20",
-   "note": "Q2 FY26 actual revenue $3,623m, above high end of prior outlook."
+   "note": "Q4 FY25 adjusted gross margin 69.8% (FY25 full year 69.3%).",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+    "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
+    "published": "2025-11-25"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
-   "verbatim_line": "We just posted a record quarter. We've guided another record quarter.",
-   "published": "2026-06-02",
-   "note": "Most recent corpus doc reaffirms, does not revise, the Q3 FY26 guidance."
+   "note": "Q2 FY26 revenue $3,623m, +37% y/y, above high end of prior outlook \u2014 strong beat context.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
-   "published": "2026-02-18"
+   "note": "Q2 FY26 adjusted diluted EPS $3.09 actual (vs $1.85 prior year), the base for the $3.30 Q3 guide.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "| Adjusted diluted earnings per share | $ | 3.09 | | | $ | 1.85 | | | 67 | % |",
+    "published": "2026-05-20"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
-   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
-   "published": "2025-11-25"
-  },
-  {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
-   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
-   "published": "2025-08-20"
-  },
-  {
-   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
-   "verbatim_line": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
-   "published": "2026-05-20"
-  },
-  {
-   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
-   "verbatim_line": "We just posted a record quarter. We've guided another record quarter.",
-   "published": "2026-06-02"
+   "note": "Management commentary (2026-05-20) framing Q3 outlook: record bookings across B2B markets support continued strong growth.",
+   "citation": {
+    "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+    "verbatim_line": "These positive demand signals are reflected in our outlook for continued strong growth in the third quarter.",
+    "published": "2026-05-20"
+   }
   }
  ]
 }
