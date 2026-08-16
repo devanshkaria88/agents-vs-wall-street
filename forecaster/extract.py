@@ -121,8 +121,12 @@ def merge(company: str, pinned: dict, voted: dict) -> tuple[dict, list]:
         p = merged["drivers"][k]
         lv, pv = float(live["value"]), float(p["value"]) if not isinstance(p["value"], list) else None
         if p.get("kind") == "assumption":
-            merged["drivers"][k] = {**p, "value": lv, "kind": "extracted-live",
-                                    "citation": live.get("citation"), "vote_support": live["vote_support"]}
+            upgraded = {**p, "value": lv, "kind": "extracted-live",
+                        "citation": live.get("citation"), "vote_support": live["vote_support"]}
+            # an extracted fact sheds the assumption band — variants collapse
+            upgraded.pop("low", None)
+            upgraded.pop("high", None)
+            merged["drivers"][k] = upgraded
             decisions.append({"key": k, "action": "UPGRADED assumption -> extracted",
                               "pinned": p["value"], "live": lv})
         elif pv is not None and not close(lv, pv):

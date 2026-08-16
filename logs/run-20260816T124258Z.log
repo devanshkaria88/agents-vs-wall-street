@@ -1,0 +1,83 @@
+# The Truth — forecast run 20260816T124258Z
+
+== stage: engine == 2026-08-16T12:42:58.128336+00:00
+HAS-FY2026.xlsx      Net fees                                        903.5 GBPm         variants=3 spread=0.6
+HAS-FY2026.xlsx      Pre-exceptional operating profit                 46.0 GBPm         variants=1 spread=0.0
+HAS-FY2026.xlsx      Pre-exceptional basic EPS                        1.12 GBp          variants=3 spread=0.0
+HD-FY2026Q2.xlsx     Comparable sales, total company                   1.0 %            variants=3 spread=0.4
+HD-FY2026Q2.xlsx     Net sales                                     47358.0 USDm         variants=3 spread=20.0
+HD-FY2026Q2.xlsx     Adjusted diluted EPS                             4.68 USD / share  variants=3 spread=0.18
+ADI-FY2026Q3.xlsx    Revenue                                        3960.0 USDm         variants=3 spread=30.0
+ADI-FY2026Q3.xlsx    Adjusted diluted EPS                             3.39 USD / share  variants=3 spread=0.05
+ADI-FY2026Q3.xlsx    Adjusted gross margin                            73.5 %            variants=3 spread=0.3
+DE-FY2026Q3.xlsx     Worldwide net sales and revenues              12543.0 USDm         variants=9 spread=321.0
+DE-FY2026Q3.xlsx     Diluted EPS (GAAP)                               4.84 USD / share  variants=3 spread=0.43
+DE-FY2026Q3.xlsx     Production & Precision Ag operating profit      556.0 USDm         variants=9 spread=115.0
+
+== stage: validate == 2026-08-16T12:42:58.176423+00:00
+accept  HAS-FY2026.xlsx      Net fees                                      finite_number: pass
+accept  HAS-FY2026.xlsx      Net fees                                      unit_sanity: pass
+accept  HAS-FY2026.xlsx      Net fees                                      vs_trailing_history: outside history, justified: fees declined all year (H1 actual 453.3 annualises below the historical min)
+accept  HAS-FY2026.xlsx      Pre-exceptional operating profit              finite_number: pass
+accept  HAS-FY2026.xlsx      Pre-exceptional operating profit              unit_sanity: pass
+accept  HAS-FY2026.xlsx      Pre-exceptional operating profit              vs_trailing_history: pass (inside 8-period range)
+accept  HAS-FY2026.xlsx      Pre-exceptional basic EPS                     finite_number: pass
+accept  HAS-FY2026.xlsx      Pre-exceptional basic EPS                     unit_sanity: pass
+accept  HAS-FY2026.xlsx      Pre-exceptional basic EPS                     vs_trailing_history: outside history, justified: H1 actual was 0.46p; full year mechanically lands below FY25's 1.31p
+accept  HD-FY2026Q2.xlsx     Comparable sales, total company               finite_number: pass
+accept  HD-FY2026Q2.xlsx     Comparable sales, total company               unit_sanity: pass
+accept  HD-FY2026Q2.xlsx     Comparable sales, total company               vs_trailing_history: pass (inside 8-period range)
+accept  HD-FY2026Q2.xlsx     Net sales                                     finite_number: pass
+accept  HD-FY2026Q2.xlsx     Net sales                                     unit_sanity: pass
+accept  HD-FY2026Q2.xlsx     Net sales                                     vs_trailing_history: outside history, justified: GMS acquisition adds a full quarter (~$2.0B) absent from every historical quarter
+accept  HD-FY2026Q2.xlsx     Adjusted diluted EPS                          finite_number: pass
+accept  HD-FY2026Q2.xlsx     Adjusted diluted EPS                          unit_sanity: pass
+accept  HD-FY2026Q2.xlsx     Adjusted diluted EPS                          vs_trailing_history: pass (inside 8-period range)
+accept  ADI-FY2026Q3.xlsx    Revenue                                       finite_number: pass
+accept  ADI-FY2026Q3.xlsx    Revenue                                       unit_sanity: pass
+accept  ADI-FY2026Q3.xlsx    Revenue                                       vs_trailing_history: outside history, justified: company guided $3.9B +/- $100M, above every historical quarter
+accept  ADI-FY2026Q3.xlsx    Adjusted diluted EPS                          finite_number: pass
+accept  ADI-FY2026Q3.xlsx    Adjusted diluted EPS                          unit_sanity: pass
+accept  ADI-FY2026Q3.xlsx    Adjusted diluted EPS                          vs_trailing_history: outside history, justified: company guided $3.30 +/- $0.15
+accept  ADI-FY2026Q3.xlsx    Adjusted gross margin                         finite_number: pass
+accept  ADI-FY2026Q3.xlsx    Adjusted gross margin                         unit_sanity: pass
+accept  ADI-FY2026Q3.xlsx    Adjusted gross margin                         vs_trailing_history: outside history, justified: margin series rising four consecutive quarters
+accept  DE-FY2026Q3.xlsx     Worldwide net sales and revenues              finite_number: pass
+accept  DE-FY2026Q3.xlsx     Worldwide net sales and revenues              unit_sanity: pass
+accept  DE-FY2026Q3.xlsx     Worldwide net sales and revenues              vs_trailing_history: pass (inside 8-period range)
+accept  DE-FY2026Q3.xlsx     Diluted EPS (GAAP)                            finite_number: pass
+accept  DE-FY2026Q3.xlsx     Diluted EPS (GAAP)                            unit_sanity: pass
+accept  DE-FY2026Q3.xlsx     Diluted EPS (GAAP)                            vs_trailing_history: pass (inside 8-period range)
+accept  DE-FY2026Q3.xlsx     Production & Precision Ag operating profit    finite_number: pass
+accept  DE-FY2026Q3.xlsx     Production & Precision Ag operating profit    unit_sanity: pass
+accept  DE-FY2026Q3.xlsx     Production & Precision Ag operating profit    vs_trailing_history: pass (inside 8-period range)
+accept  DE-FY2026Q3.xlsx     cross-foot EPS x shares vs Q3 NI              eps_x_shares_vs_ni: pass
+accept  HAS-FY2026.xlsx      cross-foot op profit vs stated consensus range inside_37_to_46_range: pass
+accept  HD-FY2026Q2.xlsx     cross-foot EPS path disagreement              paths_within_tolerance: pass
+
+validation: PASS (15 verdicts) -> logs/validation-20260816T124258Z.json
+
+== stage: write-workbooks == 2026-08-16T12:42:58.211574+00:00
+WROTE HD-FY2026Q2.xlsx C7 Net sales (USDm) = 47358.0 at 2026-08-16T12:42:58.351484+00:00
+WROTE HD-FY2026Q2.xlsx C8 Adjusted diluted EPS (USD / share) = 4.68 at 2026-08-16T12:42:58.351484+00:00
+WROTE HD-FY2026Q2.xlsx C9 Comparable sales, total company (%) = 1.0 at 2026-08-16T12:42:58.351484+00:00
+WROTE ADI-FY2026Q3.xlsx C7 Revenue (USDm) = 3960.0 at 2026-08-16T12:42:58.351484+00:00
+WROTE ADI-FY2026Q3.xlsx C8 Adjusted diluted EPS (USD / share) = 3.39 at 2026-08-16T12:42:58.351484+00:00
+WROTE ADI-FY2026Q3.xlsx C9 Adjusted gross margin (%) = 73.5 at 2026-08-16T12:42:58.351484+00:00
+WROTE HAS-FY2026.xlsx C7 Net fees (GBPm) = 903.5 at 2026-08-16T12:42:58.351484+00:00
+WROTE HAS-FY2026.xlsx C8 Pre-exceptional basic EPS (GBp) = 1.12 at 2026-08-16T12:42:58.351484+00:00
+WROTE HAS-FY2026.xlsx C9 Pre-exceptional operating profit (GBPm) = 46.0 at 2026-08-16T12:42:58.351484+00:00
+WROTE DE-FY2026Q3.xlsx C7 Worldwide net sales and revenues (USDm) = 12543.0 at 2026-08-16T12:42:58.351484+00:00
+WROTE DE-FY2026Q3.xlsx C8 Diluted EPS (GAAP) (USD / share) = 4.84 at 2026-08-16T12:42:58.351484+00:00
+WROTE DE-FY2026Q3.xlsx C9 Production & Precision Ag operating profit (USDm) = 556.0 at 2026-08-16T12:42:58.351484+00:00
+All four workbooks written.
+
+== stage: check-forecasts == 2026-08-16T12:42:58.406041+00:00
+PASS HD-FY2026Q2.xlsx
+PASS ADI-FY2026Q3.xlsx
+PASS HAS-FY2026.xlsx
+PASS DE-FY2026Q3.xlsx
+
+All four forecast workbooks are ready for manual upload.
+
+RUN CLEAR — all stages passed. Log: logs/run-20260816T124258Z.log

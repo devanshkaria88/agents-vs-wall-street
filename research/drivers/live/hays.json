@@ -1,0 +1,159 @@
+{
+ "company": "hays",
+ "output_file": "HAS-FY2026.xlsx",
+ "note": "Pinned drivers, hand-reviewed from research/dossiers/hays.json (every citation firewall-verified 2026-08-16). The live extractor re-derives and votes against these.",
+ "drivers": {
+  "fy25_net_fees": {
+   "value": 972.4,
+   "unit": "GBPm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+    "verbatim_line": "| Net fees (1)         | 972.4   | 1,113.6 | (13)%         | (11)%        |",
+    "published": "2025-08-21"
+   }
+  },
+  "h1_26_net_fees": {
+   "value": 453.3,
+   "unit": "GBPm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Net fees (2)         | 453.3  | 496.0  | (9)%         | (9)%         |",
+    "published": "2026-02-27"
+   }
+  },
+  "h1_25_net_fees": {
+   "value": 496.0,
+   "unit": "GBPm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Net fees (2)         | 453.3  | 496.0  | (9)%         | (9)%         |",
+    "published": "2026-02-27"
+   }
+  },
+  "q3_26_actual_growth": {
+   "value": -0.07,
+   "unit": "fraction",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-filing-2__955810.md",
+    "verbatim_line": "| Total         | (7)%         | (8)%         |",
+    "published": "2026-04-16"
+   }
+  },
+  "q4_26_actual_growth": {
+   "value": -0.04,
+   "unit": "fraction",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "| Total         | (4)%         | (5)%         |",
+    "published": "2026-07-10"
+   }
+  },
+  "q3_share_of_h2": {
+   "value": 0.5,
+   "low": 0.48,
+   "high": 0.52,
+   "unit": "fraction",
+   "kind": "assumption",
+   "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2."
+  },
+  "op_guide_range_top": {
+   "value": 46.0,
+   "low": 44.5,
+   "high": 46.5,
+   "unit": "GBPm",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "we currently expect FY26 pre -exceptional operating profit will be  at the top of the \u00a337 .0-46 .0m consensus rang e  (2) .",
+    "published": "2026-07-10"
+   }
+  },
+  "op_consensus": {
+   "value": 43.5,
+   "unit": "GBPm",
+   "kind": "ws_signal",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "verbatim_line": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts .",
+    "published": "2026-07-10"
+   }
+  },
+  "h1_26_op": {
+   "value": 20.1,
+   "unit": "GBPm",
+   "kind": "base",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Operating profit (before exceptional items) (3)         | 20.1   | 25.5   | (21)%         | (25)%         |",
+    "published": "2026-02-27"
+   }
+  },
+  "h2_25_op": {
+   "value": 20.1,
+   "unit": "GBPm",
+   "kind": "base",
+   "justification": "Derived: FY25 45.6 - H1 25 25.5 = 20.1.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+    "verbatim_line": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
+    "published": "2025-08-21"
+   }
+  },
+  "h2_26_op_yoy": {
+   "value": 1.3,
+   "unit": "ratio",
+   "kind": "anchor",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/call-transcripts/2026-07-10__has-ln-20260710-call-qna__1573114.md",
+    "verbatim_line": "Actually, interestingly, if you think about where that is from a year-on-year perspective, it means that this second half profit performance is up about 30% versus H2 last year.",
+    "published": "2026-07-10"
+   }
+  },
+  "h1_26_eps": {
+   "value": 0.46,
+   "unit": "GBp",
+   "kind": "base",
+   "citation": {
+    "doc_path": "research/dossiers/hays.json",
+    "verbatim_line": "H1 FY26 pre-exceptional basic EPS 0.46p per H1 26 report",
+    "published": "2026-02-27"
+   }
+  },
+  "h1_26_shares": {
+   "value": 1595.7,
+   "unit": "millions",
+   "kind": "structure",
+   "citation": {
+    "doc_path": "research/dossiers/hays.json",
+    "verbatim_line": "H1 26 weighted average 1,595.7m",
+    "published": "2026-02-27"
+   }
+  },
+  "half_year_finance_charge": {
+   "value": 6.7,
+   "unit": "GBPm",
+   "kind": "extracted-live",
+   "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Net finance charge         | 4      | (6.7)         | (6.5)         | (13.4)         |",
+    "published": "2026-02-27"
+   },
+   "vote_support": "3/3"
+  }
+ },
+ "cfo_cross_check": {
+  "value": "close to GBP 900 million",
+  "citation": {
+   "doc_path": "challenge/offline-data/hays/call-transcripts/2026-07-10__has-ln-20260710-call-qna__1573114.md",
+   "verbatim_line": "Just to summarize, Karl, on those six countries, because they only do GBP 15 million of fees versus a business that does close to GBP 900 million, the like-for-like impact is negligible in this financial year.",
+   "published": "2026-07-10"
+  }
+ },
+ "basis_ruling": "Scored on reported GROUP net fees (user/organiser resolution at gate, 11:35)."
+}

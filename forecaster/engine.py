@@ -19,7 +19,13 @@ OUT = ROOT / "forecasts"
 
 
 def load(company: str) -> dict:
-    return json.loads((DRIVERS / f"{company}.json").read_text())
+    """Prefer the live-merged drivers (agent-extracted, firewall-verified,
+    voted, merged against the reviewed pinned set) when they exist."""
+    live = DRIVERS / "live" / f"{company}.json"
+    src = live if live.exists() else DRIVERS / f"{company}.json"
+    d = json.loads(src.read_text())
+    d["_source"] = str(src.relative_to(ROOT))
+    return d
 
 
 class Metric:

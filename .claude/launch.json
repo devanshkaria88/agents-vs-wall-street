@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "observability",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "observability", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}

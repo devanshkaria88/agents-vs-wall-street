@@ -115,13 +115,13 @@
   {
    "label": "Pre-exceptional basic EPS",
    "unit": "GBp",
-   "value": 1.16,
+   "value": 1.12,
    "variants": [
-    1.11,
-    1.16,
-    1.25
+    1.12,
+    1.12,
+    1.12
    ],
-   "spread": 0.14,
+   "spread": 0.0,
    "trace": [
     {
      "desc": "H1 26 pre-x earnings implied by EPS x shares",
@@ -136,7 +136,7 @@
     {
      "desc": "FY26 EPS = H1 actual + H2 from op profit less finance charge, taxed, per share",
      "formula": "0.46 + (H2op - F)(1-t)/shares",
-     "result": 1.16
+     "result": 1.12
     }
    ],
    "cross_checks": [],
@@ -162,7 +162,9 @@
      "published": "2026-02-27"
     },
     "half_year_finance_charge": {
-     "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements."
+     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+     "verbatim_line": "| Net finance charge         | 4      | (6.7)         | (6.5)         | (13.4)         |",
+     "published": "2026-02-27"
     }
    }
   }
