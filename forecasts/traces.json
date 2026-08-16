@@ -411,11 +411,11 @@
   {
    "label": "Adjusted gross margin",
    "unit": "%",
-   "value": 85.8,
+   "value": 73.3,
    "variants": [
-    85.8,
-    85.8,
-    85.8
+    73.3,
+    73.3,
+    73.3
    ],
    "spread": 0.0,
    "trace": [
@@ -427,7 +427,7 @@
     {
      "desc": "Blend damped trend with guide-implied GM (adj op margin 49.0 + opex ratio)",
      "formula": "(73.6 + 73.3)/2",
-     "result": 85.8
+     "result": 73.3
     }
    ],
    "cross_checks": [],
@@ -461,17 +461,17 @@
    "unit": "USDm",
    "value": 12543.0,
    "variants": [
-    12406.0,
-    12466.0,
+    12205.0,
+    12265.0,
+    12326.0,
     12483.0,
-    12526.0,
     12543.0,
     12604.0,
     12606.0,
     12666.0,
     12727.0
    ],
-   "spread": 321.0,
+   "spread": 521.0,
    "trace": [
     {
      "desc": "Blend of seasonal path (Q2 x Q3/Q2 ratio) and YoY path (year-ago x growth)",

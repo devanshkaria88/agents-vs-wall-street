@@ -90,11 +90,11 @@
       <tr><th>Metric</th><th>Primary path</th><th>Cross-check</th></tr>
       <tr><td>Hays op profit</td><td>Company statement: top of £37.0–46.0m range → 46.0</td><td>CFO path: H1 20.1 + H2₂₅ 20.1×1.30 = 46.2 ✓</td></tr>
       <tr><td>Hays net fees</td><td>H1 actual 453.3 + H2 reconstructed from Q3 (−7%) and Q4 (−4%) actual growth → ~903</td><td>CFO: "close to £900 million" ✓ (scored on reported group basis — organiser ruling)</td></tr>
-      <tr><td>Hays EPS</td><td>Finance charge solved from H1 identity, applied to H2 op profit → ~1.2p</td><td>Naive flat-vs-FY25 path flagged and rejected (ignores FY26's higher finance cost)</td></tr>
+      <tr><td>Hays EPS</td><td>Agent-extracted H1 finance charge (£6.7m) applied to H2 op profit → 1.12p</td><td>Naive flat-vs-FY25 path flagged and rejected (ignores FY26's higher finance cost)</td></tr>
       <tr><td>ADI revenue</td><td>Guide mid 3,900 + shrunk median beat → ~3,960</td><td>Guide high end 4,000 (3 of last 5 landed above it)</td></tr>
       <tr><td>ADI adj EPS</td><td>Guide 3.30 + median EPS beat → ~3.39</td><td>Drop-through of revenue beat ✓</td></tr>
-      <tr><td>ADI adj gross margin</td><td>Damped trend of 69.8→71.2→73.0 series</td><td>Implied: guided adj op margin 49.0 + trailing opex ratio ≈ 73.3 — two independent paths agree</td></tr>
-      <tr><td>HD net sales</td><td>45,277 × (1+organic) + GMS quarter (~1,950–2,050) → ~47,360</td><td>FY guide midpoint applied to year-ago ✓</td></tr>
+      <tr><td>ADI adj gross margin</td><td>Damped trend of 69.8→71.2→73.0 series</td><td>Implied: guided adj op margin 49.0 + actual Q2 opex ratio 24.0 (agent-extracted) = 73.0 — blend 73.3</td></tr>
+      <tr><td>HD net sales</td><td>45,277 × (1 + organic +1.5%, solved from the 10-Q's stated GMS $1.3B) + GMS × Q2 seasonal → ~47,610</td><td>FY guide midpoint applied to year-ago ✓</td></tr>
       <tr><td>HD comps</td><td>Q1 +0.6 + cadence step ("improvement through the year") → +1.0</td><td>FY guide midpoint (flat–2.0%) ✓</td></tr>
       <tr><td>HD adj EPS</td><td>Year-ago 4.68 × interpolated YoY cadence</td><td>Q2's historical share of FY adj EPS — blended, spread checked</td></tr>
       <tr><td>DE revenue</td><td>Q2 13,369 × Q3/Q2 seasonal ratio (~0.94)</td><td>Year-ago 12,018 × decelerating growth — blended → ~12,540</td></tr>
@@ -109,7 +109,7 @@
     <h2>What the judges can verify</h2>
     <ul>
       <li><b>Live observability dashboard:</b> <code>npm run observe</code> → localhost:3000 — a React Flow view of this exact pipeline with per-stage inspection: click a Reader to see the skills loaded into its system prompt and every tool call it made; click the firewall/vote/merge stages to see drops, vote support, and merge decisions; click a calculator to see formulas, plan variants, and cross-checks. Polls the run artifacts live during a run.</li>
-      <li><b>The live loop works — with receipts:</b> in the 13:40 live run, three Reader agents independently confirmed every reviewed Hays anchor (zero divergences through the firewall and vote), and upgraded one assumption to a fact: the actual H1 FY26 net finance charge (£6.7m) from the half-year report, collapsing the EPS uncertainty band (1.16p ± band → 1.12p, spread 0).</li>
+      <li><b>The live loop works — with receipts:</b> in the 13:40 live run, three Reader agents independently confirmed every reviewed Hays anchor (zero divergences through the firewall and vote), and upgraded one assumption to a fact: the actual H1 FY26 net finance charge (£6.7m) from the half-year report, collapsing the EPS uncertainty band (1.16p ± band → 1.12p, spread 0). In the HD run they went further: all three readers flagged that our $1,975M GMS inference contradicted the Q1 10-Q's stated "$1.3 billion" — the divergence policy held the reviewed value, we re-verified their quote byte-exact, and adopted it (net sales +$255M). The agents corrected their builders, with citations.</li>
       <li><b>Traces:</b> <code>forecasts/traces.json</code> — every metric's inputs (with citations), formulas, variants, cross-check deltas.</li>
       <li><b>Tool log:</b> <code>logs/agent-trace-*.jsonl</code> — every search_corpus/read_doc call the Reader made, timestamped.</li>
       <li><b>Validation:</b> <code>logs/validation-*.json</code> — 15 verdicts per run, including justified out-of-history positions.</li>

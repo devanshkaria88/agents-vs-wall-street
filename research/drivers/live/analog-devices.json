@@ -63,7 +63,7 @@
    }
   },
   "trailing_opex_ratio": {
-   "value": 49.0,
+   "value": 24.0,
    "unit": "pp",
    "kind": "extracted-live",
    "justification": "Adjusted opex as % of revenue implied by recent quarters (adj GM minus adj op margin). Extractor task: pin from Q2 FY26 8-K reconciliation tables. Judgment driver \u2014 plan-ensemble varies this.",
@@ -72,7 +72,8 @@
     "verbatim_line": "| Adjusted operating margin | 49.0 | % | | 41.2 | % | | 780 bps |",
     "published": "2026-05-20"
    },
-   "vote_support": "3/3"
+   "vote_support": "3/3",
+   "note": "Derived by code: Q2 FY26 actual adj gross margin 73.0 minus actual adj operating margin 49.0 (agent-extracted, cited). Point value \u2014 band collapsed."
   },
   "beat_shrink": {
    "value": 0.8,

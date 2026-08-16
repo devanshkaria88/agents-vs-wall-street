@@ -52,6 +52,10 @@ applying their own arithmetic to their own words, and proving it did."
   structurally and ensemble at the two stages where it actually lives.
 - "Why no fine-tuning/LoRA?" → 12 targets, ~30 historical quarters: instant
   overfit, and it would downgrade the reader model. Documented in the HTML.
+- "Did the live agents change anything?" → Two upgrades (Hays £6.7m finance
+  charge; ADI actual opex ratio) and one correction OF US: all three HD
+  readers cited the 10-Q's "$1.3 billion" GMS figure against our $1,975M
+  inference. Reviewed, re-verified, adopted: +$255M on net sales.
 - "Weakest number?" → Hays EPS (derived, tiny floor, band 1.1–1.3p) and DE
   PPA (tariff-refund opacity — we deliberately hug year-ago).
 - "Human input during final run?" → Start the command, review the validation
@@ -59,7 +63,7 @@ applying their own arithmetic to their own words, and proving it did."
 
 ## Numbers to have in your head
 
-HD 47,360 / 4.68 / +1.0 · ADI 3,960 / 3.39 / 73.5 · HAS 903.5 / 1.16 / 46.0 ·
+HD 47,613 / 4.68 / +1.0 · ADI 3,960 / 3.39 / 73.3 · HAS 903.5 / 1.12 / 46.0 ·
 DE 12,543 / 4.84 / 556. Street: HD ~47.3-47.5B & 4.71 · ADI 3.93B & 3.33 ·
 DE EPS 4.85 · Hays op consensus was 43.5 pre-update. Report dates: HD Tue,
 ADI Wed, DE+Hays Thu.
