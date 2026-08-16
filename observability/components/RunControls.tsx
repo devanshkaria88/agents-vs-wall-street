@@ -21,7 +21,7 @@ const ACTIONS: { action: RunAction; label: string; perCompany: boolean; title: (
   { action: "skillgen", label: "Regenerate skills", perCompany: true, title: (c) => `Run the skill-writer agent for ${c}` },
 ];
 
-export default function RunControls({ company }: { company: string }) {
+export default function RunControls({ company, lastRun }: { company: string; lastRun?: { log: string; at: string | null; clear: boolean } | null }) {
   const [runs, setRuns] = useState<Run[]>([]);
   const [posting, setPosting] = useState<RunAction | null>(null);
 
@@ -91,6 +91,15 @@ export default function RunControls({ company }: { company: string }) {
           );
         })}
       </div>
+      {!active && lastRun && (
+        <div className="mt-2 flex items-center gap-1.5 font-mono text-[10px] text-slate-500">
+          <span className={`inline-block h-1.5 w-1.5 rounded-full ${lastRun.clear ? "bg-emerald-500" : "bg-rose-500"}`} />
+          last forecast {lastRun.at ? new Date(lastRun.at).toLocaleTimeString() : ""} ·{" "}
+          <span className={lastRun.clear ? "text-emerald-700 font-semibold" : "text-rose-700 font-semibold"}>
+            {lastRun.clear ? "RUN CLEAR" : "FAILED"}
+          </span>
+        </div>
+      )}
       {active && (
         <div className="mt-2 truncate font-mono text-[10px] text-slate-500" title={active.tail.join("\n")}>
           <span className="text-amber-300/80">

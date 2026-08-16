@@ -136,6 +136,7 @@ export function assemble(company: string) {
   const verdicts = (validation?.verdicts ?? []).filter((v) => v.workbook === meta.file);
 
   const runLogRel = latest("logs", "run-");
+  const runLogM = runLogRel ? mtime(runLogRel) : null;
   let runLog: string[] = [];
   try {
     runLog = fs
@@ -157,8 +158,14 @@ export function assemble(company: string) {
   }));
 
   const engineM = mtime("forecasts/traces.json");
-  const validM = validation?.timestamp ?? null;
+  const validM = validationRel ? mtime(validationRel) : null;
   const wbM = mtime(`submission/${meta.file}`);
+
+  // Freshness: an artifact touched moments ago flips its stage to "running"
+  // so fast deterministic reruns (~3s, faster than the poll) still visibly
+  // sweep through the graph instead of completing invisibly.
+  const FRESH_MS = 7_000;
+  const isFresh = (m: number | null) => !!m && now - m < FRESH_MS;
 
   const stages: Record<string, StageStatus> = {
     corpus: "done",
@@ -168,11 +175,11 @@ export function assemble(company: string) {
     firewall: extractStatus,
     vote: liveReport ? "done" : extractStatus === "running" && !anyReaderActive ? "running" : "idle",
     merge: liveReport ? "done" : "idle",
-    calibration: calibration ? "done" : "idle",
-    calculators: metrics.length ? "done" : engineM ? "running" : "idle",
-    validator: validation ? (validation.result === "PASS" ? "done" : "failed") : "idle",
-    writer: wbM ? "done" : "idle",
-    checker: runClear ? "done" : runLogRel ? "done" : "idle",
+    calibration: isFresh(mtime("forecasts/calibration.json")) ? "running" : calibration ? "done" : "idle",
+    calculators: isFresh(engineM) ? "running" : metrics.length ? "done" : engineM ? "running" : "idle",
+    validator: isFresh(validM) ? "running" : validation ? (validation.result === "PASS" ? "done" : "failed") : "idle",
+    writer: isFresh(wbM) ? "running" : wbM ? "done" : "idle",
+    checker: isFresh(runLogM) ? "running" : runClear ? "done" : runLogRel ? "done" : "idle",
   };
 
   return {
@@ -189,6 +196,9 @@ export function assemble(company: string) {
     verdicts,
     validationResult: validation?.result ?? null,
     runLog,
+    lastRun: runLogRel
+      ? { log: runLogRel, at: runLogM ? new Date(runLogM).toISOString() : null, clear: runClear }
+      : null,
     skills: skills.map((s) => ({ name: s.name, content: s.content.slice(0, 4000) })),
     pinnedDrivers: readJson(`research/drivers/${company}.json`),
   };

@@ -76,7 +76,7 @@ export default function Home() {
 
       {/* Floating right column: run controls + inspector */}
       <div className="absolute bottom-4 right-4 top-24 z-10 flex w-[400px] flex-col gap-3">
-        <RunControls company={company} />
+        <RunControls company={company} lastRun={(state as unknown as { lastRun?: { log: string; at: string | null; clear: boolean } | null })?.lastRun} />
         <aside className="glass-deep min-h-0 flex-1 overflow-y-auto rounded-xl p-4">
           {state && <SidePanel stage={selected} state={state} company={company} />}
         </aside>
