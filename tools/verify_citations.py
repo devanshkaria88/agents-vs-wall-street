@@ -37,7 +37,11 @@ def main() -> int:
     files = sorted(
         list((ROOT / "research" / "dossiers").glob("*.json"))
         + list((ROOT / "research" / "drivers").glob("*.json"))
-        + list((ROOT / "research" / "drivers" / "live").glob("*.json"))
+        # report-*.json record the extraction's raw findings INCLUDING quotes
+        # the firewall rejected — those are evidence of the firewall working,
+        # not citations we assert, so they are excluded from this check.
+        + [p for p in (ROOT / "research" / "drivers" / "live").glob("*.json")
+           if not p.name.startswith("report-")]
         + [ROOT / "research" / "backtests" / "holdouts.json"]
     )
     checked = passed = 0
