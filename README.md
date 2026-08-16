@@ -151,11 +151,18 @@ Verify that every citation in the research dossiers and drivers still matches it
 Run a backtest (hide a past quarter, re-forecast it, compare to the reported number):
 
 ```bash
-.venv/bin/python -m forecaster.backtest hays FY2025H2
-.venv/bin/python -m forecaster.backtest hays FY2025H2 --dry-run   # no LLM call
+.venv/bin/python -m forecaster.backtest hays FY25
+.venv/bin/python -m forecaster.backtest hays FY25 --dry-run   # verify spec, no LLM call
 ```
 
-Available holdout specs are defined in `research/backtests/holdouts.json`.
+Quarter identifiers must match entries in `research/backtests/holdouts.json`. Available specs:
+
+| Company | Quarters |
+|---|---|
+| `hays` | `H1FY26` `FY25` `FY24` |
+| `home-depot` | `FY26Q1` `FY25Q4` `FY25Q3` |
+| `analog-devices` | `FY26Q2` `FY26Q1` `FY25Q3` |
+| `deere` | `FY2025` `FY2024` `FY2023` |
 
 ## Optional document-search helper
 
