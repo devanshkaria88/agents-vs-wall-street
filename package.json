@@ -10,7 +10,8 @@
     "check:submission": "npm run check:entry && npm run check:forecasts",
     "test:starter": "python3 -m unittest discover -s starter -p 'test_*.py'",
     "forecast": ".venv/bin/python -m forecaster.run",
-    "observe": "npm --prefix observability run dev"
+    "observe": "npm --prefix observability run dev",
+    "forecast:full": "for c in hays home-depot analog-devices deere; do .venv/bin/python -m forecaster.fullrun $c || exit 1; done"
   },
   "dependencies": {
     "xlsx": "^0.18.5"
