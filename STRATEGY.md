@@ -20,7 +20,7 @@ error. Each metric is 1/12 of the score.
 | 5 | ADI adj EPS | Guide $3.30±0.15 + consistent +$0.04-0.17 beats | ~3.38; small floor, but guidance discipline is machine-like |
 | 6 | HD net sales | Year-ago $45,277M + measurable GMS wedge (~$2.0B/qtr) + FY guide | ~47,200; main risk is GMS quarter-run-rate estimate |
 | 7 | HD adj EPS | No quarterly guide; cadence commentary ("improving through year" from Q1's -3.7%) | ~4.64 (flat-to--1% YoY vs $4.68); floor $0.023 — tight |
-| 8 | Hays net fees | H1 actual + Q3/Q4 growth rates pin FY26 ≈ £903m reported / £888m continuing | **Basis question (top risk)** — resolve this afternoon; hedged at 895 until then |
+| 8 | Hays net fees | H1 actual + Q3/Q4 growth rates pin FY26 ≈ £903m reported | Basis RESOLVED (user, 11:35): reported group net fees → anchor 903. Now a solid metric; residual risk is only the Q3/Q4 blend weighting |
 | 9 | DE revenue | No quarterly guide; Q3/Q2 seasonal ratio ~0.94 + year-ago $12,018M | ~12,500; seasonality stable across FY24/FY25 |
 | 10 | DE PPA op profit | Segment guide "down 5-10%" FY26 + volatile margins + tariff-recovery noise | ~600; widest genuine uncertainty of the money metrics |
 | 11 | Hays EPS | Derived: op profit 46 → finance charge → ETR → shares; H1-anchored ≈1.1-1.3p | ~1.2p; floor is microscopic (0.006p) but WS has the same derivation problem |
@@ -78,14 +78,10 @@ per metric vs par).
 
 ## 5. Top-5 risks and mitigations
 
-1. **Hays net-fees basis (reported £903m vs continuing £888m).** One wrong
-   basis choice costs ~3 score units on that metric. Mitigation: this
-   afternoon, read the H1 26 interim statements + divestiture RNS for IFRS 5
-   presentation precedent; check Hays' own FY25 restatement practice; if still
-   ambiguous at 15:00, ask an organiser to clarify which reported figure will
-   be scored; if unresolvable, submit the basis the results release will
-   headline per IFRS 5 (continuing ops) — analysts forecast that basis too,
-   which also shrinks relative loss.
+1. ~~**Hays net-fees basis.**~~ **RESOLVED at the gate (user, 11:35): scoring
+   uses reported GROUP net fees.** Baseline moved 895 → 903. Residual risk is
+   the Q3/Q4 blend weighting inside H2 (±£3-4m), well inside the WS-miss
+   denominator.
 2. **A malformed/blank cell at 18:00** (worst case: automatic 5.0s).
    Mitigation: already impossible to be blank — green baselines committed; the
    pipeline only overwrites green output after its own validation passes;
@@ -106,11 +102,9 @@ per metric vs par).
    acceptable; edge comes from the metrics where the corpus gives us private
    structure (GMS wedge, ADI bias table, Hays top-of-range).
 
-## Open questions for organisers (unverifiable in-corpus)
+## Open questions — ALL RESOLVED at the gate (user, 11:35)
 
-- Hays "Net fees": will scoring use the headline continuing-operations figure
-  or total reported group net fees at the 20 Aug results?
-- Confirmation that "Adjusted diluted EPS" for HD/ADI is scored against the
-  company's own non-GAAP reconciliation figure (assumed yes — label matches).
-- DE Q3 FY26 exact report date (mid-August; corpus has no Q3 actuals, so it
-  reports after today — but the precise date affects the leaderboard timing).
+- Hays "Net fees" → scored on total reported GROUP net fees. (Baseline 903.)
+- HD/ADI "Adjusted diluted EPS" → confirmed, scored against the company's own
+  non-GAAP reconciliation figure.
+- DE Q3 FY26 report date → moot; scoring is checked on 20 Aug regardless.

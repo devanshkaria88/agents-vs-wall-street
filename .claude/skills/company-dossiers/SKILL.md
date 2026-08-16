@@ -29,8 +29,8 @@ Metrics: `Net fees` (GBPm) · `Pre-exceptional basic EPS` (GBp — PENCE) · `Pr
   £476.4m × blend(Q3 26 actual -7%, Q4 26 actual -4%) → FY26 reported ≈ £903m;
   continuing-ops (ex six divested countries, c.£15m FY26) ≈ £888m. CFO on Q4
   call: six countries do "GBP 15 million of fees versus a business that does
-  close to GBP 900 million". **OPEN: which basis the 20 Aug release headlines**
-  (divested countries are "no longer considered continuing operations").
+  close to GBP 900 million". **RESOLVED (user, 11:35): scoring uses reported
+  GROUP net fees → anchor ≈ £903m** (H1 453.3 + H2 476.4×blend(-7%,-4%) ≈ 450).
 - **EPS**: FY25 1.31p, H1 26 0.46p. No FY26 EPS guidance — build from op profit
   via finance charge + ETR + shares (H1 26 weighted avg 1,595.7m; June buyback
   trimmed ~8.7m). H1-anchored: H1 26 earnings £7.3m on £20.1m op profit implies
