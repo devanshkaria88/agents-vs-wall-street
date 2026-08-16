@@ -1,0 +1,16 @@
+---
+description: Cross-agent sync. Surfaces the most recent turn from Claude Code so Cursor stays aligned. Always applied.
+globs:
+alwaysApply: true
+---
+
+# Cross-agent context bridge
+
+This project is being worked on collaboratively by **Claude Code** and **Cursor**. Whichever agent finishes a turn last writes a summary of that turn to `context/last_update.md`. Read that file at the start of every response to see what the *other* agent just did.
+
+If `agent: claude` is in the file, that's a turn you (Cursor) did NOT do — read it and reconcile before answering.
+If `agent: cursor` is in the file, that's your own previous turn — you can ignore it.
+
+The full update is here: @context/last_update.md
+
+You should also check recent git history (`git log --oneline -5`) to see what the other agent committed.
