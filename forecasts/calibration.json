@@ -1,0 +1,37 @@
+{
+ "analog-devices": {
+  "revenue": {
+   "n": 8,
+   "mean": 86.1061,
+   "median": 74.6455,
+   "beats": [
+    42.209,
+    43.205,
+    73.174,
+    140.068,
+    130.348,
+    76.117,
+    60.263,
+    123.465
+   ],
+   "hit_rate_above_mid": 1.0
+  },
+  "adj_eps": {
+   "n": 8,
+   "mean": 0.1175,
+   "median": 0.115,
+   "beats": [
+    0.08,
+    0.04,
+    0.1,
+    0.17,
+    0.13,
+    0.04,
+    0.17,
+    0.21
+   ],
+   "hit_rate_above_mid": 1.0
+  }
+ },
+ "note": "beat = actual - guide midpoint; engine uses the median, shrunk by the beat_shrink judgment driver"
+}
