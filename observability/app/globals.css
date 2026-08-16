@@ -18,10 +18,10 @@
    reads through the glass. */
 body {
   background:
-    radial-gradient(1000px 640px at 8% -12%, rgba(139, 92, 246, 0.3), transparent 58%),
-    radial-gradient(1100px 720px at 100% 112%, rgba(20, 184, 166, 0.28), transparent 58%),
-    radial-gradient(760px 520px at 55% 30%, rgba(56, 189, 248, 0.18), transparent 66%),
-    radial-gradient(600px 420px at 30% 95%, rgba(251, 191, 36, 0.16), transparent 65%),
+    radial-gradient(1000px 640px at 8% -12%, rgba(139, 92, 246, 0.6), transparent 58%),
+    radial-gradient(1100px 720px at 100% 112%, rgba(20, 184, 166, 0.55), transparent 58%),
+    radial-gradient(760px 520px at 55% 30%, rgba(56, 189, 248, 0.36), transparent 66%),
+    radial-gradient(600px 420px at 30% 95%, rgba(251, 191, 36, 0.32), transparent 65%),
     #eef1f8;
   min-height: 100vh;
   color: #0f172a;
@@ -31,30 +31,36 @@ body {
 .glass {
   background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(22px) saturate(170%);
-  -webkit-backdrop-filter: blur(22px) saturate(170%);
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: 0 8px 32px rgba(51, 65, 85, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .glass-deep {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.34);
   backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 12px 40px rgba(51, 65, 85, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 .glass-chip {
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(148, 163, 184, 0.35);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+}
+/* Graph node tiles (consumed by Pipeline.tsx per the CSS contract) */
+.glass-node {
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
-/* Drifting color blobs — the frosted tiles need something to blur. */
+/* Drifting color blobs — the frosted tiles need something to blur.
+   Pre-blur is kept LOW (blur happens in the glass, not the background):
+   crisp-ish edges are what make backdrop-filter visibly smear. */
 .bg-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.55;
+  filter: blur(42px);
+  opacity: 0.7;
   pointer-events: none;
   will-change: transform;
 }
@@ -63,7 +69,7 @@ body {
   height: 560px;
   left: -6%;
   top: -14%;
-  background: radial-gradient(circle at 35% 35%, rgba(139, 92, 246, 0.55), rgba(56, 189, 248, 0.25) 70%, transparent);
+  background: radial-gradient(circle at 35% 35%, rgba(124, 58, 237, 0.85), rgba(56, 189, 248, 0.4) 70%, transparent);
   animation: blob-drift-a 46s ease-in-out infinite alternate;
 }
 .bg-blob-b {
@@ -71,8 +77,16 @@ body {
   height: 640px;
   right: -8%;
   bottom: -18%;
-  background: radial-gradient(circle at 60% 60%, rgba(20, 184, 166, 0.5), rgba(251, 191, 36, 0.22) 70%, transparent);
+  background: radial-gradient(circle at 60% 60%, rgba(13, 148, 136, 0.8), rgba(251, 191, 36, 0.4) 70%, transparent);
   animation: blob-drift-b 58s ease-in-out infinite alternate;
+}
+.bg-blob-c {
+  width: 520px;
+  height: 520px;
+  left: -4%;
+  top: 34%;
+  background: radial-gradient(circle at 45% 45%, rgba(34, 211, 238, 0.75), rgba(139, 92, 246, 0.45) 65%, transparent);
+  animation: blob-drift-c 52s ease-in-out infinite alternate;
 }
 @keyframes blob-drift-a {
   from { transform: translate(0, 0) scale(1); }
@@ -81,6 +95,23 @@ body {
 @keyframes blob-drift-b {
   from { transform: translate(0, 0) scale(1.08); }
   to { transform: translate(-8vw, -7vh) scale(0.95); }
+}
+@keyframes blob-drift-c {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(6vw, -6vh) scale(1.1); }
+}
+
+/* High-frequency texture: unblurred noise behind the glass makes the frost
+   unmistakable even over smooth gradient areas. Cheap: one tiny tiled SVG. */
+.bg-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
 }
 
 /* --- Rendered markdown (skill briefs in the inspector) --- */
@@ -154,7 +185,8 @@ body {
     animation: none;
   }
   .bg-blob-a,
-  .bg-blob-b {
+  .bg-blob-b,
+  .bg-blob-c {
     animation: none;
   }
 }

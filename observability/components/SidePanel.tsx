@@ -8,7 +8,29 @@ type Reader = { run: number; status: string; trace: string | null; calls: ToolCa
 type Metric = { label: string; value: number; unit: string; variants: number[]; spread: number; cross_checks: { desc: string; result: number; delta_vs_primary: number }[]; trace: { desc: string; formula: string; result: unknown }[] };
 type Verdict = { metric: string; value: unknown; checks: Record<string, string> };
 
+export type ValidatorVerdict = {
+  company?: string;
+  timestamp?: string;
+  verdicts?: {
+    metric: string;
+    verdict: "confirmed" | "challenged" | string;
+    severity: "info" | "warning" | "blocker" | string;
+    reason: string;
+    evidence: { doc_path: string; verbatim_line: string } | null;
+  }[];
+};
+
+export type Fullrun = {
+  active: boolean;
+  stages: Record<string, string>;
+  workbook: string | null;
+  ok: boolean | null;
+  error: string | null;
+  startedAt: string | null;
+};
+
 export type State = {
+  workbook: string;
   stages: Record<string, string>;
   readers: Reader[];
   skillgen?: { status: string; trace: string | null; calls: ToolCall[] } | null;
@@ -23,8 +45,28 @@ export type State = {
   metrics: Metric[];
   verdicts: Verdict[];
   validationResult: string | null;
+  validatorVerdict: ValidatorVerdict | null;
+  validatorTrace: string | null;
+  fullrun: Fullrun | null;
   runLog: string[];
+  lastRun?: { log: string; at: string | null; clear: boolean } | null;
 };
+
+// Shared with RunControls: the emerald download chip for the finished
+// workbook. The link only downloads — uploads to OpenStocks stay MANUAL.
+export function DownloadChip({ company }: { company: string }) {
+  return (
+    <a
+      href={`/api/download?company=${company}`}
+      download
+      title="Download the workbook — for manual OpenStocks upload"
+      className="glass-chip inline-flex cursor-pointer items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11.5px] font-medium text-emerald-800 !border-emerald-500/50 hover:!bg-emerald-500/15"
+    >
+      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+      Download workbook
+    </a>
+  );
+}
 
 const badge = (s: string) =>
   s.startsWith("FAIL") || s === "failed"
@@ -115,7 +157,7 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
     );
   }
 
-  if (stage === "firewall" || stage === "vote" || stage === "merge") {
+  if (stage === "firewall" || stage === "consensus") {
     const rep = state.liveReport;
     return (
       <div>
@@ -198,9 +240,43 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
   }
 
   if (stage === "validator") {
+    const vv = state.validatorVerdict;
+    const sevChip = (s: string) =>
+      s === "blocker"
+        ? "bg-rose-500/15 text-rose-700"
+        : s === "warning"
+          ? "bg-amber-500/15 text-amber-700"
+          : "bg-sky-500/15 text-sky-700";
     return (
       <div>
-        <Section title={`Validation · ${state.validationResult ?? "not run"}`}>
+        <Section title="Adversarial validator (agent)">
+          {!vv?.verdicts?.length ? (
+            <p className="text-slate-500 text-sm">Not run yet — the adversarial re-reader challenges every number against the corpus.</p>
+          ) : (
+            vv.verdicts.map((v, i) => (
+              <div key={i} className="rounded-md glass-chip p-2.5 mb-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[12.5px] text-slate-800">{v.metric}</span>
+                  <span className="flex shrink-0 items-center gap-1">
+                    <span className={`text-[10.5px] px-1.5 py-0.5 rounded-full ${v.verdict === "confirmed" ? "bg-emerald-500/15 text-emerald-700" : "bg-rose-500/15 text-rose-700"}`}>
+                      {v.verdict}
+                    </span>
+                    <span className={`text-[10.5px] px-1.5 py-0.5 rounded-full ${sevChip(v.severity)}`}>{v.severity}</span>
+                  </span>
+                </div>
+                <div className="text-[11.5px] text-slate-600 mt-1">{v.reason}</div>
+                {v.evidence && (
+                  <div className="mt-1.5 rounded bg-white/40 px-2 py-1.5">
+                    <div className="font-mono text-[10.5px] text-slate-700 break-words">“{v.evidence.verbatim_line}”</div>
+                    <div className="font-mono text-[10px] text-slate-500 mt-0.5">{v.evidence.doc_path}</div>
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+          {state.validatorTrace && <div className="font-mono text-[11px] text-slate-500 mt-2">{state.validatorTrace}</div>}
+        </Section>
+        <Section title={`Deterministic checks · ${state.validationResult ?? "not run"}`}>
           {state.verdicts.map((v, i) => (
             <div key={i} className="rounded-md glass-chip p-2.5 mb-1.5">
               <div className="flex justify-between">
@@ -220,18 +296,27 @@ export default function SidePanel({ stage, state, company }: { stage: string | n
     );
   }
 
-  if (stage === "writer" || stage === "checker" || stage === "corpus") {
+  if (stage === "corpus") {
     return (
-      <Section title={stage === "corpus" ? "Corpus" : "Run log (latest)"}>
-        {stage === "corpus" ? (
-          <p className="text-sm text-slate-700">
-            1,139 markdown documents (507 filings, 538 transcript sections, 94 slide docs) frozen 2026-08-14, plus the logged
-            public-web consensus sweep in <span className="font-mono text-[12px]">research/web/</span>.
-          </p>
-        ) : (
-          <pre className="text-[11px] text-slate-600 whitespace-pre-wrap max-h-[60vh] overflow-auto">{state.runLog.join("\n")}</pre>
-        )}
+      <Section title="Corpus">
+        <p className="text-sm text-slate-700">
+          1,139 markdown documents (507 filings, 538 transcript sections, 94 slide docs) frozen 2026-08-14, plus the logged
+          public-web consensus sweep in <span className="font-mono text-[12px]">research/web/</span>.
+        </p>
       </Section>
+    );
+  }
+
+  if (stage === "writer") {
+    return (
+      <div>
+        <Section title="Workbook">
+          <DownloadChip company={company} />
+        </Section>
+        <Section title="Run log (latest)">
+          <pre className="text-[11px] text-slate-600 whitespace-pre-wrap max-h-[60vh] overflow-auto">{state.runLog.join("\n")}</pre>
+        </Section>
+      </div>
     );
   }
   return null;

@@ -1,7 +1,8 @@
 // Run-trigger API: launches pipeline stages as detached child processes from
-// the dashboard. POST starts a run (extract | forecast | skillgen); GET reports
-// every launched run with liveness + log tail. All state lives in files under
-// logs/ so it survives dev-server restarts and stays judge-inspectable.
+// the dashboard. POST starts a run (extract | forecast | skillgen | fullrun);
+// GET reports every launched run with liveness + log tail. All state lives in
+// files under logs/ so it survives dev-server restarts and stays
+// judge-inspectable.
 import { NextRequest, NextResponse } from "next/server";
 import { spawn } from "node:child_process";
 import fs from "node:fs";
@@ -13,7 +14,7 @@ export const dynamic = "force-dynamic";
 const COMPANIES = ["hays", "home-depot", "analog-devices", "deere"];
 const RUNS_FILE = path.join(REPO, "logs", "ui-runs.json");
 
-type Action = "extract" | "forecast" | "skillgen";
+type Action = "extract" | "forecast" | "skillgen" | "fullrun";
 
 interface RunEntry {
   pid: number;
@@ -63,6 +64,8 @@ function buildCommand(action: Action, company: string | null): { cmd: string; ar
       return { cmd: "npm", args: ["run", "forecast"] };
     case "skillgen":
       return { cmd: py, args: ["-m", "agent.skillgen", company ?? "hays"] };
+    case "fullrun":
+      return { cmd: py, args: ["-m", "forecaster.fullrun", company ?? "hays"] };
   }
 }
 
@@ -75,9 +78,9 @@ export async function POST(req: NextRequest) {
   }
 
   const action = body.action as Action | undefined;
-  if (!action || !["extract", "forecast", "skillgen"].includes(action)) {
+  if (!action || !["extract", "forecast", "skillgen", "fullrun"].includes(action)) {
     return NextResponse.json(
-      { error: "action must be one of extract | forecast | skillgen" },
+      { error: "action must be one of extract | forecast | skillgen | fullrun" },
       { status: 400 },
     );
   }
@@ -88,8 +91,8 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
-  if (action === "skillgen" && company === null) {
-    return NextResponse.json({ error: "skillgen requires a company" }, { status: 400 });
+  if ((action === "skillgen" || action === "fullrun") && company === null) {
+    return NextResponse.json({ error: `${action} requires a company` }, { status: 400 });
   }
 
   const ts = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, "Z");

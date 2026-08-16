@@ -39,6 +39,8 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <div className="bg-blob bg-blob-a" />
         <div className="bg-blob bg-blob-b" />
+        <div className="bg-blob bg-blob-c" />
+        <div className="bg-noise" />
       </div>
 
       {/* Full-bleed graph canvas */}
@@ -76,7 +78,7 @@ export default function Home() {
         </nav>
         <div className="ml-auto flex items-center gap-3">
           <span className="text-[11px] text-slate-500">
-            violet = AI · teal = deterministic code · yellow = output
+            violet = AI · teal = code · yellow = output
           </span>
           <button
             onClick={() => setFollow(!follow)}
@@ -108,7 +110,7 @@ export default function Home() {
 
       {/* Floating right column: run controls + inspector */}
       <div className="absolute bottom-4 right-4 top-24 z-10 flex w-[400px] flex-col gap-3">
-        <RunControls company={company} lastRun={(state as unknown as { lastRun?: { log: string; at: string | null; clear: boolean } | null })?.lastRun} />
+        <RunControls company={company} state={state} />
         <aside className="glass-deep min-h-0 flex-1 overflow-y-auto rounded-xl p-4">
           {state && <SidePanel stage={selected} state={state} company={company} />}
         </aside>

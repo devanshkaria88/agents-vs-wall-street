@@ -8,7 +8,7 @@ export const REPO = path.resolve(process.cwd(), "..");
 
 export type StageStatus = "idle" | "running" | "done" | "failed";
 
-const COMPANIES: Record<string, { file: string; label: string }> = {
+export const COMPANIES: Record<string, { file: string; label: string }> = {
   hays: { file: "HAS-FY2026.xlsx", label: "Hays plc · FY2026" },
   "home-depot": { file: "HD-FY2026Q2.xlsx", label: "Home Depot · FY26 Q2" },
   "analog-devices": { file: "ADI-FY2026Q3.xlsx", label: "Analog Devices · FY26 Q3" },
@@ -132,6 +132,33 @@ export function assemble(company: string) {
     : null;
   const verdicts = (validation?.verdicts ?? []).filter((v) => v.workbook === meta.file);
 
+  // Adversarial validator AGENT: newest trace + newest verdict file for this
+  // company. A verdict only counts as belonging to the newest run when its
+  // filename stamp is >= the trace's stamp (both share the UTC-stamp suffix),
+  // so a re-run shows "running" instead of a stale done/failed.
+  const stampOf = (p: string | null) => p?.match(/(\d{8}T\d{6}Z)\.[a-z]+$/)?.[1] ?? null;
+  const vTraceRel = latest("logs", `agent-trace-validator-${company}-`);
+  const vTraceM = vTraceRel ? mtime(vTraceRel) : null;
+  const vCalls = vTraceRel ? readTrace(vTraceRel) : [];
+  const vVerdictRel = latest("logs", `agent-validator-${company}-`);
+  const validatorVerdict = vVerdictRel
+    ? (readJson(vVerdictRel) as {
+        company?: string;
+        timestamp?: string;
+        verdicts?: { metric: string; verdict: string; severity: string; reason: string; evidence: { doc_path: string; verbatim_line: string } | null }[];
+      } | null)
+    : null;
+  const vTraceStamp = stampOf(vTraceRel);
+  const vVerdictStamp = stampOf(vVerdictRel);
+  const verdictCurrent = !!validatorVerdict && (!vTraceStamp || !vVerdictStamp || vVerdictStamp >= vTraceStamp);
+  const validatorStatus: StageStatus = verdictCurrent
+    ? (validatorVerdict?.verdicts ?? []).some((v) => v.severity === "blocker")
+      ? "failed"
+      : "done"
+    : vTraceRel && vTraceM && now - vTraceM < RUNNING_WINDOW_MS
+      ? "running"
+      : "idle";
+
   const runLogRel = latest("logs", "run-");
   const runLogM = runLogRel ? mtime(runLogRel) : null;
   let runLog: string[] = [];
@@ -156,11 +183,13 @@ export function assemble(company: string) {
   }));
 
   // Unified event feed: every tool call and skill load, across every agent
-  // (reader runs R0-R2 + skill-writer SW), merged chronologically.
+  // (reader runs R0-R2 + skill-writer SW + validator agent VA), merged
+  // chronologically.
   type RawCall = { ts?: string; tool?: string; input?: Record<string, unknown>; output_head?: unknown };
   const events = [
     ...readers.flatMap((r) => (r.calls as RawCall[]).map((c) => ({ src: `R${r.run}`, c }))),
     ...(skillgenCalls.slice(-80) as RawCall[]).map((c) => ({ src: "SW", c })),
+    ...(vCalls.slice(-80) as RawCall[]).map((c) => ({ src: "VA", c })),
   ]
     .filter(({ c }) => typeof c?.ts === "string" && typeof c?.tool === "string")
     .map(({ src, c }) => ({
@@ -174,7 +203,6 @@ export function assemble(company: string) {
     .slice(-150);
 
   const engineM = mtime("forecasts/traces.json");
-  const validM = validationRel ? mtime(validationRel) : null;
   const wbM = mtime(`submission/${meta.file}`);
 
   // Freshness: an artifact touched moments ago flips its stage to "running"
@@ -189,14 +217,68 @@ export function assemble(company: string) {
     reader1: readers[1].status,
     reader2: readers[2].status,
     firewall: extractStatus,
-    vote: liveReport ? "done" : extractStatus === "running" && !anyReaderActive ? "running" : "idle",
-    merge: liveReport ? "done" : "idle",
+    consensus: liveReport ? "done" : extractStatus === "running" && !anyReaderActive ? "running" : "idle",
     calibration: isFresh(mtime("forecasts/calibration.json")) ? "running" : calibration ? "done" : "idle",
     calculators: isFresh(engineM) ? "running" : metrics.length ? "done" : engineM ? "running" : "idle",
-    validator: isFresh(validM) ? "running" : validation ? (validation.result === "PASS" ? "done" : "failed") : "idle",
+    validator: validatorStatus,
     writer: isFresh(wbM) ? "running" : wbM ? "done" : "idle",
-    checker: isFresh(runLogM) ? "running" : runClear ? "done" : runLogRel ? "done" : "idle",
   };
+
+  // Full-run orchestrator progress file: while a run is live its coarse
+  // progress OVERRIDES the artifact-derived stage statuses (upward only for
+  // the readers); once done, the artifacts speak for themselves again.
+  const fullrunRel = latest("logs", `fullrun-${company}-`);
+  const fullrunRaw = fullrunRel
+    ? (readJson(fullrunRel) as {
+        company?: string;
+        startedAt?: string;
+        updatedAt?: string;
+        stages?: Record<string, string>;
+        workbook?: string | null;
+        done?: boolean;
+        ok?: boolean | null;
+        error?: string | null;
+      } | null)
+    : null;
+  let fullrun: {
+    active: boolean;
+    stages: Record<string, string>;
+    workbook: string | null;
+    ok: boolean | null;
+    error: string | null;
+    startedAt: string | null;
+  } | null = null;
+  if (fullrunRaw) {
+    const updatedMs = Date.parse(fullrunRaw.updatedAt ?? "");
+    const active = !fullrunRaw.done && Number.isFinite(updatedMs) && now - updatedMs < 180_000;
+    const prog = fullrunRaw.stages ?? {};
+    fullrun = {
+      active,
+      stages: prog,
+      workbook: fullrunRaw.workbook ?? null,
+      ok: fullrunRaw.ok ?? null,
+      error: fullrunRaw.error ?? null,
+      startedAt: fullrunRaw.startedAt ?? null,
+    };
+    if (active) {
+      // "readers" (plural) covers reader0-2 collectively — upward only:
+      // running/done/failed lift an idle reader, never downgrade one whose
+      // own trace says it is running or done.
+      const rProg = prog.readers;
+      if (rProg === "running" || rProg === "done" || rProg === "failed") {
+        for (const id of ["reader0", "reader1", "reader2"]) {
+          if (stages[id] === "idle") stages[id] = rProg as StageStatus;
+        }
+      }
+      // Every other progress key maps 1:1 onto the same-named stage id.
+      for (const id of ["firewall", "consensus", "calibration", "calculators", "validator", "writer"]) {
+        const p = prog[id];
+        if (p === "running" || p === "failed") stages[id] = p;
+        else if (p === "done" && stages[id] !== "running") stages[id] = "done";
+        // "pending" → leave the artifact-derived status alone.
+      }
+    }
+  }
 
   return {
     company,
@@ -212,6 +294,9 @@ export function assemble(company: string) {
     metrics,
     verdicts,
     validationResult: validation?.result ?? null,
+    validatorVerdict,
+    validatorTrace: vTraceRel,
+    fullrun,
     runLog,
     lastRun: runLogRel
       ? { log: runLogRel, at: runLogM ? new Date(runLogM).toISOString() : null, clear: runClear }
