@@ -32,9 +32,12 @@ Metrics: `Net fees` (GBPm) · `Pre-exceptional basic EPS` (GBp — PENCE) · `Pr
   close to GBP 900 million". **OPEN: which basis the 20 Aug release headlines**
   (divested countries are "no longer considered continuing operations").
 - **EPS**: FY25 1.31p, H1 26 0.46p. No FY26 EPS guidance — build from op profit
-  ~£46m via FY25/H1 26 finance charge + ETR + shares (H1 26 weighted avg
-  1,595.7m; June buyback trimmed ~8.7m). Crude symmetry: H2 26 op profit ~£26m
-  (+30% vs H2 25, CFO stated) → FY26 EPS ~1.4-1.6p.
+  via finance charge + ETR + shares (H1 26 weighted avg 1,595.7m; June buyback
+  trimmed ~8.7m). H1-anchored: H1 26 earnings £7.3m on £20.1m op profit implies
+  net finance charge ~£9m/half at ~33% ETR; H2 26 op profit ~£26m (+30% vs H2
+  25, CFO stated) → H2 EPS ~0.7p → FY26 ≈ **1.1-1.3p**. (Naive flat-vs-FY25
+  symmetry gives 1.3-1.5p — the H1-anchored path embeds FY26's actual higher
+  finance charge and is preferred.)
 - Exceptionals stay OUT of our metrics: c.£40m restructuring + c.£30m
   impairment are exceptional; metrics are pre-exceptional.
 

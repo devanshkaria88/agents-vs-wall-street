@@ -1,0 +1,23 @@
+{
+  "_comment": "BASELINE forecasts — guidance-anchored, dossier-cited, written before the forecasting engine exists so no cell is ever blank (a blank scores 5.0). The engine replaces these; see .claude/skills/company-dossiers for the derivation of each anchor.",
+  "HD-FY2026Q2.xlsx": {
+    "Net sales": 47200.0,
+    "Adjusted diluted EPS": 4.64,
+    "Comparable sales, total company": 1.0
+  },
+  "ADI-FY2026Q3.xlsx": {
+    "Revenue": 3980.0,
+    "Adjusted diluted EPS": 3.38,
+    "Adjusted gross margin": 73.3
+  },
+  "HAS-FY2026.xlsx": {
+    "Net fees": 895.0,
+    "Pre-exceptional basic EPS": 1.2,
+    "Pre-exceptional operating profit": 46.0
+  },
+  "DE-FY2026Q3.xlsx": {
+    "Worldwide net sales and revenues": 12500.0,
+    "Diluted EPS (GAAP)": 4.8,
+    "Production & Precision Ag operating profit": 600.0
+  }
+}
