@@ -5,11 +5,11 @@
    "unit": "GBPm",
    "value": 903.5,
    "variants": [
-    903.2,
     903.5,
-    903.8
+    903.5,
+    903.5
    ],
-   "spread": 0.6,
+   "spread": 0.0,
    "trace": [
     {
      "desc": "H2 25 base = FY25 - H1 25",
@@ -57,7 +57,9 @@
      "published": "2026-07-10"
     },
     "q3_share_of_h2": {
-     "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2."
+     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+     "verbatim_line": "There are no material working day impacts anticipated in Q3 and Q4 26.",
+     "published": "2026-02-27"
     }
    }
   },
@@ -115,13 +117,13 @@
   {
    "label": "Pre-exceptional basic EPS",
    "unit": "GBp",
-   "value": 1.12,
+   "value": 1.16,
    "variants": [
-    1.12,
-    1.12,
-    1.12
+    1.11,
+    1.16,
+    1.25
    ],
-   "spread": 0.0,
+   "spread": 0.14,
    "trace": [
     {
      "desc": "H1 26 pre-x earnings implied by EPS x shares",
@@ -136,7 +138,7 @@
     {
      "desc": "FY26 EPS = H1 actual + H2 from op profit less finance charge, taxed, per share",
      "formula": "0.46 + (H2op - F)(1-t)/shares",
-     "result": 1.12
+     "result": 1.16
     }
    ],
    "cross_checks": [],
@@ -162,9 +164,7 @@
      "published": "2026-02-27"
     },
     "half_year_finance_charge": {
-     "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-     "verbatim_line": "| Net finance charge         | 4      | (6.7)         | (6.5)         | (13.4)         |",
-     "published": "2026-02-27"
+     "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements."
     }
    }
   }

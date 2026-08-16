@@ -33,5 +33,26 @@
     "company": null,
     "logfile": "logs/ui-run-forecast-20260816T132448Z.log",
     "startedAt": "2026-08-16T13:24:48.368Z"
+  },
+  {
+    "pid": 94909,
+    "action": "forecast",
+    "company": null,
+    "logfile": "logs/ui-run-forecast-20260816T134018Z.log",
+    "startedAt": "2026-08-16T13:40:18.285Z"
+  },
+  {
+    "pid": 95110,
+    "action": "extract",
+    "company": "hays",
+    "logfile": "logs/ui-run-extract-20260816T134253Z.log",
+    "startedAt": "2026-08-16T13:42:53.865Z"
+  },
+  {
+    "pid": 95461,
+    "action": "extract",
+    "company": "hays",
+    "logfile": "logs/ui-run-extract-20260816T134444Z.log",
+    "startedAt": "2026-08-16T13:44:44.217Z"
   }
 ]

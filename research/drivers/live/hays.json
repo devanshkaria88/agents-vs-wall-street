@@ -139,12 +139,16 @@
    }
   },
   "half_year_finance_charge": {
-   "value": 9.0,
-   "low": 6.0,
-   "high": 12.0,
+   "value": 6.7,
    "unit": "GBPm",
-   "kind": "assumption",
-   "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements."
+   "kind": "extracted-live",
+   "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "| Net finance charge         | (6.7)         | (6.5)         | (13.4)         |",
+    "published": "2026-02-27"
+   },
+   "vote_support": "2/2"
   }
  },
  "cfo_cross_check": {
