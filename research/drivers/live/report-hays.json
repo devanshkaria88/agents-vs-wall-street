@@ -1,64 +1,51 @@
 {
  "company": "hays",
- "runs_attempted": 3,
- "runs_parsed": 3,
- "timestamp": "2026-08-16T12:41:51.799865+00:00",
- "firewall_drops": [
-  [
-   "q3_share_of_h2",
-   "null value"
-  ],
-  [
-   "h2_25_op",
-   "null value"
-  ],
-  [
-   "q3_share_of_h2",
-   "null value"
-  ],
-  [
-   "q3_share_of_h2",
-   "null value"
-  ],
-  [
-   "h2_25_op",
-   "null value"
-  ]
- ],
+ "runs_attempted": 2,
+ "runs_parsed": 2,
+ "timestamp": "2026-08-16T13:26:06.541041+00:00",
+ "firewall_drops": [],
  "unresolved": [
   {
-   "key": "h2_25_op",
+   "key": "half_year_finance_charge",
    "candidates": [
-    20.1
+    6.7,
+    -6.7
    ]
   }
  ],
  "merge_decisions": [
   {
-   "key": "half_year_finance_charge",
+   "key": "q3_share_of_h2",
    "action": "UPGRADED assumption -> extracted",
-   "pinned": 9.0,
-   "live": 6.7
-  },
-  {
-   "key": "fy25_net_fees",
-   "action": "confirmed",
-   "value": 972.4
-  },
-  {
-   "key": "h1_26_shares",
-   "action": "confirmed",
-   "value": 1595.7
-  },
-  {
-   "key": "q3_26_actual_growth",
-   "action": "confirmed",
-   "value": -0.07
+   "pinned": 0.5,
+   "live": 0.5
   },
   {
    "key": "q4_26_actual_growth",
+   "action": "DIVERGENCE \u2014 pinned wins, review needed",
+   "pinned": -0.04,
+   "live": -4.0,
+   "live_citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "| Total         | (4)%         | (5)%",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "key": "h2_25_op",
    "action": "confirmed",
-   "value": -0.04
+   "value": 20.1
+  },
+  {
+   "key": "q3_26_actual_growth",
+   "action": "DIVERGENCE \u2014 pinned wins, review needed",
+   "pinned": -0.07,
+   "live": -7.0,
+   "live_citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-q3-8k-2__955907.md",
+    "verbatim_line": "| Total         | (7)%         | (8)%",
+    "published": "2026-04-16"
+   }
   },
   {
    "key": "op_guide_range_top",
@@ -66,19 +53,14 @@
    "value": 46.0
   },
   {
-   "key": "h2_26_op_yoy",
-   "action": "confirmed",
-   "value": 1.3
-  },
-  {
    "key": "h1_26_eps",
    "action": "confirmed",
    "value": 0.46
   },
   {
-   "key": "op_consensus",
+   "key": "h1_26_op",
    "action": "confirmed",
-   "value": 43.5
+   "value": 20.1
   },
   {
    "key": "h1_25_net_fees",
@@ -91,116 +73,112 @@
    "value": 453.3
   },
   {
-   "key": "h1_26_op",
+   "key": "fy25_net_fees",
    "action": "confirmed",
-   "value": 20.1
+   "value": 972.4
+  },
+  {
+   "key": "op_consensus",
+   "action": "confirmed",
+   "value": 43.5
+  },
+  {
+   "key": "h2_26_op_yoy",
+   "action": "DIVERGENCE \u2014 pinned wins, review needed",
+   "pinned": 1.3,
+   "live": 30.0,
+   "live_citation": {
+    "doc_path": "challenge/offline-data/hays/call-transcripts/2026-07-10__has-ln-20260710-call-qna__1573114.md",
+    "verbatim_line": "this second half profit performance is up about 30% versus H2 last year",
+    "published": "2026-07-10"
+   }
+  },
+  {
+   "key": "h1_26_shares",
+   "action": "confirmed",
+   "value": 1595.7
   }
  ],
  "additional_evidence": [
   {
-   "value": 45.6,
-   "unit": "GBPm",
-   "note": "FY25 Group operating profit before exceptional items (\u00a345.6m) \u2014 the base needed with H1 25 \u00a325.5m to infer H2 25 op profit.",
+   "note": "FY26 exceptional items guidance: c.\u00a340m restructuring charge plus c.\u00a330m ROU asset impairment, plus a modest non-cash disposal loss - relevant to statutory vs pre-exceptional profit.",
    "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-    "verbatim_line": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
-    "published": "2025-08-21"
-   }
-  },
-  {
-   "value": 15.0,
-   "unit": "GBPm",
-   "note": "Disposed six European countries contributed c.\u00a315m to reported Group net fees in FY26 \u2014 relevant to FY27 reported-fee bridge.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-    "verbatim_line": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "value": 85.0,
-   "unit": "GBPm",
-   "note": "13 countries being exited/reviewed delivered broadly break-even operating profit on c.\u00a385m net fees in FY26.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-    "verbatim_line": "In aggregate, these 13 countries deliver ed  a broadly break even pre -exceptional operating profit on c.\u00a385 million net fees in FY 26.",
-    "published": "2026-07-10"
-   }
-  },
-  {
-   "value": 40.0,
-   "unit": "GBPm",
-   "note": "FY26 exceptional restructuring charge expected c.\u00a340m plus c.\u00a330m right-of-use asset impairment.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
     "verbatim_line": "e expect to incur a  c.\u00a340 m  exceptional restructuring charge ,  with  a further c.\u00a330m impairment of right -of-use assets",
     "published": "2026-07-10"
    }
   },
   {
-   "value": 45.2,
-   "unit": "GBPm",
-   "note": "Earlier (superseded) consensus datapoint: FY26 pre-exceptional operating profit consensus \u00a345.2m as of 15 April 2026, based on 11 analysts. The 10 July 2026 figure (\u00a343.5m, range \u00a337.0-46.0m) is the newer source.",
+   "note": "Reported FY26 net fee base effect: six divested European countries contributed c.\u00a315m to reported group net fees in FY26 and are excluded from LFL going forward; no material working-day impacts in Q1 27.",
    "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-filing-2__955810.md",
-    "verbatim_line": "company complied consensus for FY26 pre -exceptional operating profit is \u00a345. 2m, based on 11 analysts",
-    "published": "2026-04-16"
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
+    "published": "2026-07-10"
    }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-   "verbatim_line": "There  are no material  working -day impacts anticipated in Q1 27. Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
-   "published": "2026-07-10"
+   "note": "13 exiting/divesting countries delivered broadly break-even pre-exceptional operating profit on c.\u00a385m net fees in FY26 - sizing the portfolio reshaping drag on FY27 net fees.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "these 13 countries deliver ed  a broadly break even pre -exceptional operating profit on c.\u00a385 million net fees in FY 26",
+    "published": "2026-07-10"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-   "verbatim_line": "In aggregate, these 13 countries deliver ed  a broadly break even pre -exceptional operating profit on c.\u00a385 million net fees in FY 26.",
-   "published": "2026-07-10"
+   "note": "Structural cost savings of c.\u00a350m per annum achieved in FY26, three years ahead of the c.\u00a345m by FY29 target; c.\u00a3115m cumulative since start of FY24 - key driver of H2 26 profit growth.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "We have achieved c.\u00a3 50m per annum savings in FY26",
+    "published": "2026-07-10"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-   "verbatim_line": "e expect to incur a  c.\u00a340 m  exceptional restructuring charge ,  with  a further c.\u00a330m impairment of right -of-use assets",
-   "published": "2026-07-10"
+   "note": "FY26 pre-exceptional effective tax rate guided to c.45% (H1 26 actual 44.8%) - needed to translate operating profit into EPS.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "The Group's effective tax rate on a pre -exceptional basis for the six months ended 31 December 2025 was 44.8%",
+    "published": "2026-02-27"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/slides/2026-02-27__has-ln-20260227-slide__643289.md",
-   "verbatim_line": "\u2022 We expect the net finance charge for FY26 to be c.\u00a313 million, slightly below FY25 due to the impact of the defined benefit p ension buy -in and lower utilisation of  our revolving credit facility in H2 26, driven by improving working capital",
-   "published": "2026-02-27"
+   "note": "FY26 exceptionals guided: c.\u00a340m restructuring plus c.\u00a330m ROU impairment, plus modest non-cash disposal loss - materially below the operating profit line.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "e expect to incur a  c.\u00a340 m  exceptional restructuring charge ,  with  a further c.\u00a330m impairment of right -of-use assets",
+    "published": "2026-07-10"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/slides/2026-02-27__has-ln-20260227-slide__643289.md",
-   "verbatim_line": "** Our Effective Tax Rate in the half was 44.8%. H1 25 was 32.1%. We expect the ETR will be c.45% in FY26.",
-   "published": "2026-02-27"
+   "note": "Six disposed European countries contributed c.\u00a315m to reported FY26 group net fees; no material working-day impact in Q1 27 - affects the FY27 reported base.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
+    "published": "2026-07-10"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-   "verbatim_line": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
-   "published": "2025-08-21",
-   "note": "FY25 pre-exceptional Group operating profit \u00a345.6m (input for deriving H2 25 op)."
+   "note": "13 exiting/divesting countries delivered broadly break-even pre-exceptional operating profit on c.\u00a385m FY26 net fees.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "these 13 countries deliver ed  a broadly break even pre -exceptional operating profit on c.\u00a385 million net fees in FY 26.",
+    "published": "2026-07-10"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-   "verbatim_line": "| Operating profit (before exceptional items) (3)         | 20.1   | 25.5   | (21)%         | (25)%         |",
-   "published": "2026-02-27",
-   "note": "H1 26 \u00a320.1m vs H1 25 \u00a325.5m pre-exceptional operating profit (H1 25 input for deriving H2 25 op)."
+   "note": "FY26 pre-exceptional effective tax rate guided c.45% (H1 26 actual 44.8%) - needed to convert operating profit to EPS.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "The Group's effective tax rate on a pre -exceptional basis for the six months ended 31 December 2025 was 44.8%",
+    "published": "2026-02-27"
+   }
   },
   {
-   "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-   "verbatim_line": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
-   "published": "2026-07-10",
-   "note": "Disposed countries removed from continuing operations from 16 June 2026 \u2014 affects reported vs LFL group net fees."
-  },
-  {
-   "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
-   "verbatim_line": "e expect to incur a  c.\u00a340 m  exceptional restructuring charge ,  with  a further c.\u00a330m impairment of right -of-use assets",
-   "published": "2026-07-10",
-   "note": "FY26 exceptional items guidance (below the pre-exceptional operating profit line)."
-  },
-  {
-   "doc_path": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-filing-2__955810.md",
-   "verbatim_line": "company complied consensus for FY26 pre -exceptional operating profit is \u00a345. 2m, based on 11 analysts",
-   "published": "2026-04-16",
-   "note": "Superseded consensus (\u00a345.2m, April) \u2014 the 10 July statement's \u00a343.5m is the latest."
+   "note": "Structural cost savings of c.\u00a350m per annum secured in FY26, three years ahead of the c.\u00a345m by FY29 target; c.\u00a3115m cumulative since FY24.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "verbatim_line": "We have achieved c.\u00a3 50m per annum savings in FY26, exceeding  our target of",
+    "published": "2026-07-10"
+   }
   }
  ]
 }

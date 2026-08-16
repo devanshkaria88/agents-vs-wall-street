@@ -55,11 +55,15 @@
   },
   "q3_share_of_h2": {
    "value": 0.5,
-   "low": 0.48,
-   "high": 0.52,
    "unit": "fraction",
-   "kind": "assumption",
-   "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2."
+   "kind": "extracted-live",
+   "justification": "Hays does not disclose absolute quarterly fees; Q3/Q4 assumed near-equal halves of H2.",
+   "citation": {
+    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "verbatim_line": "There are no material working day impacts anticipated in Q3 and Q4 26.",
+    "published": "2026-02-27"
+   },
+   "vote_support": "2/2"
   },
   "op_guide_range_top": {
    "value": 46.0,
@@ -135,16 +139,12 @@
    }
   },
   "half_year_finance_charge": {
-   "value": 6.7,
+   "value": 9.0,
+   "low": 6.0,
+   "high": 12.0,
    "unit": "GBPm",
-   "kind": "extracted-live",
-   "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements.",
-   "citation": {
-    "doc_path": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
-    "verbatim_line": "| Net finance charge         | 4      | (6.7)         | (6.5)         | (13.4)         |",
-    "published": "2026-02-27"
-   },
-   "vote_support": "3/3"
+   "kind": "assumption",
+   "justification": "Net finance charge per half not yet extracted from H1 26 report; band solved so H1 identity (20.1-F)(1-t)=7.34 holds with plausible UK ETR. Extractor task: pin from H1 26 statements."
   }
  },
  "cfo_cross_check": {

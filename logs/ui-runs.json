@@ -12,5 +12,26 @@
     "company": "hays",
     "logfile": "logs/ui-run-skillgen-20260816T131245Z.log",
     "startedAt": "2026-08-16T13:12:45.200Z"
+  },
+  {
+    "pid": 92753,
+    "action": "forecast",
+    "company": null,
+    "logfile": "logs/ui-run-forecast-20260816T132337Z.log",
+    "startedAt": "2026-08-16T13:23:37.372Z"
+  },
+  {
+    "pid": 92905,
+    "action": "extract",
+    "company": "hays",
+    "logfile": "logs/ui-run-extract-20260816T132434Z.log",
+    "startedAt": "2026-08-16T13:24:34.779Z"
+  },
+  {
+    "pid": 92934,
+    "action": "forecast",
+    "company": null,
+    "logfile": "logs/ui-run-forecast-20260816T132448Z.log",
+    "startedAt": "2026-08-16T13:24:48.368Z"
   }
 ]
