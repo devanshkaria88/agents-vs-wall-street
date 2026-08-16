@@ -1,0 +1,242 @@
+# Analog Devices, Inc. (ADI) — target period FY2026 Q3 (13 weeks ending August 1, 2026; reports ~late August 2026)
+
+All quotes below verified verbatim against their doc_path this session (144/144 firewall pass).
+Raw structured dossier: `research/dossiers/analog-devices.json`
+
+## Corpus inventory
+
+271 documents covering 2015-01-29 to 2026-06-02 (corpus frozen 2026-08-14, i.e., BEFORE the Q3 FY26 report): 129 filings (quarterly earnings 8-Ks that each contain a next-quarter outlook with a projected GAAP-to-non-GAAP table, 10-Qs, 10-Ks, proxies), 131 call transcripts (earnings prepared remarks + Q&A for every quarter, plus broker-conference transcripts), 11 slide docs (investor day, Q4 FY25 overview, older earnings slides). Most recent and most relevant: 2026-05-20 Q2 FY26 8-K (two variants) with the Q3 FY26 outlook, the 2026-05-20 earnings call pres/Q&A, and a 2026-06-02 broker conference (intra-Q3 commentary). Complete chain of quarterly 8-Ks exists back to 2015, so guide-vs-actual can be computed for every quarter; I extracted the last 8. All paths below relative to repo root under challenge/offline-data/analog-devices/.
+
+## Metrics
+
+### Revenue (USDm)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 (ended 2026-05-02) | $3,623.465 million | `2026-05-20__adi-us-20260520-q2-8k__1040581.md` |
+| Q1 FY2026 (ended 2026-01-31) | $3,160.263 million | `2026-02-18__adi-us-20260218-q1-8k-2__602115.md` |
+| Q4 FY2025 (ended 2025-11-01) | $3,076.117 million | `2025-11-25__adi-us-20251125-q4-8k__361005.md` |
+| Q3 FY2025 (ended 2025-08-02) | $2,880.348 million | `2025-08-20__adi-us-20250820-q3-8k__155976.md` |
+| Q2 FY2025 (ended 2025-05-03) | $2,640.068 million | `2025-05-22__adi-us-20250522-q2-8k__102679.md` |
+| Q1 FY2025 (ended 2025-02-01) | $2,423.174 million | `2025-02-19__adi-us-20250219-q1-8k__102670.md` |
+| Q4 FY2024 (ended 2024-11-02) | $2,443.205 million | `2024-11-26__adi-us-20241126-q4-8k__102666.md` |
+| Q3 FY2024 (ended 2024-08-03) | $2,312.209 million | `2024-08-21__adi-us-20240821-q3-8k__102648.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > | Revenue | $ | 3,623,465 | | | $ | 2,640,068 | | | $ | 6,783,728 | | | $ | 5,063,242 | |
+  - note: Q2 FY26 income statement, thousands. Same doc's TTM table gives the full quarterly series: '| Revenue | $ | 12,739,993 | | | $ | 3,623,465 | | | $ | 3,160,063 | | | $ | 3,076,117 | | | $ | 2,880,348 | |' (note the Jan-2026 figure prints as 3,160,063 here vs 3,160,263 in the Q1 8-K — see open_questions).
+- `challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md`:
+  > | Revenue         | $ 3,160,263         | $ 2,423,174         |
+  - note: Q1 FY26 income statement (thousands).
+- `challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md`:
+  > | Revenue         | $ 3,076,117         | $ 2,443,205         | $ 11,019,707         | $ 9,427,157         |
+  - note: Q4 FY25 and FY25 total (thousands). FY25 revenue $11,019.7M — matches 8-K text 'revenue of more than $11 billion in FY25'.
+- `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`:
+  > | Revenue         | $ 2,880,348         | $ 2,312,209         | $ 7,943,590         | $ 6,983,952         |
+  - note: Q3 FY25 income statement (thousands).
+- `challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md`:
+  > | Revenue         | $ 2,640,068         | $ 2,159,039         | $ 5,063,242        | $ 4,671,743        |
+  - note: Q2 FY25 income statement (thousands).
+- `challenge/offline-data/analog-devices/filings/2025-02-19__adi-us-20250219-q1-8k__102670.md`:
+  > Revenue $ 2,423$ 2,513 (4) %
+  - note: Q1 FY25 results summary (millions); income-statement line in same doc is OCR-truncated: '| Revenue | $ 2,423,174         | $         |'.
+- `challenge/offline-data/analog-devices/filings/2024-11-26__adi-us-20241126-q4-8k__102666.md`:
+  > | Revenue         | $ 2,443,205         | $ 2,716,484         | $ 9,427,157         | $ 12,305,539         |
+  - note: Q4 FY24 income statement (thousands).
+- `challenge/offline-data/analog-devices/filings/2024-08-21__adi-us-20240821-q3-8k__102648.md`:
+  > | Revenue         | $ 2,312,209         | $ 3,076,495         | $ 6,983,952         | $ 9,589,055         |
+  - note: Q3 FY24 income statement (thousands).
+
+### Adjusted diluted EPS (USD/share)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 | $3.09 | `2026-05-20__adi-us-20260520-q2-8k__1040581.md` |
+| Q1 FY2026 | $2.46 | `2026-02-18__adi-us-20260218-q1-8k-2__602115.md` |
+| Q4 FY2025 | $2.26 | `2025-11-25__adi-us-20251125-q4-8k__361005.md` |
+| Q3 FY2025 | $2.05 | `2025-08-20__adi-us-20250820-q3-8k__155976.md` |
+| Q2 FY2025 | $1.85 | `2025-05-22__adi-us-20250522-q2-8k__102679.md` |
+| Q1 FY2025 | $1.63 | `2025-02-19__adi-us-20250219-q1-8k__102670.md` |
+| Q4 FY2024 | $1.67 | `2024-11-26__adi-us-20241126-q4-8k__102666.md` |
+| Q3 FY2024 | $1.58 | `2024-08-21__adi-us-20240821-q3-8k__102648.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > | Adjusted diluted EPS* | $ | 3.09 | | | $ | 1.85 | | | $ | 5.54 | | | $ | 3.48 | |
+  - note: Q2 FY26 GAAP-to-non-GAAP reconciliation. Definition: GAAP diluted EPS excluding acquisition related expenses, special charges net, and tax related items.
+- `challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md`:
+  > | Adjusted diluted EPS*         | $ 2.46         | $ 1.63         |
+  - note: Q1 FY26 reconciliation table.
+- `challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md`:
+  > | Adjusted diluted EPS*         | $ 2.26         | $ 1.67         | $ 7.79         | $ 6.38         |
+  - note: Q4 FY25 and FY25 ($7.79).
+- `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`:
+  > | Adjusted diluted EPS*         | $ 2.05         | $ 1.58         | $ 5.53         | $ 4.71         |
+  - note: Q3 FY25.
+- `challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md`:
+  > | Adjusted diluted EPS*         | $ 1.85         | $ 1.40         | $ 3.48         | $ 3.13         |
+  - note: Q2 FY25.
+- `challenge/offline-data/analog-devices/filings/2025-02-19__adi-us-20250219-q1-8k__102670.md`:
+  > Adjusted diluted earnings per share $ 1.63$ 1.73 (6) %
+  - note: Q1 FY25 results summary (reconciliation line in this doc is OCR-mangled).
+- `challenge/offline-data/analog-devices/filings/2024-11-26__adi-us-20241126-q4-8k__102666.md`:
+  > | Adjusted diluted EPS*         | $ 1.67         | $ 2.01         | $ 6.38         | $ 10.09         |
+  - note: Q4 FY24 and FY24 ($6.38).
+- `challenge/offline-data/analog-devices/filings/2024-08-21__adi-us-20240821-q3-8k__102648.md`:
+  > | Adjusted diluted EPS*         | $ 1.58         | $ 2.49         | $ 4.71         | $ 8.07         |
+  - note: Q3 FY24.
+
+### Adjusted gross margin (%)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 | 73.0 % | `2026-05-20__adi-us-20260520-q2-8k__1040581.md` |
+| Q1 FY2026 | 71.2 % | `2026-02-18__adi-us-20260218-q1-8k-2__602115.md` |
+| Q4 FY2025 | 69.8 % | `2025-11-25__adi-us-20251125-q4-8k__361005.md` |
+| Q3 FY2025 | 69.2 % | `2025-08-20__adi-us-20250820-q3-8k__155976.md` |
+| Q2 FY2025 | 69.4 % | `2025-05-22__adi-us-20250522-q2-8k__102679.md` |
+| Q1 FY2025 | 68.8 % | `2025-02-19__adi-us-20250219-q1-8k__102670.md` |
+| Q4 FY2024 | 67.9 % | `2024-11-26__adi-us-20241126-q4-8k__102666.md` |
+| Q3 FY2024 | 67.9 % | `2024-08-21__adi-us-20240821-q3-8k__102648.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > | Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 72.2 | % | | 69.1 | % |
+  - note: Q2 FY26 reconciliation (Q2 FY26 73.0% vs Q2 FY25 69.4%). Definition: GAAP gross margin excluding acquisition related expenses ($205.5M added back in Q2 FY26), divided by revenue.
+- `challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md`:
+  > | Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |
+  - note: Q1 FY26 results summary.
+- `challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md`:
+  > | Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |
+  - note: Q4 FY25 69.8%; FY25 69.3%.
+- `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`:
+  > | Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |
+  - note: Q3 FY25 69.2%.
+- `challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md`:
+  > | Adjusted gross margin percentage    |         | 69.4 %         | 66.7 %         | 270 bps         |
+  - note: Q2 FY25 69.4%.
+- `challenge/offline-data/analog-devices/filings/2025-02-19__adi-us-20250219-q1-8k__102670.md`:
+  > Adjusted gross margin percentage 68.8 % 69.0 % (20 bps)
+  - note: Q1 FY25 68.8%.
+- `challenge/offline-data/analog-devices/filings/2024-11-26__adi-us-20241126-q4-8k__102666.md`:
+  > | Adjusted gross margin percentage    | 67.9%         | 70.2%         | (230 bps)         | 67.9%         | 72.5%         | (460 bps)         |
+  - note: Q4 FY24 67.9%; FY24 67.9%.
+- `challenge/offline-data/analog-devices/filings/2024-08-21__adi-us-20240821-q3-8k__102648.md`:
+  > | Adjusted gross margin percentage    |         | 67.9%         | 72.2%         | (430 bps)         |
+  - note: Q3 FY24 67.9% (cycle trough area).
+
+## Guidance (all forward-looking statements found for the target period)
+
+- **2026-05-20** `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for reported EPS to be $2.60, +/-$0.15, and adjusted EPS to be $3.30, +/-$0.15.
+  - interpretation: THE core Q3 FY26 guide: Revenue $3,900M midpoint, range $3,800-4,000M. Adjusted EPS $3.30 midpoint, range $3.15-3.45. Adjusted operating margin 49.0% +/-100bps. Reported EPS $2.60 +/-0.15. No explicit adjusted gross margin guide in the 8-K (never is). Note the wider +/-$0.15 EPS band (was +/-$0.10 through Q4 FY25; widened to +/-$0.15 starting with the Q2 FY26 guide).
+- **2026-05-20** `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > | | Three Months Ending August 1, 2026 |
+  - interpretation: Projected GAAP-to-non-GAAP table header confirming the target quarter ends August 1, 2026 (13 weeks). Table rows: 'Revenue $3.9 Billion (+/- $100 Million)' both bases; 'Operating margin 39.0% (+/-150 bps)' reported vs '49.0% (1) (+/-100 bps)' adjusted; 'Tax rate 12% - 14%' both bases; 'Earnings per share $2.60 (+/- $0.15)' reported vs '$3.30 (3) (+/- $0.15)' adjusted. Footnote (3): 'Includes $0.70 of adjustments related to the net impact of acquisition related expenses and the tax effects on those items.' Footnote (1): $391M of acquisition-related adjustments to operating margin.
+- **2026-05-20** `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k-2__1040614.md`:
+  > For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for reported EPS to be $2.60, +/-$0.15, and adjusted EPS to be $3.30, +/-$0.15.
+  - interpretation: The -2 variant (PR-wire rendering of the same release, line 118) carries identical Q3 FY26 guidance — confirms the primary doc.
+- **2026-05-20** `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`:
+  > "We continued to see growing demand in the second quarter with record bookings across our B2B markets of Industrial, Automotive, and Communications," said Richard Puccio, CFO. "These positive demand signals are reflected in our outlook for continued strong growth in the third quarter."
+  - interpretation: CFO framing: record bookings across B2B markets underpin the Q3 guide — supportive of at-least-midpoint delivery.
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-pres__1041157.md`:
+  > Now, moving on to our third quarter outlook. Revenue is expected to be $3.9 billion, +-$100 million. Operating margin at the midpoint is expected to be 49%, +-100 basis points.
+  - interpretation: Call restatement of the guide; 'operating margin' on the call is the adjusted (non-GAAP) basis per the call's ground rules.
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-pres__1041157.md`:
+  > Our tax rate is expected to be 12%-14%, and based on these inputs, adjusted EPS is expected to be $3.30, +-$0.15.
+  - interpretation: Adjusted EPS $3.30 +/-$0.15 with 12-14% adjusted tax rate assumption.
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md`:
+  > For Q3, we are assuming about a 50 basis points decline in gross margin, largely driven by the absence of that one-time benefit we got from repricing the channel during the prior quarter, obviously. From a mix perspective, we do expect it's likely to be a slight tailwind based on our outlook.
+  - interpretation: The ONLY explicit Q3 FY26 gross margin guide in the corpus: ~50bps decline off Q2's 73.0% implies ~72.5% adjusted gross margin for Q3 FY26. Driven by non-repeat of a one-time ~50bps channel-inventory repricing benefit; mix a slight tailwind; utilization 'fairly neutral' with little upside (factories near full).
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md`:
+  > Yeah, I actually think that's the right way to think about it. Near term, this is probably the right way to think about the guided gross margins, the right way to think about it.
+  - interpretation: CFO endorses analyst framing that ~guided GM (~72.5%) is a near-term ceiling given maxed utilization; upside would require more outsourcing. Caps upside risk on the GM forecast.
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md`:
+  > If we look at what we think at the midpoint of the guide, what we expect to see in Q3 is continued above seasonal growth across industrial, automotive, and communication. From an industrial and automotive perspective, we'd expect to grow sort of mid to high single digits sequentially.
+  - interpretation: Segment mechanics of the Q3 guide: above-seasonal sequential growth in industrial, auto, comms; industrial and auto up mid-to-high single digits q/q. Consumer expected to see some macro impact.
+- **2026-05-20** `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md`:
+  > As we look out at Q3, we have record bookings, positive book-to-bill, and so we do expect to see above-seasonal growth sort of in that mid-high single digits. We are pretty confident in the outlook for the rest of the year for us in auto.
+  - interpretation: Order-book support for the Q3 guide; auto customers described as lean on inventory (no build-up seen).
+- **2026-06-02** `challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md`:
+  > Our manufacturing and global ops teams have been very agile. You've seen we've been able to capture a whole bunch of upside. We just posted a record quarter. We've guided another record quarter.
+  - interpretation: Intra-Q3 (two weeks into the quarter) conference: tone unchanged, demand tightening, orders extending a quarter further out than historically. No walk-back of the guide.
+- **2026-06-02** `challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md`:
+  > What happened was we saw an acceleration literally in the last month of the quarter in auto demand that we were expecting to come in Q3.
+  - interpretation: Mild caution flag: some auto demand expected in Q3 landed in Q2 instead (management explicitly says they do not think it was a pre-buy, citing rising L2/L3 ADAS content in China). Could slightly temper the usual Q3 beat magnitude in auto.
+- **2026-02-18** `challenge/offline-data/analog-devices/call-transcripts/2026-02-18__adi-us-20260218-call-qna__602365.md`:
+  > And again, the expected increase here is driven by favorable mix and uplift from price, which includes 50 basis points that will not repeat in Q3, since it relates to the one-time effect of repricing our inventory in the channel.
+  - interpretation: As early as the Q1 FY26 call, CFO pre-flagged that Q2's gross margin included ~50bps one-time channel repricing benefit that would NOT recur in Q3 — consistent with the ~72.5% Q3 GM read.
+
+## Guide-vs-actual track record
+
+- **Q3 FY2024 (ended 2024-08-03)**
+  - guided: Revenue $2.27B +/-$100M; adjusted EPS $1.50 +/-$0.10; adjusted operating margin 40.0% +/-100bps (guided 2024-05-22: 'For the third quarter of fiscal 2024, we are forecasting revenue of $2.27 billion, +/- $100 million... adjusted EPS to be $1.50, +/-$0.10.')
+  - actual: Revenue $2,312.209M (+$42M vs midpoint, +1.9%); adjusted EPS $1.58 (+$0.08); adjusted GM 67.9%. Verbatim: '| Revenue         | $         | 2,312         | $ 3,076         | (25)%         |' and '| Adjusted diluted earnings per share | $         | 1.58         | $ 2.49         | (37)%         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2024-05-22__adi-us-20240522-q2-8k__102675.md`, `challenge/offline-data/analog-devices/filings/2024-08-21__adi-us-20240821-q3-8k__102648.md`
+- **Q4 FY2024 (ended 2024-11-02)**
+  - guided: Revenue $2.40B +/-$100M; adjusted EPS $1.63 +/-$0.10; adjusted operating margin 41.0% +/-100bps (guided 2024-08-21)
+  - actual: Revenue $2,443.205M (+$43M, +1.8%); adjusted EPS $1.67 (+$0.04); adjusted GM 67.9%. Verbatim: '| Revenue         | $ 2,443         | $ 2,716         | (10)%         | $ 9,427         | $ 12,306         | (23)%         |' and '| Adjusted diluted earnings per share | $ 1.67         | $ 2.01         | (17)%         | $ 6.38         | $ 10.09         | (37)%         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2024-08-21__adi-us-20240821-q3-8k__102648.md`, `challenge/offline-data/analog-devices/filings/2024-11-26__adi-us-20241126-q4-8k__102666.md`
+- **Q1 FY2025 (ended 2025-02-01)**
+  - guided: Revenue $2.35B +/-$100M; adjusted EPS $1.53 +/-$0.10; adjusted operating margin 40.0% +/-100bps (guided 2024-11-26)
+  - actual: Revenue $2,423.174M (+$73M, +3.1%); adjusted EPS $1.63 (+$0.10, at top of range); adjusted GM 68.8%. Verbatim: 'Revenue $ 2,423$ 2,513 (4) %' and 'Adjusted diluted earnings per share $ 1.63$ 1.73 (6) %'
+  - sources: `challenge/offline-data/analog-devices/filings/2024-11-26__adi-us-20241126-q4-8k__102666.md`, `challenge/offline-data/analog-devices/filings/2025-02-19__adi-us-20250219-q1-8k__102670.md`
+- **Q2 FY2025 (ended 2025-05-03)**
+  - guided: Revenue $2.50B +/-$100M; adjusted EPS $1.68 +/-$0.10; adjusted operating margin 40.5% +/-100bps (guided 2025-02-19)
+  - actual: Revenue $2,640.068M (+$140M, +5.6% — ABOVE the high end); adjusted EPS $1.85 (+$0.17 — above high end); adjusted GM 69.4%. Verbatim: '| Revenue         | $         | 2,640         | $ 2,159         | 22 %         |' and '| Adjusted diluted earnings per share | $         | 1.85         | $ 1.40         | 32 %         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2025-02-19__adi-us-20250219-q1-8k__102670.md`, `challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md`
+- **Q3 FY2025 (ended 2025-08-02) — the year-ago analog of the target quarter**
+  - guided: Revenue $2.75B +/-$100M; adjusted EPS $1.92 +/-$0.10; adjusted operating margin 41.5% +/-100bps (guided 2025-05-22)
+  - actual: Revenue $2,880.348M (+$130M, +4.7% — ABOVE the high end); adjusted EPS $2.05 (+$0.13 — above high end); adjusted GM 69.2%. Verbatim: '| Revenue         | $         | 2,880         | $ 2,312         | 25 %         |' and '| Adjusted diluted earnings per share | $         | 2.05         | $ 1.58         | 30 %         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2025-05-22__adi-us-20250522-q2-8k__102679.md`, `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`
+- **Q4 FY2025 (ended 2025-11-01)**
+  - guided: Revenue $3.0B +/-$100M; adjusted EPS $2.22 +/-$0.10; adjusted operating margin 43.5% +/-100bps (guided 2025-08-20)
+  - actual: Revenue $3,076.117M (+$76M, +2.5%); adjusted EPS $2.26 (+$0.04); adjusted GM 69.8%. Verbatim: '| Revenue         | $ 3,076         | $ 2,443         | 26%         | $ 11,020         | $ 9,427         | 17%         |' and '| Adjusted diluted earnings per share       | $ 2.26         | $ 1.67         | 35%         | $ 7.79         | $ 6.38         | 22%         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`, `challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md`
+- **Q1 FY2026 (ended 2026-01-31)**
+  - guided: Revenue $3.1B +/-$100M; adjusted EPS $2.29 +/-$0.10; adjusted operating margin 43.5% +/-100bps (guided 2025-11-25)
+  - actual: Revenue $3,160.263M (+$60M, +1.9%); adjusted EPS $2.46 (+$0.17 — above high end, driven by gross margin upside); adjusted GM 71.2%. Verbatim: '| Revenue         | $         | 3,160         | $ 2,423         | 30 %         |' and '| Adjusted diluted earnings per share | $         | 2.46         | $ 1.63         | 51 %         |'
+  - sources: `challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md`, `challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md`
+- **Q2 FY2026 (ended 2026-05-02) — most recent reported quarter**
+  - guided: Revenue $3.5B +/-$100M; adjusted EPS $2.88 +/-$0.15; adjusted operating margin 47.5% +/-100bps (guided 2026-02-18)
+  - actual: Revenue $3,623.465M (+$123M, +3.5% — ABOVE the high end); adjusted EPS $3.09 (+$0.21 — above high end); adjusted GM 73.0%; adjusted op margin 49.0%. 8-K states: '"ADI's second quarter revenue and earnings were above the high end of our outlook, reflecting the combination of record demand and sharp operational discipline," said Vincent Roche, CEO and Chair.'
+  - sources: `challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md`, `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`
+- **SUMMARY: beat bias over the 8 quarters above (Q3 FY24 - Q2 FY26)**
+  - guided: Revenue guides were $2.27B, $2.40B, $2.35B, $2.50B, $2.75B, $3.00B, $3.10B, $3.50B (all +/-$100M). Adjusted EPS guides $1.50, $1.63, $1.53, $1.68, $1.92, $2.22, $2.29, $2.88 (+/-$0.10 through Q1 FY26, +/-$0.15 from Q2 FY26).
+  - actual: Revenue beat the midpoint 8-of-8 times: +$42M, +$43M, +$73M, +$140M, +$130M, +$76M, +$60M, +$123M -> mean +$86M (+3.1% of midpoint), median +$75M (+2.8%); range +1.8% to +5.6%; 3 of 8 quarters above the +$100M high end (Q2 FY25, Q3 FY25, Q2 FY26). Adjusted EPS beat the midpoint 8-of-8 times: +$0.08, +$0.04, +$0.10, +$0.17, +$0.13, +$0.04, +$0.17, +$0.21 -> mean +$0.12, median +$0.115; 4 of 8 above the guide's high end. During the current upcycle (last 5 quarters, Q2 FY25-Q2 FY26) mean revenue beat is +$106M (+3.6%) and mean EPS beat +$0.14. Applied naively to the Q3 FY26 guide ($3.9B / $3.30 / ~72.5% GM), the historical bias maps to roughly $4.00-4.02B revenue and ~$3.42-3.44 adjusted EPS.
+  - sources: `challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md`, `challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md`
+
+## Wall Street signals in the corpus
+
+- `challenge/offline-data/analog-devices/call-transcripts/2025-12-02__adi-us-20251202-call-conf-pres-3__381899.md`:
+  > If I take your January guidance and I just apply normal seasonal throughout the rest of calendar 2026 or throughout all of calendar 2026, I get you growing somewhere in the range of 20%. I mean, it's much higher than what I think the consensus would be that the analog market will grow.
+  - note: Dec-2025 sell-side host frames ADI as tracking ~20% growth in calendar 2026 if normal seasonality holds — well above consensus for the analog market. Actual H1 FY26 grew 34% y/y, i.e., ADI has been running ahead of even that framing.
+- `challenge/offline-data/analog-devices/call-transcripts/2024-08-21__adi-us-20240821-call-q3-qna__40055.md`:
+  > I'll start out on the Street expectations and then Rick talked a little about bookings. We never guided 1Q. I think the Street makes up the Street expectation for 1Q.
+  - note: Management's stance on consensus: they guide only one quarter ahead and distance themselves from Street extrapolations. Analyst on same call: "The Street's modeling like 5% or 6% above seasonal for fiscal Q1."
+- `challenge/offline-data/analog-devices/call-transcripts/2024-09-17__adi-us-20240917-call-conf-pres-3__488961.md`:
+  > So the good news is consensus is sort of centered around that fiscal 2028 timeframe.
+  - note: Sept-2024 conference: consensus centered on ~$15 EPS power by FY2028. With FY26 H1 adjusted EPS already $5.54 and Q3 guided $3.30, ADI is running far ahead of that consensus arc.
+- `challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md`:
+  > We've been thinking about Q3 within that range as sort of a likely ceiling for now, just given utilizations are maxed.
+  - note: Analyst (buy-side proxy for how the Street models Q3 FY26 GM): guided gross margin treated as a near-term ceiling; CFO agreed. Implies Street models ~72.5% GM for Q3 with limited upside. No explicit Q3 FY26 consensus revenue/EPS figures exist anywhere in the corpus.
+
+## Open questions
+
+- Q1 FY26 revenue digit discrepancy inside the corpus: the Q1 FY26 8-K income statement shows '$ 3,160,263' (challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md) while the Q2 FY26 8-K's TTM free-cash-flow table shows '$ 3,160,063' for the Jan. 31, 2026 quarter (filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md). Difference is $0.2M — almost certainly an OCR/transcription artifact; I used $3,160.263M.
+- ADI never guides adjusted gross margin in its 8-K outlook (only revenue, operating margin, tax rate, EPS). The Q3 FY26 adjusted GM estimate (~72.5% = 73.0% minus ~50bps) rests entirely on the CFO's Q&A remark on 2026-05-20; treat as management color, not a formal guide.
+- No explicit sell-side consensus numbers for Q3 FY26 (revenue/EPS estimates) appear anywhere in the corpus; wall_street_signals are indirect/historical.
+- Guide-vs-actual for adjusted gross margin cannot be computed (no historical GM guides); only the actual GM series is available. For operating margin, guided adj-op-margin vs actual can be computed if needed (e.g., Q2 FY26: guided 47.5% +/-100bps, actual 49.0% — beat above high end).
+- The corpus was frozen 2026-08-14, ~2 weeks after the Aug 1, 2026 quarter-end but before the earnings release; I verified no Q3 FY26 actuals leak anywhere in the corpus.
+- Possible beat-tempering factor: on 2026-06-02 management disclosed that auto demand expected in Q3 accelerated into the final month of Q2 (they argue it was content-driven, not a pre-buy). Also note the EPS guide band widened from +/-$0.10 to +/-$0.15 starting with the Q2 FY26 guide, suggesting management sees a wider outcome distribution.
+- Track record before Q3 FY24 exists in the corpus (quarterly 8-K outlooks back to 2015) if a longer beat-bias baseline is wanted; not extracted here. Note FY2024 had a 53rd week consideration? Not verified — FY24 Q4 was 14 weeks per ADI's fiscal calendar in some years; the guide/actual comparison above is unaffected since both refer to the same quarter as defined by ADI.

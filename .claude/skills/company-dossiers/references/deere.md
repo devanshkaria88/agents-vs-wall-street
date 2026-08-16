@@ -1,0 +1,208 @@
+# Deere & Company (DE) — target period FY2026 Q3 (quarter ending ~Aug 2, 2026; expected report ~mid-August 2026)
+
+All quotes below verified verbatim against their doc_path this session (144/144 firewall pass).
+Raw structured dossier: `research/dossiers/deere.json`
+
+## Corpus inventory
+
+challenge/offline-data/deere/ contains 310 docs spanning 2012-05-16 to 2026-05-28 (corpus_frozen_at 2026-08-14): 128 filings (earnings-release 8-Ks with full P&L/segment tables from ~2015 onward, 10-Qs, 10-Ks, proxies), 131 call transcripts (earnings prepared remarks + Q&A each quarter back to 2012, plus AGMs and investor days), 51 slide decks (quarterly earnings decks with segment outlook/margin charts). Full quarterly coverage of earnings 8-K + transcript + slides runs from FY2015 through Q2 FY2026 (published 2026-05-21; Q2 FY26 10-Q on 2026-05-28 is the newest doc). There are NO documents for the target period FY2026 Q3 — the freeze (2026-08-14) predates the expected mid-August release. Key priority docs: filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md (Q2 FY26 earnings release with FY2026 outlook), slides/2026-05-21__de-us-20260521-slide__1042212.md (segment margin outlook), call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md and __call-qna__1042775.md (H2 cadence), filings/2025-08-15__de-us-20250815-q3-8k__143410.md (year-ago Q3 FY25 comps).
+
+## Metrics
+
+### Worldwide net sales and revenues (USDm, TOTAL incl. Financial Services)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 (ended May 3, 2026) | $13,369 million | `2026-05-21__de-us-20260521-q2-8k-2__1042168.md` |
+| Q1 FY2026 (ended Feb 1, 2026) | $9,611 million | `2026-02-19__de-us-20260219-q1-8k__603009.md` |
+| Q4 FY2025 (ended Nov 2, 2025) | $12,394 million | `2025-11-26__de-us-20251126-q4-8k__361233.md` |
+| Q3 FY2025 (ended Jul 27, 2025) — year-ago comp | $12,018 million | `2025-08-15__de-us-20250815-q3-8k__143410.md` |
+| Q2 FY2025 (ended Apr 27, 2025) | $12,763 million | `2025-05-15__de-us-20250515-q2-8k__105808.md` |
+| Q1 FY2025 (ended Jan 26, 2025) | $8,508 million | `2025-02-13__de-us-20250213-q1-8k__105841.md` |
+| Q4 FY2024 (ended Oct 27, 2024) | $11,143 million | `2024-11-21__de-us-20241121-q4-8k__105840.md` |
+| Q3 FY2024 (ended Jul 28, 2024) | $13,152 million | `2024-08-15__de-us-20240815-q3-8k__105836.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > Worldwide net sales and revenues increased 5 percent, to $13.369 billion, for the second quarter of 2026 and rose 8 percent, to $22.981 billion, for six months. Net sales were $11.778 billion for the quarter and $19.779 billion for six months, compared with $11.171 billion and $17.980 billion last year, respectively.
+  - note: CRITICAL TRAP shown verbatim in this line: 'Worldwide net sales and revenues' ($13.369B) is the consolidated TOTAL including Financial Services revenues and other income; bare 'Net sales' ($11.778B) is equipment operations only. In press-release tables the total appears as the row 'Total net sales and revenues'.
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Total net sales and revenues         | $13,369         | $12,763         | +5         | $22,981         | $21,272         | +8         |
+  - note: Press-release segment-revenue table row (Q2 FY26 vs Q2 FY25; 6-month columns follow). Components above it: PPA net sales, SAT net sales, CF net sales, Financial Services revenues, Other revenues.
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > Equipment operations represent the enterprise without Financial Services.
+  - note: Note (3) of the release defines the equipment-ops vs consolidated distinction.
+
+### Diluted EPS (GAAP, USD/share)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 | $6.55 (note: includes ~$272M pretax IEEPA tariff-refund recovery) | `2026-05-21__de-us-20260521-q2-8k-2__1042168.md` |
+| Q1 FY2026 | $2.42 | `2026-02-19__de-us-20260219-q1-8k__603009.md` |
+| Q4 FY2025 | $3.93 (FY2025 full year: $18.50) | `2025-11-26__de-us-20251126-q4-8k__361233.md` |
+| Q3 FY2025 — year-ago comp | $4.75 | `2025-08-15__de-us-20250815-q3-8k__143410.md` |
+| Q2 FY2025 | $6.64 | `2025-05-15__de-us-20250515-q2-8k__105808.md` |
+| Q1 FY2025 | $3.19 (included favorable discrete tax items ~$163M) | `2025-02-13__de-us-20250213-q1-8k__105841.md` |
+| Q4 FY2024 | $4.55 (FY2024 full year: $25.62) | `2024-11-21__de-us-20241121-q4-8k__105840.md` |
+| Q3 FY2024 | $6.29 | `2024-08-15__de-us-20240815-q3-8k__105836.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Fully diluted EPS         | $ 6.55         | $ 6.64         |         | $ 8.97         | $ 9.82         |         |
+  - note: Headline table labels it 'Fully diluted EPS'; the income statement labels it 'Diluted' under 'Per Share Data'. Q2 FY26 $6.55 vs Q2 FY25 $6.64; H1 FY26 $8.97 vs H1 FY25 $9.82.
+- `challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md`:
+  > | Diluted         | 4.75         | 6.29         | 14.57         | 21.04         |
+  - note: Income-statement 'Per Share Data' row: Q3 FY25 $4.75, Q3 FY24 $6.29, 9M figures follow. Deere gives NO EPS guidance — it guides fiscal-year net income in dollars only.
+
+### Production & Precision Ag operating profit (USDm)
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 | $706 million (margin 15.7%; net sales $4,503M; boosted by share of $272M IEEPA tariff refund) | `2026-05-21__de-us-20260521-q2-8k-2__1042168.md` |
+| Q1 FY2026 | $139 million (net sales $3,163M) | `2026-02-19__de-us-20260219-q1-8k__603009.md` |
+| Q4 FY2025 | $604 million (margin 12.7%; net sales $4,740M; FY2025 total op profit $2,671M on $17,311M sales, 15.4% margin) | `2025-11-26__de-us-20251126-q4-8k__361233.md` |
+| Q3 FY2025 — year-ago comp | $580 million (margin 13.6%; net sales $4,273M) | `2025-08-15__de-us-20250815-q3-8k__143410.md` |
+| Q2 FY2025 | $1,148 million (margin 22.0%; net sales $5,230M) | `2025-05-15__de-us-20250515-q2-8k__105808.md` |
+| Q1 FY2025 | $338 million (net sales $3,067M) | `2025-02-13__de-us-20250213-q1-8k__105841.md` |
+| Q4 FY2024 | $657 million (margin 15.3%; net sales $4,305M) | `2024-11-21__de-us-20241121-q4-8k__105840.md` |
+| Q3 FY2024 | $1,162 million (margin 22.8%; net sales $5,099M) | `2024-08-15__de-us-20240815-q3-8k__105836.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Production & Precision Ag         | $ 706         | $ 1,148         | -39         | $ 845         | $ 1,486         | -43         |
+  - note: Press-release 'Operating profit: *' table. Segment section also shows: Net sales $4,503 (-14%), Operating profit $706 (-39%), Operating margin 15.7% vs 22.0%. LABEL DRIFT: FY24/FY25 releases print 'Production & precision ag' (lowercase); FY26 releases print 'Production & Precision Ag'.
+- `challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md`:
+  > | Production & precision ag         | $ 580         | $ 1,162         | -50         | $ 2,066         | $ 3,857         | -46         |
+  - note: Year-ago Q3 FY25: op profit $580M on net sales $4,273M, margin 13.6% (vs 22.8% in Q3 FY24).
+
+### Average diluted shares outstanding (millions) — for EPS math
+
+**Recent values (most recent first):**
+
+| Period | Value | Source |
+|---|---|---|
+| Q2 FY2026 | 270.8 million | `2026-05-21__de-us-20260521-q2-8k-2__1042168.md` |
+| Q1 FY2026 | 270.9 million | `2026-02-19__de-us-20260219-q1-8k__603009.md` |
+| Q4 FY2025 | 271.1 million (FY2025 avg 271.7) | `2025-11-26__de-us-20251126-q4-8k__361233.md` |
+| Q3 FY2025 | 271.4 million | `2025-08-15__de-us-20250815-q3-8k__143410.md` |
+| Q2 FY2025 | 271.8 million | `2025-05-15__de-us-20250515-q2-8k__105808.md` |
+| Q1 FY2025 | 272.3 million | `2025-02-13__de-us-20250213-q1-8k__105841.md` |
+| Q4 FY2024 | 273.6 million (FY2024 avg 277.1) | `2024-11-21__de-us-20241121-q4-8k__105840.md` |
+| Q3 FY2024 | 275.6 million | `2024-08-15__de-us-20240815-q3-8k__105836.md` |
+
+**Where reported (verbatim, with full paths):**
+
+- `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |
+  - note: 'Average Shares Outstanding' block of the income statement: Q2 FY26 270.8M vs Q2 FY25 271.8M; H1 FY26 270.9M. H1 FY26 buybacks were $500M (vs $838M in H1 FY25) per the cash-flow statement.
+
+## Guidance (all forward-looking statements found for the target period)
+
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > Net income attributable to Deere &amp; Company for fiscal 2026 is forecasted to be in a range of $4.5 billion to $5.0 billion.
+  - interpretation: THE central guidance form: Deere guides FY net income in dollars, never quarterly EPS. Maintained at Q2 from the Q1 raise. With H1 FY26 net income of $2.429B (EPS $8.97) already booked, the guide implies H2 FY26 net income of ~$2.07B-$2.57B. At ~270.5M diluted shares, implied H2 EPS ~$7.66-$9.50, split across Q3 and Q4 with Q4 guided to be the stronger quarter.
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Production & Precision Ag | Down 5 to 10% | +3.0%         | ~ +1.0%         |
+  - interpretation: FY2026 segment outlook row (Deere Segment Outlook for Fiscal 2026): PPA net sales down 5-10% YoY (FY25 base $17,311M -> ~$15.6-16.4B), including +3.0% currency and ~+1.0% price. Price expectation was trimmed ~0.5pt from Q1's ~+1.5%.
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Small Ag & Turf         | Up ~15%       | +1.0%         | ~ +1.5%         |
+  - interpretation: SAT FY26 net sales up ~15% (raised from up ~10% at initial Nov guide).
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Construction & Forestry   | Up ~20%       | +2.0%         | ~ +2.5%         |
+  - interpretation: C&F FY26 net sales up ~20% (raised from ~15% at Q1 and ~10% initial).
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > | Financial Services        | Net Income    | ~ $860         |         |
+  - interpretation: Financial Services FY2026 net income guided to ~$860M (raised from ~$840M at Q1 and ~$830M initial). H1 FY26 FS net income was $434M, implying ~$426M in H2 (~$213M/qtr).
+- **2026-05-21** `challenge/offline-data/deere/slides/2026-05-21__de-us-20260521-slide__1042212.md`:
+  > The text "11-13%" is positioned above the light green segment of the FY 2026 Fcst bar.*
+  - interpretation: PPA FY2026 operating-margin outlook 11-13% (vs 15.4% FY25 actual), on net sales down 5-10% from $17,311M. Implies FY26 PPA op profit ~$1.72-2.13B; H1 actual was $845M, so implied H2 PPA op profit ~$0.9-1.3B.
+- **2026-05-21** `challenge/offline-data/deere/slides/2026-05-21__de-us-20260521-slide__1042212.md`:
+  > This green bar is labeled with "13.5-15%", indicating a projected operating margin range.
+  - interpretation: SAT FY2026 operating-margin outlook 13.5-15% (raised from 12.5-14% at initial guide), on FY25 base sales $10,224M.
+- **2026-05-21** `challenge/offline-data/deere/slides/2026-05-21__de-us-20260521-slide__1042212.md`:
+  > For FY 2025, there is a gray bar with the value "9.0%".
+  - interpretation: C&F slide: FY25 margin 9.0%, FY2026 forecast margin '10-12%' (stacked bar), on sales up ~20% from $11,382M base.
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md`:
+  > we would expect slightly higher revenue in the back half, with the fourth quarter being higher than the third quarter. In addition, we would expect to see our most favorable cost comparisons in the fourth quarter as well.
+  - interpretation: KEY Q3-specific cadence: H2 FY26 revenue slightly above H1 ($22,981M), with Q4 > Q3. That implies Q3 FY26 total revenue somewhat below half of H2 — roughly $11-11.5B equipment-weighted, and profit skewed to Q4 (best cost comps in Q4).
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md`:
+  > we expect back half to be higher than the front half, Q4 would be a little bit higher than Q3 overall.
+  - interpretation: Q&A confirmation of the H2 cadence (file is labeled 'Q3 2026 Earnings Call Transcript' in INDEX but is actually the May 21, 2026 Q2 FY26 Q&A).
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md`:
+  > We've got more Waterloo large tractor shipments shipping to North America in the back half than the front half of the year. That's abnormal for us, but reflected how the order book built for the course of the year.
+  - interpretation: Abnormal seasonality flag for PPA: large-tractor shipments are back-half weighted in FY26, and within H2, Q4-weighted ('Q4 a bit stronger than Q3' for large ag). Supports PPA Q3 revenue/profit below Q4 but above normal Q3 troughs.
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md`:
+  > You'll get a little bit of a step down in Q3 and another step down in Q4, just on a normal seasonal basis. Construction & Forestry, fairly balanced between the two.
+  - interpretation: SAT declines sequentially in Q3 and again in Q4 (normal seasonality from spring peak); C&F roughly balanced across Q3/Q4 with Q4 slightly stronger.
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md`:
+  > our direct tariff exposure remains essentially unchanged at approximately $1.2 billion, which is approximately a 3% margin headwind. Net of the refunds, our forecast now includes approximately $900 million of tariff costs for the year.
+  - interpretation: FY26 guidance embeds ~$900M net tariff cost ($1.2B gross less $272M Q2 IEEPA refund + other). H2 therefore carries substantial tariff cost, but YoY comps ease because tariffs began hitting in H2 FY25 (~$200M in Q3 FY25, ~$300M in Q4 FY25).
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md`:
+  > our implied net price realization for the equipment operations is between 1.5% and 2% for the year, which is consistent with general inflation levels that we are experiencing, excluding the impact of tariffs.
+  - interpretation: Equipment-ops FY26 net price +1.5-2%; separately Q&A says price and price/cost improve in the back half as FY25's H2 incentives are lapped.
+- **2026-05-21** `challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-qna__1042775.md`:
+  > Price cost will improve as we move through the balance of the fiscal year. Thanks for the question.
+  - interpretation: Price/cost ratio improves through H2 — favorable for Q3 margins YoY (Q3 FY25 PPA margin was a depressed 13.6%).
+- **2026-05-21** `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`:
+  > The company recorded a recovery of $272 million for refund claims related to IEEPA tariffs which have been filed and accepted by the U.S. Customs and Border Protection.
+  - interpretation: One-time Q2 FY26 benefit (lifted Q2 equipment margins ~2.5pts per the call). Do NOT extrapolate to Q3; management said only accepted claims were booked and further refunds were not in guidance.
+- **2026-02-19** `challenge/offline-data/deere/filings/2026-02-19__de-us-20260219-q1-8k__603009.md`:
+  >  Net income guidance range increased to $4.5 billion - $5.0 billion
+  - interpretation: Q1 FY26 release headline bullet: guidance raised from the initial $4.00-4.75B after Q1 shipments came in ahead of plan.
+- **2025-11-26** `challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md`:
+  > Net income attributable to Deere &amp; Company for fiscal 2026 is forecasted to be in a range of $4.00 billion to $4.75 billion.
+  - interpretation: Initial FY2026 guidance at the Q4 FY25 release; CEO framing: 'we believe 2026 will mark the bottom of the large ag cycle.'
+
+## Guide-vs-actual track record
+
+- **FY2024**
+  - guided: Initial (2023-11-22): '$7.75 billion to $8.25 billion'; cut at Q1 (2024-02-15) to '$7.50 billion to $7.75 billion'; cut at Q2 (2024-05-16) to 'approximately $7.0 billion'; Q3 (2024-08-15): 'Full-year net income forecast unchanged despite challenging environment.'
+  - actual: FY2024 net income $7.100 billion, EPS $25.62 ('For fiscalyear 2024, net income attributable to Deere &amp; Company was $7.100 billion, or $25.62 per share'). Pattern: big early-year cuts in a downcycle, then a ~$100M beat vs the final ~$7.0B guide.
+  - sources: `challenge/offline-data/deere/filings/2023-11-22__de-us-20231122-q4-8k__105823.md`, `challenge/offline-data/deere/filings/2024-02-15__de-us-20240215-q1-8k__105824.md`, `challenge/offline-data/deere/filings/2024-05-16__de-us-20240516-q2-8k__105819.md`, `challenge/offline-data/deere/filings/2024-08-15__de-us-20240815-q3-8k__105836.md`, `challenge/offline-data/deere/filings/2024-11-21__de-us-20241121-q4-8k__105840.md`
+- **FY2025**
+  - guided: Initial (2024-11-21): '$5.0 billion to $5.5 billion'; Q1 (2025-02-13): 'forecasted to remain in a range of $5.0 billion to $5.5 billion'; Q2 (2025-05-15): widened down to '$4.75 billion to $5.50 billion' (tariff uncertainty); Q3 (2025-08-15): narrowed to '$4.75 billion to $5.25 billion'.
+  - actual: FY2025 net income $5.027 billion, EPS $18.50 (2025-11-26 release: 'net income attributable to Deere & Company was $5.027 billion, or $18.50 per share'). Landed at low end of initial range, almost exactly the midpoint of the final narrowed range.
+  - sources: `challenge/offline-data/deere/filings/2024-11-21__de-us-20241121-q4-8k__105840.md`, `challenge/offline-data/deere/filings/2025-02-13__de-us-20250213-q1-8k__105841.md`, `challenge/offline-data/deere/filings/2025-05-15__de-us-20250515-q2-8k__105808.md`, `challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md`, `challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md`
+- **Q3 FY2025 (the year-ago analog of the target quarter)**
+  - guided: Guidance entering Q3 FY25 (given 2025-05-15 with Q2 results): FY25 net income '$4.75 billion to $5.50 billion'; PPA FY25 outlook 'Down 15% to 20%' net sales; FS ~$750M.
+  - actual: Q3 FY25 delivered net income $1.289B / EPS $4.75 on revenue $12,018M and PPA op profit $580M; management then NARROWED the FY range from the top to $4.75-5.25B ('Full-year net income guidance narrowed.') — i.e., Q3 was in line to slightly soft vs the FY path, not a beat.
+  - sources: `challenge/offline-data/deere/filings/2025-05-15__de-us-20250515-q2-8k__105808.md`, `challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md`
+- **FY2026 (in progress — target quarter falls here)**
+  - guided: Initial (2025-11-26): '$4.00 billion to $4.75 billion'; RAISED at Q1 (2026-02-19) to '$4.5 billion to $5.0 billion' ('First quarter shipments ahead of plan as order books strengthen'); MAINTAINED at Q2 (2026-05-21): 'Net income guidance maintained, reinforcing confidence amid market volatility.'
+  - actual: Not yet reported for FY26/Q3 FY26. H1 FY26 actuals: net income $2.429B, EPS $8.97, revenue $22,981M, PPA op profit $845M. Guide implies H2 net income $2.07-2.57B with Q4 > Q3. Recent-cycle pattern: guidance raised once and held, and FY24/FY25 finished at or slightly above the standing guide midpoint-to-low-end.
+  - sources: `challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md`, `challenge/offline-data/deere/filings/2026-02-19__de-us-20260219-q1-8k__603009.md`, `challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k-2__1042168.md`
+
+## Wall Street signals in the corpus
+
+- `challenge/offline-data/deere/call-transcripts/2024-08-15__de-us-20240815-call-qna__46445.md`:
+  > as you know, consensus estimates have earnings as essentially flat, 2025 versus 2024?
+  - note: Analyst citing Street consensus for FY25 vs FY24 on the Q3 FY24 call — consensus proved far too high (FY25 came in $5.03B vs FY24 $7.10B). Illustrates the Street over-anchoring at cycle turns.
+- `challenge/offline-data/deere/call-transcripts/2022-02-18__de-us-20220218-call-qna__46431.md`:
+  > It was obviously a really nice beat given the significant number of challenges that you had in the quarter. The raise was a little bit less than the beat of consensus.
+  - note: Analyst noting Deere's habit: quarterly beats vs consensus larger than the corresponding FY-guide raises.
+- `challenge/offline-data/deere/call-transcripts/2025-08-15__de-us-20250815-call-q3-qna__143409.md`:
+  > That's a normal seasonality. We now have your implied fourth quarter.
+  - note: Analysts explicitly back out the implied unreported quarter from the FY net income guide — the same arithmetic applies to estimating Q3 FY26 from the $4.5-5.0B FY26 guide minus H1 actual $2.429B, with management's 'Q4 higher than Q3' skew.
+- `challenge/offline-data/deere/call-transcripts/2012-11-21__de-us-20121121-call-qna__1532985.md`:
+  > If you add that back to the net income, now it would have been higher than the guidance we provided and higher than the first call consensus estimates.
+  - note: Older example of management benchmarking against consensus after one-time items. NOTE: the corpus contains NO analyst-estimate documents or consensus figures for the FY26 Q3 target period — only these transcript references.
+
+## Open questions
+
+- No consensus/sell-side estimate data for FY2026 Q3 exists anywhere in the corpus; Wall Street expectations for the target quarter must come from outside the corpus or be proxied by the implied-guidance math (FY guide $4.5-5.0B minus H1 $2.429B, Q4-weighted).
+- Exact FY26 Q3 quarter-end date is not stated in any corpus doc. Inference from reported period-ends (Q2 FY26 ended May 3, 2026; FY25 Q4 ended Nov 2, 2025): Q3 FY26 should end ~Aug 2, 2026, a 13-week quarter comparable to Q3 FY25 (ended Jul 27, 2025). Caveat: FY2025 was a 53-week year — its extra week fell in Q4 FY25 (Jul 27 -> Nov 2 is 14 weeks), which inflates the Q4 FY25 (+11% YoY) comp; this is my arithmetic from reported dates, not stated in a document.
+- OCR defect: the 2025-11-26 Q4 FY25 8-K's initial FY26 segment-outlook row prints '| Production & Precision Ag         | 10%         | +1.5%         | ~ +1.5%         |' with the direction word lost; the same-day slide deck (slides/2025-11-26__de-us-20251126-slide__361243.md) shows PPA FY26 net sales '5-10%' with a downward arrow and margin '11-13%', matching the later 'Down 5 to 10%' wording — treat initial PPA guide as down 5-10%.
+- Whether additional IEEPA tariff-refund recoveries (beyond the $272M booked in Q2 FY26) could land in Q3 FY26 is unresolved; guidance includes ~$900M net FY26 tariff cost and management did not quantify pending unaccepted claims.
+- Deere provides no quarterly guidance of any kind (no quarterly EPS, revenue, or segment profit guidance) — the only quarter-level information for Q3 FY26 is the cadence commentary on the 2026-05-21 call (H2 revenue slightly above H1; Q4 > Q3; SAT steps down in Q3; C&F balanced; best cost comps and large-tractor absorption in Q4).
+- The INDEX.md mislabels the 2026-05-21 Q&A transcript as 'Q3 2026 Earnings Call Transcript' (period metadata 'Q3 2026'); content confirms it is the Q2 FY26 (May 21, 2026) earnings call Q&A.
+- Financial Services quarterly revenue line ('Financial Services revenues') has been drifting down YoY (~$1,366M in Q2 FY26 vs $1,385M); FS net income guided ~$860M FY26 — H2 implies ~$213M/qtr, but Q4 FY25 showed FS can swing ($374M) on derivative valuations; quarterly FS split for H2 FY26 is not disclosed.
+- PPA 'Down 5 to 10%' FY26 sales guide vs H1 actual: H1 PPA sales were $7,666M (-8% YoY); implied H2 PPA sales ~$8.0-8.7B (vs $9,013M H2 FY25), i.e., still down YoY in H2 with Q4-weighted large-tractor shipments — but the exact Q3/Q4 split within PPA is not disclosed (my arithmetic, flagged as inference).
