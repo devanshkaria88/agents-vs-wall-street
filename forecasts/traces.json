@@ -216,18 +216,23 @@
   {
    "label": "Net sales",
    "unit": "USDm",
-   "value": 47358.0,
+   "value": 47613.0,
    "variants": [
-    47348.0,
-    47358.0,
-    47368.0
+    47516.0,
+    47613.0,
+    47646.0
    ],
-   "spread": 20.0,
+   "spread": 130.0,
    "trace": [
     {
-     "desc": "Q2 organic solved from Q1 identity, stepped by comp cadence; GMS added back",
-     "formula": "45277 x (1 + organic_q2) + GMS",
-     "result": 47358
+     "desc": "Q1 organic solved from identity with the 10-Q's stated GMS $1.3B",
+     "formula": "(41765 - 1300)/39856 - 1",
+     "result": 0.0153
+    },
+    {
+     "desc": "Q2 = year-ago x (1 + organic stepped by comp cadence) + GMS Q1 x seasonal factor",
+     "formula": "45277 x (1 + organic_q2) + 1300 x factor",
+     "result": 47613
     }
    ],
    "cross_checks": [
@@ -235,7 +240,7 @@
      "desc": "FY sales guide midpoint applied to year-ago quarter",
      "formula": "45277 x 1.035",
      "result": 46862,
-     "delta_vs_primary": -496.131
+     "delta_vs_primary": -751.3461
     }
    ],
    "citations": {
@@ -261,10 +266,13 @@
      "verbatim_line": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and",
      "published": "2026-05-19"
     },
-    "gms_quarterly_sales": {
-     "doc_path": "research/dossiers/home-depot.json",
-     "verbatim_line": "only anchors are ~$900M for ~8 weeks in Q3 FY25 and 'approximately $2.0 billion'",
-     "published": "2026-02-24"
+    "gms_q1_sales": {
+     "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-10q__1053121.md",
+     "verbatim_line": "The increase in net sales for the first quarter of fiscal 2026 was primarily driven by sales from GMS, which was acquired on September 4, 2025 and contributed $1.3 billion of net sales during the first quarter of fiscal 2026.",
+     "published": "2026-05-19"
+    },
+    "gms_q2_seasonal_factor": {
+     "justification": "GMS Q2 scales with HD's own Q2/Q1 seasonality (45,277/39,856 = 1.136 year-ago). Judgment driver - plan-ensemble varies this."
     },
     "fy26_sales_growth_guide": {
      "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
@@ -403,13 +411,13 @@
   {
    "label": "Adjusted gross margin",
    "unit": "%",
-   "value": 73.5,
+   "value": 85.8,
    "variants": [
-    73.3,
-    73.5,
-    73.6
+    85.8,
+    85.8,
+    85.8
    ],
-   "spread": 0.3,
+   "spread": 0.0,
    "trace": [
     {
      "desc": "Damped trend: last value + 0.35 x last sequential delta",
@@ -419,7 +427,7 @@
     {
      "desc": "Blend damped trend with guide-implied GM (adj op margin 49.0 + opex ratio)",
      "formula": "(73.6 + 73.3)/2",
-     "result": 73.5
+     "result": 85.8
     }
    ],
    "cross_checks": [],
@@ -435,7 +443,9 @@
      "published": "2026-05-20"
     },
     "trailing_opex_ratio": {
-     "justification": "Adjusted opex as % of revenue implied by recent quarters (adj GM minus adj op margin). Extractor task: pin from Q2 FY26 8-K reconciliation tables. Judgment driver \u2014 plan-ensemble varies this."
+     "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+     "verbatim_line": "| Adjusted operating margin | 49.0 | % | | 41.2 | % | | 780 bps |",
+     "published": "2026-05-20"
     },
     "q2_26_adj_gm": {
      "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",

@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # sane = absolute never-plausible bounds for the unit — a hard failure.
 CHECKS = {
     ("HD-FY2026Q2.xlsx", "Net sales"): {"hist": [38198, 45277], "sane": [30000, 60000],
-        "growth_ok": "GMS acquisition adds a full quarter (~$2.0B) absent from every historical quarter"},
+        "growth_ok": "GMS acquisition adds a full quarter absent from history ($1.3B in Q1 per the 10-Q, seasonally scaled)"},
     ("HD-FY2026Q2.xlsx", "Adjusted diluted EPS"): {"hist": [2.72, 4.68], "sane": [1.0, 8.0]},
     ("HD-FY2026Q2.xlsx", "Comparable sales, total company"): {"hist": [-3.3, 1.0], "sane": [-10.0, 10.0],
         "growth_ok": "management guided comps improving through the year from Q1's +0.6"},

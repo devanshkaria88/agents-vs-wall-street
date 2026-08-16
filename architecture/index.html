@@ -108,6 +108,8 @@
 
     <h2>What the judges can verify</h2>
     <ul>
+      <li><b>Live observability dashboard:</b> <code>npm run observe</code> → localhost:3000 — a React Flow view of this exact pipeline with per-stage inspection: click a Reader to see the skills loaded into its system prompt and every tool call it made; click the firewall/vote/merge stages to see drops, vote support, and merge decisions; click a calculator to see formulas, plan variants, and cross-checks. Polls the run artifacts live during a run.</li>
+      <li><b>The live loop works — with receipts:</b> in the 13:40 live run, three Reader agents independently confirmed every reviewed Hays anchor (zero divergences through the firewall and vote), and upgraded one assumption to a fact: the actual H1 FY26 net finance charge (£6.7m) from the half-year report, collapsing the EPS uncertainty band (1.16p ± band → 1.12p, spread 0).</li>
       <li><b>Traces:</b> <code>forecasts/traces.json</code> — every metric's inputs (with citations), formulas, variants, cross-check deltas.</li>
       <li><b>Tool log:</b> <code>logs/agent-trace-*.jsonl</code> — every search_corpus/read_doc call the Reader made, timestamped.</li>
       <li><b>Validation:</b> <code>logs/validation-*.json</code> — 15 verdicts per run, including justified out-of-history positions.</li>

@@ -138,18 +138,22 @@ def forecast_home_depot(d: dict) -> list[dict]:
     out.append(m.finish(["q1_26_comps", "comp_cadence_step", "fy26_comp_guide_mid"], d))
 
     m = Metric("Net sales", "USDm", 0)
-    for p in variants_over(d, ["gms_quarterly_sales"]):
-        gms = p["gms_quarterly_sales"]
-        organic_q1 = (val(d, "q1_26_net_sales") - gms) / val(d, "q1_25_net_sales") - 1
+    organic_q1 = m.step("Q1 organic solved from identity with the 10-Q's stated GMS $1.3B",
+                        "(41765 - 1300)/39856 - 1",
+                        round((val(d, "q1_26_net_sales") - val(d, "gms_q1_sales"))
+                              / val(d, "q1_25_net_sales") - 1, 4))
+    for p in variants_over(d, ["gms_q2_seasonal_factor"]):
+        gms_q2 = val(d, "gms_q1_sales") * p["gms_q2_seasonal_factor"]
         organic_q2 = organic_q1 + (comps_final - val(d, "q1_26_comps")) / 100
-        m.variants.append(val(d, "q2_25_net_sales") * (1 + organic_q2) + gms)
-    m.step("Q2 organic solved from Q1 identity, stepped by comp cadence; GMS added back",
-           "45277 x (1 + organic_q2) + GMS", round(statistics.median(m.variants)))
+        m.variants.append(val(d, "q2_25_net_sales") * (1 + organic_q2) + gms_q2)
+    m.step("Q2 = year-ago x (1 + organic stepped by comp cadence) + GMS Q1 x seasonal factor",
+           "45277 x (1 + organic_q2) + 1300 x factor", round(statistics.median(m.variants)))
     m.cross("FY sales guide midpoint applied to year-ago quarter", "45277 x 1.035",
             round(val(d, "q2_25_net_sales") * (1 + val(d, "fy26_sales_growth_guide"))),
             statistics.median(m.variants))
     out.append(m.finish(["q2_25_net_sales", "q1_26_net_sales", "q1_25_net_sales",
-                         "q1_26_comps", "gms_quarterly_sales", "fy26_sales_growth_guide"], d))
+                         "q1_26_comps", "gms_q1_sales", "gms_q2_seasonal_factor",
+                         "fy26_sales_growth_guide"], d))
 
     m = Metric("Adjusted diluted EPS", "USD / share", 2)
     fy26_adj = m.step("FY26 adjusted EPS implied: GAAP guide mid + FY25 adj-GAAP gap",

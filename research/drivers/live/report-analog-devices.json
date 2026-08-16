@@ -1,0 +1,141 @@
+{
+ "company": "analog-devices",
+ "runs_attempted": 3,
+ "runs_parsed": 3,
+ "timestamp": "2026-08-16T12:46:08.307371+00:00",
+ "firewall_drops": [
+  [
+   "beat_shrink",
+   "null value"
+  ],
+  [
+   "beat_shrink",
+   "null value"
+  ],
+  [
+   "beat_shrink",
+   "null value"
+  ]
+ ],
+ "unresolved": [],
+ "merge_decisions": [
+  {
+   "key": "q3_guide_rev_mid",
+   "action": "confirmed",
+   "value": 3900.0
+  },
+  {
+   "key": "q2_26_adj_gm",
+   "action": "confirmed",
+   "value": 73.0
+  },
+  {
+   "key": "adj_gm_series",
+   "action": "confirmed",
+   "value": null
+  },
+  {
+   "key": "q3_guide_adj_eps_mid",
+   "action": "confirmed",
+   "value": 3.3
+  },
+  {
+   "key": "trailing_opex_ratio",
+   "action": "UPGRADED assumption -> extracted",
+   "pinned": 24.3,
+   "live": 49.0
+  },
+  {
+   "key": "q3_guide_adj_opm",
+   "action": "confirmed",
+   "value": 49.0
+  }
+ ],
+ "additional_evidence": [
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
+   "published": "2026-02-18",
+   "note": "Q1 FY26 adjusted GM 71.2% \u2014 prior point of adj_gm_series."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
+   "published": "2025-11-25",
+   "note": "Q4 FY25 adjusted GM 69.8%; FY25 69.3%."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
+   "published": "2025-08-20",
+   "note": "Q3 FY25 adjusted GM 69.2%."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+   "verbatim_line": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
+   "published": "2026-05-20",
+   "note": "Q2 FY26 actual revenue $3,623m (base for sequential growth), +37% y/y."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
+   "verbatim_line": "We just did our first big price increase in 2026 now.",
+   "published": "2026-06-02",
+   "note": "Latest corpus doc (post-guidance): CFO cites first broad 2026 price increase to offset input inflation; no revision to Q3 guidance."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
+   "published": "2026-02-18",
+   "note": "Q1 FY26 adjusted gross margin 71.2%."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
+   "published": "2025-11-25",
+   "note": "Q4 FY25 adjusted gross margin 69.8%, FY25 69.3%."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
+   "published": "2025-08-20",
+   "note": "Q3 FY25 adjusted gross margin 69.2%."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+   "verbatim_line": "\u2022Revenue of $3.62 billion, with year-over-year growth across all end markets, led by Industrial and Communications",
+   "published": "2026-05-20",
+   "note": "Q2 FY26 actual revenue $3,623m, above high end of prior outlook."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
+   "verbatim_line": "We just posted a record quarter. We've guided another record quarter.",
+   "published": "2026-06-02",
+   "note": "Most recent corpus doc reaffirms, does not revise, the Q3 FY26 guidance."
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-02-18__adi-us-20260218-q1-8k-2__602115.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 71.2 %         | 68.8 %         | 240 bps         |",
+   "published": "2026-02-18"
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-11-25__adi-us-20251125-q4-8k__361005.md",
+   "verbatim_line": "| Adjusted gross margin percentage         | 69.8%         | 67.9%         | 190 bps         | 69.3%         | 67.9%         | 140 bps         |",
+   "published": "2025-11-25"
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2025-08-20__adi-us-20250820-q3-8k__155976.md",
+   "verbatim_line": "| Adjusted gross margin percentage    |         | 69.2 %         | 67.9 %         | 130 bps         |",
+   "published": "2025-08-20"
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+   "verbatim_line": "| Revenue | $ | 3,623 | | | $ | 2,640 | | | 37 | % |",
+   "published": "2026-05-20"
+  },
+  {
+   "doc_path": "challenge/offline-data/analog-devices/call-transcripts/2026-06-02__adi-us-20260602-call-conf-qna__1135033.md",
+   "verbatim_line": "We just posted a record quarter. We've guided another record quarter.",
+   "published": "2026-06-02"
+  }
+ ]
+}

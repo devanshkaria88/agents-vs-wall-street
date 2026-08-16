@@ -131,19 +131,6 @@
     "published": "2026-05-19"
    }
   },
-  "gms_quarterly_sales": {
-   "value": 1975.0,
-   "low": 1900.0,
-   "high": 2050.0,
-   "unit": "USDm",
-   "kind": "structure",
-   "citation": {
-    "doc_path": "research/dossiers/home-depot.json",
-    "verbatim_line": "only anchors are ~$900M for ~8 weeks in Q3 FY25 and 'approximately $2.0 billion'",
-    "published": "2026-02-24"
-   },
-   "justification": "GMS acquired ~Sep 2025; Q2 FY26 contains a full GMS quarter, the year-ago quarter contains none. Judgment driver \u2014 plan-ensemble varies this."
-  },
   "comp_cadence_step": {
    "value": 0.4,
    "low": 0.2,
@@ -156,6 +143,25 @@
     "published": "2026-02-24"
    },
    "justification": "Management cadence commentary; Q2 comp = Q1 + step. Judgment driver \u2014 plan-ensemble varies this."
+  },
+  "gms_q1_sales": {
+   "value": 1300.0,
+   "unit": "USDm",
+   "kind": "extracted-live",
+   "citation": {
+    "doc_path": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-10q__1053121.md",
+    "verbatim_line": "The increase in net sales for the first quarter of fiscal 2026 was primarily driven by sales from GMS, which was acquired on September 4, 2025 and contributed $1.3 billion of net sales during the first quarter of fiscal 2026.",
+    "published": "2026-05-19"
+   },
+   "vote_support": "3/3 (flagged as divergence vs pinned inference; reviewed and adopted)"
+  },
+  "gms_q2_seasonal_factor": {
+   "value": 1.125,
+   "low": 1.05,
+   "high": 1.15,
+   "unit": "ratio",
+   "kind": "assumption",
+   "justification": "GMS Q2 scales with HD's own Q2/Q1 seasonality (45,277/39,856 = 1.136 year-ago). Judgment driver - plan-ensemble varies this."
   }
  }
 }
