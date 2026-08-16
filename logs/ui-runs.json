@@ -92,5 +92,13 @@
     "quarter": null,
     "logfile": "logs/ui-run-fullrun-20260816T145445Z.log",
     "startedAt": "2026-08-16T14:54:45.101Z"
+  },
+  {
+    "pid": 2790,
+    "action": "fullrun",
+    "company": "hays",
+    "quarter": null,
+    "logfile": "logs/ui-run-fullrun-20260816T154918Z.log",
+    "startedAt": "2026-08-16T15:49:18.162Z"
   }
 ]

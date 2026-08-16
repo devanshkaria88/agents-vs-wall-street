@@ -1,0 +1,150 @@
+{
+ "timestamp": "20260816T155038Z",
+ "result": "PASS",
+ "verdicts": [
+  {
+   "workbook": "HAS-FY2026.xlsx",
+   "metric": "Net fees",
+   "value": 903.5,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: fees declined all year (H1 actual 453.3 annualises below the historical min)"
+   }
+  },
+  {
+   "workbook": "HAS-FY2026.xlsx",
+   "metric": "Pre-exceptional operating profit",
+   "value": 46.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "HAS-FY2026.xlsx",
+   "metric": "Pre-exceptional basic EPS",
+   "value": 1.12,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: H1 actual was 0.46p; full year mechanically lands below FY25's 1.31p"
+   }
+  },
+  {
+   "workbook": "HD-FY2026Q2.xlsx",
+   "metric": "Comparable sales, total company",
+   "value": 1.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "HD-FY2026Q2.xlsx",
+   "metric": "Net sales",
+   "value": 47613.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: GMS acquisition adds a full quarter absent from history ($1.3B in Q1 per the 10-Q, seasonally scaled)"
+   }
+  },
+  {
+   "workbook": "HD-FY2026Q2.xlsx",
+   "metric": "Adjusted diluted EPS",
+   "value": 4.68,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "ADI-FY2026Q3.xlsx",
+   "metric": "Revenue",
+   "value": 3960.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: company guided $3.9B +/- $100M, above every historical quarter"
+   }
+  },
+  {
+   "workbook": "ADI-FY2026Q3.xlsx",
+   "metric": "Adjusted diluted EPS",
+   "value": 3.39,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: company guided $3.30 +/- $0.15"
+   }
+  },
+  {
+   "workbook": "ADI-FY2026Q3.xlsx",
+   "metric": "Adjusted gross margin",
+   "value": 73.3,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "outside history, justified: margin series rising four consecutive quarters"
+   }
+  },
+  {
+   "workbook": "DE-FY2026Q3.xlsx",
+   "metric": "Worldwide net sales and revenues",
+   "value": 12543.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "DE-FY2026Q3.xlsx",
+   "metric": "Diluted EPS (GAAP)",
+   "value": 4.84,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "DE-FY2026Q3.xlsx",
+   "metric": "Production & Precision Ag operating profit",
+   "value": 556.0,
+   "checks": {
+    "finite_number": "pass",
+    "unit_sanity": "pass",
+    "vs_trailing_history": "pass (inside 8-period range)"
+   }
+  },
+  {
+   "workbook": "DE-FY2026Q3.xlsx",
+   "metric": "cross-foot EPS x shares vs Q3 NI",
+   "value": 1310.2,
+   "checks": {
+    "eps_x_shares_vs_ni": "pass"
+   }
+  },
+  {
+   "workbook": "HAS-FY2026.xlsx",
+   "metric": "cross-foot op profit vs stated consensus range",
+   "value": 46.0,
+   "checks": {
+    "inside_37_to_46_range": "pass"
+   }
+  },
+  {
+   "workbook": "HD-FY2026Q2.xlsx",
+   "metric": "cross-foot EPS path disagreement",
+   "value": 0.18,
+   "checks": {
+    "paths_within_tolerance": "pass"
+   }
+  }
+ ]
+}
