@@ -302,6 +302,13 @@ export function assemble(company: string) {
     }
   }
 
+  // A live full run RESETS the feed for its company: only events stamped
+  // after startedAt show, so the feed visibly empties and refills with the
+  // new run instead of mixing in the previous run's tail. (Both timestamps
+  // are ISO-8601 UTC, so string comparison is chronological.)
+  const visibleEvents =
+    fullrun?.active && fullrun.startedAt ? events.filter((e) => e.ts >= fullrun!.startedAt!) : events;
+
   return {
     company,
     companies: Object.entries(COMPANIES).map(([id, c]) => ({ id, label: c.label })),
@@ -309,7 +316,7 @@ export function assemble(company: string) {
     workbookExists: wbM !== null,
     generatedAt: new Date().toISOString(),
     stages,
-    events,
+    events: visibleEvents,
     readers: readers.map((r) => ({ ...r, calls: r.calls })),
     skillgen,
     liveReport,
